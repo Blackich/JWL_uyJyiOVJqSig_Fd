@@ -1,0 +1,51 @@
+.main-block--user-social-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 350px;
+  height: 281.7px;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 10px;
+  overflow: hidden;
+
+  .user-soc-acc__list {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .user-soc-acc__item {
+    display: flex;
+    border-radius: 8px;
+    border-left: 0px solid rgb(156, 156, 156, 0.8);
+    border-right: 0px solid rgb(156, 156, 156, 0.8);
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    gap: 5px;
+
+    p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 165px;
+    }
+
+    &:hover {
+      background-color: #b9e3ff;
+    }
+  }
+
+  .user-soc-acc__item-date {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+
+  .user-soc-acc__no-acc {
+    margin: auto 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}

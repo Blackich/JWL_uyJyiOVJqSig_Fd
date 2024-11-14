@@ -1,0 +1,23 @@
+{
+  "social_account_list.add_account": "Добавить аккаунт",
+  "social_account_list.add_account_aria": "Добавить аккаунт",
+  "social_account_list.no_user": "Здесь будут показаны ваши аккаунты",
+
+  "social_account.profile_selection_aria": "Выбор аккаунта {name}",
+  "social_account.profile_photo_alt": "Фото профиля {name}",
+  "social_account.profile_delete_aria": "Удаление аккаунта {name}",
+
+  "card_list.post_quantity_btn_change": "Постов",
+  "card_list.post_quantity_btn_change_aria": "Изменить на {count} постов",
+
+  "card.likes": "лайков",
+  "card.views": "просмотров",
+  "card.etc": "а так же ...",
+  "card.order_now_btn": "Купить",
+  "card.inside_title": "Дополнительно",
+  "card.reach": "Охват",
+  "card.impressions": "Показы",
+  "card.profile_visits": "Посещения",
+  "card.reposts": "Репосты",
+  "card.saves": "Сохранения"
+}

@@ -1,0 +1,9 @@
+.main-block--custom-packages {
+  display: flex;
+}
+
+.custom-package {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

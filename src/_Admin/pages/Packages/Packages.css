@@ -1,0 +1,23 @@
+.main-block--packages {
+  display: flex;
+  flex-direction: column;
+}
+
+.package__control {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  flex-direction: row;
+  
+} 
+
+.package__container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.package-details__container {
+  margin-top: 20px;
+}

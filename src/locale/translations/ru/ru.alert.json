@@ -1,0 +1,6 @@
+{
+  "alert.delete_user_success": "Пользователь успешно удален",
+  "alert.delete_user_error": "Не удалось удалить пользователя",
+  "alert.add_user_success": "Пользователь успешно добавлен",
+  "alert.add_user_error": "Не удалось добавить пользователя"
+}

@@ -1,0 +1,31 @@
+.delete-user-modal {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 20px;
+  padding: 20px;
+}
+
+.inst-modal__remove-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: rgba(200, 20, 20, 0.7);
+  margin: 10px auto;
+
+  svg {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.inst-modal__description {
+  span {
+    font-style: italic;
+    font-weight: 700;
+    color: chocolate;
+  }
+}

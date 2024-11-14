@@ -1,0 +1,26 @@
+{
+  "modal.close_btn_aria": "Close modal",
+  "modal.add_user_title": "Add account",
+  "modal.add_user_input_aria": "Enter your username",
+  "modal.add_user_description": "All the features of the service will be available to you.",
+  "modal.add_user_add_btn": "Add",
+  "modal.add_user_add_btn_aria": "Add an account {name}",
+
+  "modal.delete_user_title": "Delete account",
+  "modal.delete_user_description": "Are you sure you want to delete account",
+  "modal.delete_user_delete_btn": "Delete",
+  "modal.delete_user_delete_btn_aria": "Delete an account {name}",
+
+  "modal.payment_package_no_acc": "No active account",
+  "modal.payment_package_title": "How do you want to pay?",
+  "modal.payment_package_subtitle": "Summary",
+  "modal.payment_package_pack": "Package",
+  "modal.payment_package_acc": "Account",
+  "modal.payment_package_posts_q": "Number of posts",
+  "modal.payment_package_days_q": "Number of days",
+  "modal.payment_package_price": "Cost",
+  "modal.payment_package_YooKassa_bc": "Bank card(RU)",
+  "modal.payment_package_YooKassa_bc_aria": "Pay by credit card(RU)",
+  "modal.payment_package_YooKassa_sbp": "FPS(RU)",
+  "modal.payment_package_YooKassa_sbp_aria": "Pay using FPS(RU)"
+}

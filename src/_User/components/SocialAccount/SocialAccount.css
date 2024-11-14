@@ -1,0 +1,72 @@
+.social-account {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f7fafc;
+  }
+
+  &:active,
+  &:focus-visible {
+    background-color: rgba(205, 225, 255, 0.5);
+  }
+
+  &.active {
+    background-color: #cce5ff;
+  }
+
+}
+
+.social-account__photo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-account__username {
+  font-size: 18px;
+  margin-left: 10px;
+  max-width: 200px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.social-account__del-btn {
+  margin: 7px 5px 0 auto;
+  background-color: transparent;
+  border: none;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    color: gray;
+    transition: all .3s;
+  }
+
+  &:active,
+  &:focus-visible {
+    svg {
+      color: rgb(171, 24, 24);
+      transform: scale(1.2);
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    svg {
+      color: rgb(171, 24, 24);
+      transform: scale(1.2);
+    }
+  }
+}

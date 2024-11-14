@@ -1,0 +1,11 @@
+.panel__sidebar-dashboard__container {
+  display: flex;
+  margin: 10px 34px 10px 10px;
+  flex-grow: 1;
+}
+
+.panel__sidebar-dashboard__list {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}

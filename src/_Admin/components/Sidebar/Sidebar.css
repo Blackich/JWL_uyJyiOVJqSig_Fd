@@ -1,0 +1,6 @@
+.panel__sidebar {
+  display: flex;
+  background-color: #0B0D0E;
+  height: calc(100vh - 48px);
+  min-width: 272px;
+}

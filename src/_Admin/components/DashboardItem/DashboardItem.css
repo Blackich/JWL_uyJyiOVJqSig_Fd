@@ -1,0 +1,17 @@
+.dashboard-item__in {
+  display: flex;
+  padding: 15px;
+  gap: 10px;
+  color: #DDE7EE;
+  margin-bottom: 15px;
+}
+
+.dashboard-item__active {
+  background-color: #443df6;
+  border-radius: 10px;
+  color: white;
+}
+
+.dashboard-item__in:hover {
+  color: white;
+}

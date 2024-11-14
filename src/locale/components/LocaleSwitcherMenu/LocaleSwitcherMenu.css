@@ -1,0 +1,27 @@
+.locale-switcher-menu__option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 14px 15px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+}
+
+.locale-switcher-menu__text {
+  font-weight: 500;
+  font-size: 16px;      
+  line-height: 24px;
+}
+
+.locale-switcher-menu__option {
+  &:hover .locale-switcher-menu__text {
+    color: var(--color-accent-hover);
+  }
+
+  &:active,
+  &:focus-visible .locale-switcher-menu__text {
+    color: var(--color-accent-hover);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "header.exit_btn": "Sign out",
+  "header.exit_btn_aria": "Sign out",
+  "header.locale_switcher_btn_aria": "Change language",
+  "header.locale_switcher_btn_en_aria": "Switch to English",
+  "header.locale_switcher_btn_ru_aria": "Switch to Russian",
+
+  "header_menu.home": "Dashboard",
+  "header_menu.home_aria": "Go to dashboard",
+  "header_menu.extra": "Services",
+  "header_menu.extra_aria": "Go to extra services"
+}

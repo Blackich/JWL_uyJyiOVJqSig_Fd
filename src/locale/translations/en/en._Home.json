@@ -1,0 +1,23 @@
+{
+  "social_account_list.add_account": "Add account",
+  "social_account_list.add_account_aria": "Add a new account",
+  "social_account_list.no_user": "Your accounts will be shown here",
+
+  "social_account.profile_selection_aria": "Profile selection {name}",
+  "social_account.profile_photo_alt": "Profile photo {name}",
+  "social_account.profile_delete_aria": "Deleting an account {name}",
+
+  "card_list.post_quantity_btn_change": "Posts",
+  "card_list.post_quantity_btn_change_aria": "Сhange to {count} posts",
+
+  "card.likes": "likes",
+  "card.views": "views",
+  "card.etc": "and also ...",
+  "card.order_now_btn": "Order now",
+  "card.inside_title": "Info",
+  "card.reach": "Reach",
+  "card.impressions": "Impressions",
+  "card.profile_visits": "Profile Visits",
+  "card.reposts": "Reposts",
+  "card.saves": "Saves"
+}

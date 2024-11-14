@@ -1,0 +1,7 @@
+.main-block--overview {
+  display: flex;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}

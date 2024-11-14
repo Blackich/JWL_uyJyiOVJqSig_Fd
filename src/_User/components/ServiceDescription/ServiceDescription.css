@@ -1,0 +1,46 @@
+.service-description {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--border-shadow);
+  padding: 20px;
+  min-height: 160px;
+  display: flex;
+  flex: 1 1 calc((100% - 20px * 1) / 2);
+  align-items: center;
+  gap: 30px;
+}
+
+.service-description__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.service-description__title {
+  display: flex;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.service-description__text {
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@media all and (max-width: 990px) {
+  .service-description {
+    flex: 1 1 calc((100% - 20px * 1) / 1);
+  }
+
+  .service-description__title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .service-description__text {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

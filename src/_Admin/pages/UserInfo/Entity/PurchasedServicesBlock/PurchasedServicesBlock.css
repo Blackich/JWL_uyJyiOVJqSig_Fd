@@ -1,0 +1,46 @@
+.main-block--user-purchased-services {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 10px;
+  width: 730px;
+  height: 281.7px;
+  gap: 10px;
+  overflow: hidden;
+
+  .user-purchased-services__list {
+    overflow: auto;
+  }
+
+  #user-th {
+    display: flex;
+
+    #user-td {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  #user-tr {
+    display: flex;
+  }
+
+  #user-th #user-td,
+  #user-tr #user-td {
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 0%;
+
+    padding: 5px 10px;
+    border: 1px solid rgb(156, 156, 156);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #user-td:nth-child(1) {
+    min-width: 100px;
+    /* overflow: hidden; */
+  }
+}

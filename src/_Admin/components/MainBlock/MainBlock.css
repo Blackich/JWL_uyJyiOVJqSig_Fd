@@ -1,0 +1,35 @@
+.panel__container {
+  display: flex;
+  background-color: #0B0D0E;
+  padding: 24px;
+}
+
+.panel__main {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 48px);
+  flex-grow: 1;
+  background-color: white;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+
+.panel__main-block {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  flex-grow: 1;
+  background-color: #F8F8F8;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top: 1.5px solid #DDE7EE;
+  scrollbar-gutter: stable;
+  overflow-y: auto;
+}
+
+
+.panel__main-block__content {
+  display: flex;
+  margin-top: 24px;
+}

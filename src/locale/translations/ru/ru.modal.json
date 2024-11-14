@@ -1,0 +1,26 @@
+{
+  "modal.close_btn_aria": "Закрыть модальное окно",
+  "modal.add_user_title": "Добавить аккаунт",
+  "modal.add_user_input_aria": "Введите имя вашего аккаунта",
+  "modal.add_user_description": "Для вас станут доступны все возможности сервиса.",
+  "modal.add_user_add_btn": "Добавить",
+  "modal.add_user_add_btn_aria": "Добавить аккаунт {name}",
+
+  "modal.delete_user_title": "Удаление аккаунта",
+  "modal.delete_user_description": "Вы действительно хотите удалить аккаунт",
+  "modal.delete_user_delete_btn": "Удалить",
+  "modal.delete_user_delete_btn_aria": "Удалить аккаунт {name}",
+
+  "modal.payment_package_no_acc": "Нет активного аккаунта",
+  "modal.payment_package_title": "Как вы хотите оплатить?",
+  "modal.payment_package_subtitle": "Сводка",
+  "modal.payment_package_pack": "Пакет",
+  "modal.payment_package_acc": "Аккаунт",
+  "modal.payment_package_posts_q": "Количество постов",
+  "modal.payment_package_days_q": "Количество дней",
+  "modal.payment_package_price": "Цена",
+  "modal.payment_package_YooKassa_bc": "Банк.Карта(РФ)",
+  "modal.payment_package_YooKassa_bc_aria": "Оплатить банковской картой(РФ)",
+  "modal.payment_package_YooKassa_sbp": "СБП",
+  "modal.payment_package_YooKassa_sbp_aria": "Оплатить СБП"
+}

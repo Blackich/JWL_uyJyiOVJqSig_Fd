@@ -1,0 +1,14 @@
+.social-account-list {
+  display: flex;
+  flex-direction: column;
+
+  &:first-child {
+    margin-bottom: 11px;
+  }
+}
+
+.soc-acc-no-user {
+  text-align: center;
+  margin: 60px 0;
+  font-size: 18px;
+}

@@ -1,0 +1,12 @@
+{
+  "header.exit_btn": "Выйти",
+  "header.exit_btn_aria": "Выйти из аккаунта",
+  "header.locale_switcher_btn_aria": "Переключить язык",
+  "header.locale_switcher_btn_en_aria": "Переключить язык на английский",
+  "header.locale_switcher_btn_ru_aria": "Переключить язык на русский",
+
+  "header_menu.home": "Главная",
+  "header_menu.home_aria": "Переход на главную страницу",
+  "header_menu.extra": "Услуги",
+  "header_menu.extra_aria": "Переход на страницу доп. услуг"
+}
