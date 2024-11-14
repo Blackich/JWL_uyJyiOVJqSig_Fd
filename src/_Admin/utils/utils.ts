@@ -43,24 +43,16 @@ export const calcPrimeCostCustomPackage = (
   reach: number,
   videoViews: number,
   countPosts: number = 15,
-  saves?: number,
-  autoProfileVisits?: number,
-  autoShares?: number,
+  saves: number,
+  autoProfileVisits: number,
+  autoShares: number,
 ) => {
   const package1k = [
     likes * 1.02,
     reach * 1.02,
-    saves ? saves * 1.02 : likes * 0.075 < 100 ? 115 : likes * 0.075 * 1.02,
-    autoProfileVisits
-      ? autoProfileVisits * 1.02
-      : likes * 0.075 < 100
-      ? 115
-      : likes * 0.075 * 1.02,
-    autoShares
-      ? autoShares * 1.02
-      : likes * 0.075 < 100
-      ? 115
-      : likes * 0.075 * 1.02,
+    saves * 1.02,
+    autoProfileVisits * 1.02,
+    autoShares * 1.02,
     videoViews * 1.02,
   ];
 

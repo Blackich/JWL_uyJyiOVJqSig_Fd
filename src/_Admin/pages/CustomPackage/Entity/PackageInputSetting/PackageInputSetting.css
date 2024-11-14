@@ -1,0 +1,7 @@
+.custom-package__settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+  padding: 15px;
+}

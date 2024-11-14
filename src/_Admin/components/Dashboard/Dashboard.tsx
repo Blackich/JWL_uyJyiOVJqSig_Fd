@@ -11,6 +11,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import BackpackIcon from "@mui/icons-material/Backpack";
 import BackpackOutlinedIcon from "@mui/icons-material/BackpackOutlined";
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 // import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 // import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 
@@ -42,6 +44,12 @@ export const Dashboard: FC = () => {
             title="Пакеты"
             iconActive={<ShoppingBagIcon />}
             iconInactive={<ShoppingBagOutlinedIcon />}
+          />
+          <DashboardItem
+            url="/panel/custom-package/create"
+            title="Добавить пакет"
+            iconActive={<AddCircleOutlinedIcon />}
+            iconInactive={<AddCircleOutlineOutlinedIcon />}
           />
           <DashboardItem
             url="/panel/custom-package"

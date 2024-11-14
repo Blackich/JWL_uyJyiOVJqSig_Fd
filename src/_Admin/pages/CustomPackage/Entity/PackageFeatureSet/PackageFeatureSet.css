@@ -1,0 +1,32 @@
+.custom-package__feature-set {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+  padding: 15px;
+}
+
+.custom-package__feature-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 13.8px;
+  border: 1px solid rgba(156, 156, 156, 0.5);
+  border-radius: 5px;
+
+  span {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    overflow: hidden;
+
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}

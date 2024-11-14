@@ -53,3 +53,20 @@ export type PackageDetails = {
   price: number;
   ratio: number;
 };
+
+export type CustomPackageSettings = {
+  likes: number;
+  reach: number;
+  saves: number;
+  profileVisits: number;
+  reposts: number;
+  videoViews: number;
+  countPosts: number;
+  price_rub: number;
+  price_usd: number;
+};
+
+export type CustomPackWithoutPrice = Omit<
+  CustomPackageSettings,
+  "price_rub" | "price_usd"
+>;

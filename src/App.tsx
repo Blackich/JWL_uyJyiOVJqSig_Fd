@@ -98,6 +98,15 @@ export const App: FC = () => {
         ></Route>
 
         <Route
+          path="/panel/custom-package/create"
+          element={
+            <PrivateRoute>
+              <CustomPackage />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
           path="/panel/custom-package"
           element={
             <PrivateRoute>

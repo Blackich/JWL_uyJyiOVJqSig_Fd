@@ -1,9 +1,12 @@
-.main-block--custom-packages {
-  display: flex;
-}
-
-.custom-package {
+.main-block--custom-package {
   display: flex;
   flex-direction: column;
+  flex: 1;
+}
+
+.custom-package__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 20px;
 }
