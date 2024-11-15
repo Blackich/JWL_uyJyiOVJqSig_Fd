@@ -2,13 +2,8 @@ import { ColumnDef } from "@tanstack/react-table";
 
 export const customPackageColumns: ColumnDef<unknown>[] = [
   {
-    accessorKey: "id",
-    header: "Id",
-  },
-  {
     accessorKey: "likes",
     header: "Лайки",
-    enableSorting: false,
   },
   {
     accessorKey: "reach",
@@ -25,26 +20,23 @@ export const customPackageColumns: ColumnDef<unknown>[] = [
   {
     accessorKey: "shares",
     header: "Репосты",
-    enableSorting: false,
   },
   {
     accessorKey: "videoViews",
     header: "Просм. видео",
-    enableSorting: false,
   },
   {
     accessorKey: "countPosts",
     header: "Постов",
+  },
+  {
+    accessorKey: "price_usd",
+    header: "Цена (usd)",
     enableSorting: false,
   },
   {
     accessorKey: "price_rub",
     header: "Цена (rub)",
-    enableSorting: false,
-  },
-  {
-    accessorKey: "price_usd",
-    header: "Цена (usd)",
     enableSorting: false,
   },
 ];

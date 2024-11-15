@@ -14,7 +14,7 @@ export const CustomPackageList = () => {
         {customPackageList && (
           <Table
             tableData={customPackageList}
-            navigateUrl={"/panel/package"}
+            navigateUrl={"/panel/custom-package"}
             columnsSetup={customPackageColumns}
           />
         )}
