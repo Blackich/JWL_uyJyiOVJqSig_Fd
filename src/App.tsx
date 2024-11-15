@@ -14,8 +14,9 @@ import { PrivateRouteUser } from "@User/auth/PrivateRoute/PrivateRouteUser";
 import { Home } from "@User/pages/Home/Home";
 import { Extra } from "@User/pages/Extra/Extra";
 import { Services } from "@Admin/pages/Services/Services";
-import { CustomPackage } from "@Admin/pages/CustomPackage/CustomPackage";
+import { CustomPackageCreate } from "@Admin/pages/CustomPackageCreate/CustomPackageCreate";
 import { CustomPackageList } from "@Admin/pages/CustomPackageList/CustomPackageList";
+import { CustomPackage } from "@Admin/pages/CustomPackage/CustomPackage";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -102,7 +103,7 @@ export const App: FC = () => {
           path="/panel/custom-package/create"
           element={
             <PrivateRoute>
-              <CustomPackage />
+              <CustomPackageCreate />
             </PrivateRoute>
           }
         ></Route>
@@ -112,6 +113,15 @@ export const App: FC = () => {
           element={
             <PrivateRoute>
               <CustomPackageList />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/custom-package/:id"
+          element={
+            <PrivateRoute>
+              <CustomPackage />
             </PrivateRoute>
           }
         ></Route>

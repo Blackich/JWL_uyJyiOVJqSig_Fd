@@ -1,0 +1,12 @@
+.main-block--custom-package-create {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.custom-package-create__wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
