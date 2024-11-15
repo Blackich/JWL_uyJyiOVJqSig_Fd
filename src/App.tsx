@@ -15,6 +15,7 @@ import { Home } from "@User/pages/Home/Home";
 import { Extra } from "@User/pages/Extra/Extra";
 import { Services } from "@Admin/pages/Services/Services";
 import { CustomPackage } from "@Admin/pages/CustomPackage/CustomPackage";
+import { CustomPackageList } from "@Admin/pages/CustomPackageList/CustomPackageList";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -110,7 +111,7 @@ export const App: FC = () => {
           path="/panel/custom-package"
           element={
             <PrivateRoute>
-              <CustomPackage />
+              <CustomPackageList />
             </PrivateRoute>
           }
         ></Route>

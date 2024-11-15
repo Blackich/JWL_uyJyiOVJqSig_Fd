@@ -1,0 +1,11 @@
+.main-block--custom-package-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 15px;
+
+  .td,
+  .th {
+    text-align: center;
+  }
+}
