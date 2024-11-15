@@ -1,7 +1,7 @@
 import "./DeleteUserModal.css";
 import { FC } from "react";
 import { PersonRemoveSVG } from "@User/utils/svg/HomeSvg";
-import { ModalWrapper } from "@/ui/ModalWrapper/ModalWrapper";
+import { ModalWrapper } from "@ui/ModalWrapper/ModalWrapper";
 import { Button } from "@ui/Button/Button";
 import { useTranslation } from "react-i18next";
 

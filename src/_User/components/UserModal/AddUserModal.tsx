@@ -1,13 +1,13 @@
 import "./AddUserModal.css";
 import { FC, useState } from "react";
-import { ModalWrapper } from "@/ui/ModalWrapper/ModalWrapper";
+import { ModalWrapper } from "@ui/ModalWrapper/ModalWrapper";
 import { Button } from "@ui/Button/Button";
 import { PersonAddSVG } from "@User/utils/svg/HomeSvg";
 import { Input } from "@ui/Input/Input";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { authUser } from "@User/auth/_authApi";
 import { skipToken } from "@reduxjs/toolkit/query";
-import { AlertMessage } from "@/ui/AlertMessage/AlertMessage";
+import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
 
 type Props = {

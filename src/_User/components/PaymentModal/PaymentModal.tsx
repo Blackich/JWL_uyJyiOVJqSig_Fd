@@ -1,6 +1,6 @@
 import "./PaymentModal.css";
 import { FC } from "react";
-import { ModalWrapper } from "@/ui/ModalWrapper/ModalWrapper";
+import { ModalWrapper } from "@ui/ModalWrapper/ModalWrapper";
 import { authUser } from "@User/auth/_authApi";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { useTranslation } from "react-i18next";
