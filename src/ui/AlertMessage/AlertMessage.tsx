@@ -1,5 +1,5 @@
 import "./AlertMessage.css";
-import { FC, useRef } from "react";
+import { FC, useCallback, useEffect, useRef } from "react";
 import { CloseSVG } from "@User/utils/svg/HomeSvg";
 import { createPortal } from "react-dom";
 
@@ -26,26 +26,21 @@ export const AlertMessage: FC<Props> = ({
       : dialogRef.current.show();
   };
 
-  const onCloseHandler = () => {
-    if (onClose) {
-      onClose();
-    }
-  };
-
-  const onClickCloseBtn = () => {
+  const onClickCloseBtn = useCallback(() => {
     if (onClose) {
       dialogRef.current?.classList.add("closing");
       setTimeout(() => {
         onClose();
       }, 1000);
     }
-  };
+  }, [onClose]);
 
-  if (isOpen) {
-    setTimeout(() => {
-      onCloseHandler();
-    }, 5000);
-  }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClickCloseBtn();
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [onClickCloseBtn]);
 
   return createPortal(
     isOpen && (

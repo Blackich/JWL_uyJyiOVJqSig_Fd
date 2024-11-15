@@ -10,10 +10,9 @@
   padding: 10px;
   border-radius: 10px;
   transition: all .3s ease-in-out;
-  opacity: 0;
+  opacity: 1;
   z-index: 2;
-
-  animation: alertOpenClose 4s ease-in-out;
+  animation: alertOpen 1s ease-in-out;
 
 
   &.success {
@@ -59,27 +58,17 @@
 
 
 
-@keyframes alertOpenClose {
+@keyframes alertOpen {
   0% {
     opacity: 0;
     transform: translateY(-30px);
   }
-
-  20% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-
-  80% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-
   100% {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
+
 
 @keyframes alertClose {
   0% {
