@@ -1,0 +1,90 @@
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+}
+
+.search-bar__input {
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 5px;
+  padding: 15px 13px;
+  background: transparent;
+  border: 1px solid #ccc;
+  outline: 1px solid transparent;
+  border-radius: 5px;
+
+  &:hover {
+    border: 1px solid #000;
+  }
+
+  &:active,
+  &:focus-visible {
+    border: 1px solid #1976D2;
+    outline: 1px solid #1976D2;
+  }
+
+
+  /* Chrome, Safari, Edge, Opera */
+  /* remove arrow type number */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}
+
+.search-bar__icon {
+  position: absolute;
+  top: 55%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.search-bat__status {
+  position: absolute;
+  top: 55%;
+  right: 40px;
+  transform: translateY(-50%);
+}
+
+.search-bar__dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50.27px;
+  left: 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  background: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 1;
+}
+
+
+
+.search-bar__dropdown-item {
+  padding: 5px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+
+  &:hover {
+    background-color: rgba(33, 144, 255, 0.5);
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
