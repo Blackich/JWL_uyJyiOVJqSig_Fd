@@ -13,7 +13,6 @@ export const Services = () => {
         {serviceList && (
           <Table
             tableData={serviceList}
-            navigateUrl={"/panel/services"}
             columnsSetup={servicesColumns}
           />
         )}

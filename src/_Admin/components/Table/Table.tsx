@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 type Props = {
   tableData: RowData[];
   columnsSetup: ColumnDef<RowData>[];
-  navigateUrl: string;
+  navigateUrl?: string;
 };
 
 export const Table: FC<Props> = ({ tableData, navigateUrl, columnsSetup }) => {
@@ -27,8 +27,9 @@ export const Table: FC<Props> = ({ tableData, navigateUrl, columnsSetup }) => {
     pageIndex: 0,
     pageSize: 10,
   });
-  
+
   const handleClickСell = (id: number) => {
+    if (!navigateUrl) return;
     navigate(`${navigateUrl}/${id}`);
   };
 

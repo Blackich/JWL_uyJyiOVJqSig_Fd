@@ -1,7 +1,6 @@
 {
-  "name": "in-top",
+  "name": "jwl_fd",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -18,7 +18,7 @@ export const customPackageColumns: ColumnDef<unknown>[] = [
     header: "Посещения",
   },
   {
-    accessorKey: "shares",
+    accessorKey: "reposts",
     header: "Репосты",
   },
   {
