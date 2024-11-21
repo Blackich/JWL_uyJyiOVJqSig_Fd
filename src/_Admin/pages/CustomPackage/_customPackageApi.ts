@@ -1,36 +1,19 @@
-import { CustomPackageSettings } from "@Admin/utils/types";
 import { adminApi } from "@Admin/utils/utils";
+import { CustomPackageSettings } from "@Admin/utils/types";
 
 export const customPackageApi = adminApi.injectEndpoints({
   endpoints: (builder) => ({
-    createCustomPackage: builder.mutation<
+    getCustomPackageById: builder.query<CustomPackageSettings[], number>({
+      query: (id) => `/package/custom/${id}`,
+    }),
+    addCustomPackToUser: builder.mutation<
       { message: string },
-      CustomPackageSettings
+      { userId: number; packageId: number }
     >({
-      query: ({
-        likes,
-        reach,
-        saves,
-        profileVisits,
-        reposts,
-        videoViews,
-        countPosts,
-        price_usd,
-        price_rub,
-      }) => ({
-        url: "/package/custom",
+      query: ({ userId, packageId }) => ({
+        url: `/package/add-user`,
         method: "POST",
-        body: {
-          likes,
-          reach,
-          saves,
-          profileVisits,
-          reposts,
-          videoViews,
-          countPosts,
-          price_usd,
-          price_rub,
-        },
+        body: { userId, packageId },
       }),
     }),
   }),

@@ -1,0 +1,21 @@
+.custom-package__card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #DDE7EE;
+  border-radius: 20px;
+  padding: 20px;
+  width: 250px;
+  gap: 3px;
+
+  span {
+    display: flex;
+    font-size: 17px;
+    font-weight: 500;
+
+    p {
+      font-size: 17px;
+      font-weight: 400;
+    }
+  }
+
+}

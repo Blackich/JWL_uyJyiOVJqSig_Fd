@@ -6,13 +6,18 @@ import { PackageInputSetting } from "./Entity/PackageInputSetting/PackageInputSe
 import { PackageFeatureSet } from "./Entity/PackageFeatureSet/PackageFeatureSet";
 import { customPackageCreateApi } from "./_customPackageCreateApi";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
+import { useDispatch } from "react-redux";
+import { customPackageListApi } from "../CustomPackageList/_customPackageListApi";
 
 export const CustomPackageCreate = () => {
+  const dispatch = useDispatch();
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
   const { data: packageDetails } = packageApi.useGetPackageDetailsQuery();
   const [createCustomPack] =
     customPackageCreateApi.useCreateCustomPackageMutation();
+  const invaldateCustomPackage = () =>
+    dispatch(customPackageListApi.util.invalidateTags(["customPackageList"]));
 
   const [factPrice, setFactPrice] = useState({
     price_usd: 0,
@@ -33,7 +38,10 @@ export const CustomPackageCreate = () => {
       ...customPackData,
       ...factPrice,
     }).then((res) => {
-      if (res?.data) return setOpenAlertSuccess(true);
+      if (res?.data) {
+        setOpenAlertSuccess(true);
+        invaldateCustomPackage();
+      }
       if (res?.error) return setOpenAlertError(true);
     });
   };

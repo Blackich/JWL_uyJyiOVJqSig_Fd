@@ -3,6 +3,7 @@ import {
   User,
   UserSocialAccount,
   UserPurchasedService,
+  CustomPackageSettings,
 } from "@Admin/utils/types";
 
 export const userInfoApi = adminApi.injectEndpoints({
@@ -34,5 +35,20 @@ export const userInfoApi = adminApi.injectEndpoints({
         query: (id) => `/users/${id}/services`,
       },
     ),
+    getCustomPackageByUserId: builder.query<
+      CustomPackageSettings[],
+      User["id"]
+    >({
+      query: (id) => `/users/${id}/custom`,
+    }),
+    deleteCustomPackageByUserId: builder.mutation<
+      { message: string },
+      User["id"]
+    >({
+      query: (id) => ({
+        url: `/users/${id}/custom`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });

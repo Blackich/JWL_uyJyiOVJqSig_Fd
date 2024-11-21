@@ -70,3 +70,9 @@ export type CustomPackWithoutPrice = Omit<
   CustomPackageSettings,
   "price_rub" | "price_usd"
 >;
+
+export type CustomPackageUser = {
+  userId: number;
+  customPackageId: number;
+  createdAt: string;
+};

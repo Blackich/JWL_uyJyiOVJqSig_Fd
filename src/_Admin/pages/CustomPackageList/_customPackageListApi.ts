@@ -1,10 +1,15 @@
 import { adminApi } from "@Admin/utils/utils";
 import { CustomPackageSettings } from "@Admin/utils/types";
 
-export const customPackageListApi = adminApi.injectEndpoints({
+const adminApiWithTag = adminApi.enhanceEndpoints({
+  addTagTypes: ["customPackageList"],
+});
+
+export const customPackageListApi = adminApiWithTag.injectEndpoints({
   endpoints: (builder) => ({
     getCustomPackageList: builder.query<CustomPackageSettings[], void>({
       query: () => "/package/custom",
+      providesTags: ["customPackageList"],
     }),
   }),
 });

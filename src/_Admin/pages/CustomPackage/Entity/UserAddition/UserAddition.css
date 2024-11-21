@@ -1,0 +1,10 @@
+.custom-package__user-addition {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #DDE7EE;
+  width: 250px;
+  height: 312.5px;
+  border-radius: 20px;
+  padding: 20px;
+  justify-content: space-between;
+}
