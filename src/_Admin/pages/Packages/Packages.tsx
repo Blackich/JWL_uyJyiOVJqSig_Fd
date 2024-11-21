@@ -4,10 +4,7 @@ import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
 import { PackageCard } from "@Admin/pages/Packages/Entity/PackageCard/PackageCard";
 import { Button } from "@mui/material";
 import { packageApi } from "./_packageApi";
-import {
-  calcPrimeCostCustomPackage,
-  calcPrimeCostPackage,
-} from "@Admin/utils/utils";
+import { calcPrimeCostPackage } from "@Admin/utils/utils";
 
 export const Packages = () => {
   const [indexButton, setIndexButton] = useState<number>(1);
@@ -69,20 +66,6 @@ export const Packages = () => {
                   {pack_details.price}
                 </div>
               ))}
-          </div>
-
-          <div className="package__footer">
-            {primeCostList &&
-              calcPrimeCostCustomPackage(
-                primeCostList,
-                10000,
-                10000,
-                10000,
-                30,
-                500,
-                2000,
-                3000,
-              )}
           </div>
         </div>
       </MainBlock>

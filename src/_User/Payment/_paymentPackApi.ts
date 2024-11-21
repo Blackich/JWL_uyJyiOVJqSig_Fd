@@ -16,7 +16,7 @@ export const paymentPackApi = userApi.injectEndpoints({
         currency,
         type,
       }) => ({
-        url: "/payment/package",
+        url: "/payment/yookassa/package",
         method: "POST",
         body: {
           userId,
