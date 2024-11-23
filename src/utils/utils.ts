@@ -63,9 +63,13 @@ export const pluralize = (num: number, titles: string[]): string => {
   ];
 };
 
+interface IError extends AxiosError {
+  codeErr: number;
+}
+
 export const handlerErrorAxios = (
   error: FetchBaseQueryError | SerializedError,
 ) => {
   if (error && "data" in error && typeof error.data === "object")
-    return error.data as AxiosError;
+    return error.data as IError;
 };

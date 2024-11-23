@@ -33,7 +33,7 @@ export const PurchasedServicesBlock: FC<Props> = ({ userInfo }) => {
             <div key={purchServ.id} id="user-tr">
               <div id="user-td">{purchServ.nickname}</div>
               <div id="user-td">{purchServ.likes}</div>
-              <div id="user-td">{purchServ.customPackage}</div>
+              {/* <div id="user-td">{purchServ.customPackage}</div> */}
               <div id="user-td">{purchServ.countPosts}</div>
               <div id="user-td">{purchServ.status}</div>
               <div id="user-td">{formatDate(purchServ.createdAt)}</div>
