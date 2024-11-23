@@ -15,7 +15,8 @@ type Props = {
   likes: number;
   priceRUB: number;
   priceUSD: number;
-  activeIndex: number;
+  countPosts: number;
+  customPackageId?: number;
 };
 
 export const PaymentModal: FC<Props> = ({
@@ -24,7 +25,8 @@ export const PaymentModal: FC<Props> = ({
   likes,
   priceRUB,
   priceUSD,
-  activeIndex,
+  countPosts,
+  customPackageId,
 }) => {
   const { t, i18n } = useTranslation();
   const { data: userCred } = authUser.useCheckAuthUserQuery();
@@ -41,7 +43,9 @@ export const PaymentModal: FC<Props> = ({
   const nicknameId = userList?.find(
     (user) => user.id == Number(localStorage.getItem("activeUserId")),
   )?.id;
-  const packageId = packageList?.find((pack) => pack.likes === likes)?.id;
+  const packageId = customPackageId
+    ? customPackageId
+    : packageList?.find((pack) => pack.likes === likes)?.id;
 
   const handleClickPayYooKassa = async (paymentType: PaymentType) => {
     if (!userCred || !nicknameId || !packageId) return;
@@ -49,7 +53,8 @@ export const PaymentModal: FC<Props> = ({
       userId: userCred.id,
       socialNicknameId: nicknameId,
       packageId: packageId,
-      countPosts: activeIndex === 1 ? 15 : 30,
+      customPackage: customPackageId ? 1 : 0,
+      countPosts: countPosts,
       cost: priceRUB,
       currency: "RUB",
       type: paymentType,
@@ -93,7 +98,7 @@ export const PaymentModal: FC<Props> = ({
                 </p>
                 <p>
                   {t("modal.payment_package_posts_q")}:{" "}
-                  <span>{activeIndex === 1 ? "15" : "30"}</span>
+                  <span>{countPosts}</span>
                 </p>
                 <p>
                   {t("modal.payment_package_days_q")}: <span>30</span>
