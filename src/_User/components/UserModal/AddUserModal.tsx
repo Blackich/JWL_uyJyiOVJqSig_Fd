@@ -9,6 +9,7 @@ import { authUser } from "@User/auth/_authApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
+import { handlerErrorAxios } from "@/utils/utils";
 
 type Props = {
   shownModal: boolean;
@@ -17,9 +18,14 @@ type Props = {
 
 export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
   const { t } = useTranslation();
+
   const [username, setUsername] = useState<string>("");
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
+  const [errExistsAcc, setErrExistsAcc] = useState<boolean>(false);
+  const [errMaxAcc, setErrMaxAcc] = useState<boolean>(false);
+  const [errMaxAllAcc, setErrMaxAllAcc] = useState<boolean>(false);
+
   const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { refetch: updateSocialAccList } = userHomeApi.useGetSocialListQuery(
     (userCred?.id as number) || skipToken,
@@ -36,7 +42,13 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
     await fetchAddInstAccount({ id: userCred?.id as number, username }).then(
       (res) => {
         if (res?.data) return setOpenAlertSuccess(true);
-        if (res?.error) return setOpenAlertError(true);
+        if (res?.error) {
+          const error = handlerErrorAxios(res?.error);
+          if (error?.codeErr === 1) return setErrMaxAcc(true);
+          if (error?.codeErr === 2) return setErrExistsAcc(true);
+          if (error?.codeErr === 3) return setErrMaxAllAcc(true);
+          return setOpenAlertError(true);
+        }
       },
     );
     updateSocialAccList();
@@ -88,6 +100,24 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
         type="error"
         isOpen={isOpenAlertError}
         onClose={() => setOpenAlertError(false)}
+      />
+      <AlertMessage
+        message={t("alert.add_user_err_exist")}
+        type="error"
+        isOpen={errExistsAcc}
+        onClose={() => setErrExistsAcc(false)}
+      />
+      <AlertMessage
+        message={t("alert.add_user_err_max")}
+        type="error"
+        isOpen={errMaxAcc}
+        onClose={() => setErrMaxAcc(false)}
+      />
+      <AlertMessage
+        message={t("alert.add_user_err_max_all")}
+        type="error"
+        isOpen={errMaxAllAcc}
+        onClose={() => setErrMaxAllAcc(false)}
       />
     </>
   );
