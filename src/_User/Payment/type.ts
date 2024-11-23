@@ -9,6 +9,7 @@ export type PaymentPackYooKassa = {
   cost: number;
   currency: Currency;
   type?: PaymentType;
+  customPackage: number;
 };
 
 export type PaymentPackYooKassaResponse = {

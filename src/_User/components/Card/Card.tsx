@@ -81,7 +81,7 @@ export const Card: FC<Props> = ({
         shownModal={shownModalPayment}
         onClose={() => setShownModalPayment(false)}
         likes={likes}
-        activeIndex={activeIndex}
+        countPosts={activeIndex === 1 ? 15 : 30}
         priceRUB={priceRUB}
         priceUSD={priceUSD}
       />

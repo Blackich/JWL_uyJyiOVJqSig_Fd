@@ -2,6 +2,7 @@ import { userApi } from "@User/utils/utils";
 import {
   ActivatedService,
   AuthUser,
+  CustomPackageUser,
   PackageUser,
   ResponseServer,
   SocialAccountMutation,
@@ -38,6 +39,9 @@ export const userHomeApi = userApi.injectEndpoints({
     }),
     getActiveService: builder.query<ActivatedService[], AuthUser["id"]>({
       query: (id) => `/services/${id}`,
+    }),
+    getCustomPackByUserId: builder.query<CustomPackageUser[], AuthUser["id"]>({
+      query: (id) => `/custom/${id}`,
     }),
   }),
 });

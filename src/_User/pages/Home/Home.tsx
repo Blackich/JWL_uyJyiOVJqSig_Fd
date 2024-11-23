@@ -9,8 +9,12 @@ import { Page } from "@User/components/Page/Page";
 import { authUser } from "@User/auth/_authApi";
 import { userHomeApi } from "./_homeApi";
 import { Description } from "@User/components/Description/Description";
-import { packageDefinitions as packDefs, serviceDefinitions as servDefs } from "./HomeData";
+import {
+  packageDefinitions as packDefs,
+  serviceDefinitions as servDefs,
+} from "./HomeData";
 import { useTranslation } from "react-i18next";
+import { CustomPackage } from "@User/components/CustomPackage/CustomPackage";
 
 export const Home = () => {
   const { i18n } = useTranslation();
@@ -19,6 +23,9 @@ export const Home = () => {
   const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
     (userCred?.id as number) || skipToken,
+  );
+  const { data: customPack } = userHomeApi.useGetCustomPackByUserIdQuery(
+    Number(userCred?.id) || skipToken,
   );
 
   const matchIds = activeServices?.find(
@@ -44,13 +51,18 @@ export const Home = () => {
               )}
             </div>
           </div>
-          {activeServices && matchIds ? (
+          {activeServices && activeServices.length > 0 && matchIds ? (
             <div className="active-service">
-              <ServiceInfo activeService={matchIds} />
+              <ServiceInfo activeService={matchIds} customPack={customPack} />
             </div>
           ) : (
             <div className="card-list">
               <CardList />
+            </div>
+          )}
+          {customPack && customPack?.length > 0 && !matchIds && (
+            <div className="custom-package-user__container">
+              <CustomPackage customPack={customPack} />
             </div>
           )}
           <div className="service-description__container">

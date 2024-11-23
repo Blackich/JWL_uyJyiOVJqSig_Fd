@@ -37,7 +37,8 @@ export interface CardList extends PackageUser {
 export type ActivatedService = {
   socialNicknameId: number;
   countPosts: number;
-  packageId: number;
+  packageId: number | null;
+  customPackageId: number | null;
   createdAt: string;
 };
 
@@ -46,4 +47,13 @@ export type Timer = {
   hours: number;
   minutes: number;
   seconds: number;
+};
+
+export type CustomPackageUser = {
+  id: number;
+  likes: number;
+  videoViews: number;
+  countPosts: number;
+  price_rub: number;
+  price_usd: number;
 };

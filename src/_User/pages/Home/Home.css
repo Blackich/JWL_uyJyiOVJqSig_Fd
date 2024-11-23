@@ -30,7 +30,8 @@
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   box-shadow: var(--border-shadow);
-  padding: 10px;
+  height: 430px;
+  overflow: hidden;
 }
 
 .card-list {
@@ -39,6 +40,17 @@
   border-radius: var(--border-radius);
   box-shadow: var(--border-shadow);
   padding: 10px;
+  height: 430px;
+}
+
+.custom-package-user__container {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--border-shadow);
+  padding: 10px;
+  height: 160px;
+  overflow: hidden;
 }
 
 .service-description__container {
