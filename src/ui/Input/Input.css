@@ -23,12 +23,13 @@
     transform: translate(10px, -50%);
     font-size: 14px;
     padding: 0 10px;
-    /* border-left: 2px solid #1976D2;
-    border-right: 2px solid #1976D2; */
     background: var(--input-active__bg-color);
     letter-spacing: 1.2px;
     
   }
+    .input:focus~span {
+      color: #1976D2;
+    }
 
 }
 
@@ -44,6 +45,7 @@
   border: 1px solid #ccc;
   outline: 1px solid transparent;
   border-radius: 4px;
+  transition: all .1s ease-in;
 
   &:hover {
     border: 1px solid #000;
@@ -57,7 +59,7 @@
   &:active,
   &:focus-visible {
     border: 1px solid #1976D2;
-    outline: 1px solid #1976D2;
+    outline: 1.5px solid #1976D2;
 
     &::placeholder {
       opacity: 0;

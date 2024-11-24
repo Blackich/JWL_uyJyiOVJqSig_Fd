@@ -14,6 +14,7 @@ export type UserSocialAccount = {
   messangerId: number;
   nickname: string;
   createdAt: string;
+  status: number;
 };
 
 export type UserPurchasedService = {
@@ -28,10 +29,21 @@ export type UserPurchasedService = {
   createdAt: string;
 };
 
-export interface PurchasedService extends UserPurchasedService {
+export interface PurchasedService {
+  id: number;
   userId: number;
-  orderId: string;
   fullName: string;
+  nickname: string;
+  packageId: number | null;
+  packageLikes: number | null;
+  customPackageId: number | null;
+  customLikes: number | null;
+  countPosts: number;
+  orderId: string;
+  status: number;
+  createdAt: string;
+  cost: number;
+  currency: string;
 }
 
 export type Package = {
