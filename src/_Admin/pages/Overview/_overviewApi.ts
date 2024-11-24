@@ -11,8 +11,5 @@ export const overviewApi = adminApi.injectEndpoints({
     getUsersCount: builder.query<number, void>({
       query: () => "/info/users/count",
     }),
-    // getUsersSpent: builder.query<number, void>({
-    //   query: () => "/info/users/spent",
-    // }),
   }),
 });

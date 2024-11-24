@@ -1,35 +1,22 @@
-.cards__item {
-  flex: 1 1 calc((100% - 20px * 2) / 3);
-  &:last-child {
-    flex-grow: 0;
-  }
-}
-
-@media (max-width: 1485px) {
-  .cards__item:last-child {
-    flex-grow: 1;
-  }
-}
-
-.cards__item--content {
+.card-info__content {
   display: flex;
   flex-direction: column;
   border: 1.5px solid #DDE7EE;
   padding: 16px;
-  margin: 0 12px 24px;
   border-radius: 10px;
   gap: 20px;
-  min-width: 300px;
+  min-width: 320px;
+  text-wrap: nowrap;
 }
 
-.cards__item--logo {
+.card-info__logo {
   display: flex;
   align-items: center;
   scale: 1.5;
   padding-left: 5px;
 }
 
-.cards__item--wrapper {
+.card-info__wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;

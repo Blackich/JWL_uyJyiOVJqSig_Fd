@@ -1,0 +1,24 @@
+.overview__card-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1800px) {
+  .overview__card-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .overview__card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .overview__card-list {
+    grid-template-columns: 100%;
+  }
+}
