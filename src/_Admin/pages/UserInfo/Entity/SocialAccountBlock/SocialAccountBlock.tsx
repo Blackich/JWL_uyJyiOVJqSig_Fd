@@ -27,11 +27,14 @@ export const SocialAccountBlock: FC<Props> = ({ userInfo }) => {
   return (
     <div className="main-block--user-social-accounts">
       <div className="user-soc-acc__list">
-        {userInfo && socialAccounts &&
+        {userInfo &&
+          socialAccounts &&
           socialAccounts.map((socAcc) => (
             <div key={socAcc.id} className="user-soc-acc__item">
               {socAcc.messangerId === 1 ? <InstagramSVG /> : <TelegramSVG />}
-              <p>{socAcc.nickname}</p>
+              <p style={{ color: socAcc.status === 0 ? "red" : "#000" }}>
+                {socAcc.nickname}
+              </p>
               <p className="user-soc-acc__item-date">
                 {formatDate(socAcc.createdAt)}
               </p>
