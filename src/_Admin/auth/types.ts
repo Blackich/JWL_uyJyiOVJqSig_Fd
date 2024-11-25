@@ -4,7 +4,9 @@ export type AdminLoginFormData = {
 };
 
 export type AuthResponseData = {
+  employeeId: number | null;
   login: string;
+  role: string;
   token: string;
 };
 

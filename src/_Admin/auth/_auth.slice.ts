@@ -4,7 +4,9 @@ import { fetchAuth, fetchAuthMe, fetchRefreshToken } from "./_authApi";
 
 const initialState: AuthResponse = {
   data: {
+    employeeId: null,
     login: "",
+    role: "",
     token: "",
   },
   error: null,
@@ -18,6 +20,7 @@ export const authSlice = createSlice({
     getAuthName: (state) => state.data?.login,
     getAuthError: (state) => state.error,
     selectIsAuth: (state) => Boolean(state.data?.login),
+    getEmployeeId: (state) => state.data?.employeeId,
   },
   reducers: {
     authLogout: () => {
@@ -52,6 +55,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { getAuthName, getAuthError, selectIsAuth } = authSlice.selectors;
+export const { getAuthName, getAuthError, selectIsAuth, getEmployeeId } =
+  authSlice.selectors;
 export const { authLogout } = authSlice.actions;
 export const authReducer = authSlice.reducer;
