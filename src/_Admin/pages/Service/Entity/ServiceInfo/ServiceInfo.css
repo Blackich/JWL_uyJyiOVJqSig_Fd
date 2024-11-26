@@ -1,0 +1,53 @@
+.service-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 350px;
+  cursor: default;
+
+  .service-info__dropdown {
+    margin-left: auto;
+  }
+
+  .service-info__copy {
+    display: flex;
+    margin-left: auto;
+    cursor: pointer;
+    align-items: center;
+    padding: 5px 6px;
+    transition: all .3s linear;
+
+    svg {
+      width: 17px;
+      height: 17px;
+      transition: all .3s linear;
+    }
+
+    &:hover {
+      border-radius: 5px;
+      background-color: rgba(205, 225, 255, 0.8);
+
+      svg {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  span {
+    display: flex;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px;
+    border: 1px solid rgb(156, 156, 156);
+    border-radius: 10px;
+
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      max-width: 230px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}

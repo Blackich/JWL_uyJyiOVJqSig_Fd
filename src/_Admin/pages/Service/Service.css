@@ -1,0 +1,6 @@
+.main-block--service {
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+  gap: 30px;
+}

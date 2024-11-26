@@ -29,7 +29,7 @@ export type UserPurchasedService = {
   createdAt: string;
 };
 
-export interface PurchasedService {
+export type Service = {
   id: number;
   userId: number;
   fullName: string;
@@ -44,7 +44,15 @@ export interface PurchasedService {
   createdAt: string;
   cost: number;
   currency: string;
-}
+};
+
+export type PurchasedService = {
+  id: number;
+  serviceId: number;
+  siteId: number;
+  siteServiceId: number;
+  orderId: number;
+};
 
 export type Package = {
   id: number;

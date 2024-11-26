@@ -13,10 +13,12 @@ import { LoginFormUser } from "@User/auth/LoginForm/LoginFormUser";
 import { PrivateRouteUser } from "@User/auth/PrivateRoute/PrivateRouteUser";
 import { Home } from "@User/pages/Home/Home";
 import { Extra } from "@User/pages/Extra/Extra";
-import { Services } from "@Admin/pages/Services/Services";
+import { ServiceList } from "@Admin/pages/ServiceList/ServiceList";
+import { Service } from "@Admin/pages/Service/Service";
 import { CustomPackageCreate } from "@Admin/pages/CustomPackageCreate/CustomPackageCreate";
 import { CustomPackageList } from "@Admin/pages/CustomPackageList/CustomPackageList";
 import { CustomPackage } from "@Admin/pages/CustomPackage/CustomPackage";
+import { TestServices } from "@Admin/pages/TestServices/TestServices";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -94,7 +96,16 @@ export const App: FC = () => {
           path="/panel/services"
           element={
             <PrivateRoute>
-              <Services />
+              <ServiceList />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/services/:id"
+          element={
+            <PrivateRoute>
+              <Service />
             </PrivateRoute>
           }
         ></Route>
@@ -122,6 +133,15 @@ export const App: FC = () => {
           element={
             <PrivateRoute>
               <CustomPackage />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/test-services"
+          element={
+            <PrivateRoute>
+              <TestServices />
             </PrivateRoute>
           }
         ></Route>
