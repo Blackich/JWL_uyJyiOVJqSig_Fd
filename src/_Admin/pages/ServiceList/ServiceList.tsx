@@ -1,20 +1,24 @@
-import "./Services.css";
+import "./ServiceList.css";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
 import { Table } from "@Admin/components/Table/Table";
-// import { servicesColumns } from "./Entity/ServicesTableSetup";
-import { servicesApi } from "./_servicesApi";
+import { serviceListApi } from "./_serviceListApi";
 import { ColumnDef } from "@tanstack/react-table";
-import { PurchasedService } from "@Admin/utils/types";
+import { Service } from "@Admin/utils/types";
 import { daysUntilFutureDate } from "@/utils/utils";
 
-export const Services = () => {
-  const { data: serviceList } = servicesApi.useGetPurchasedServiceListQuery();
+export const ServiceList = () => {
+  const { data: serviceList } =
+    serviceListApi.useGetServiceListQuery();
 
   return (
     <MainBlock title={"Услуги"}>
-      <div className="main-block--services">
+      <div className="main-block--service-list">
         {serviceList && (
-          <Table tableData={serviceList} columnsSetup={servicesColumns} />
+          <Table
+            tableData={serviceList}
+            columnsSetup={servicesColumns}
+            navigateUrl="/panel/services"
+          />
         )}
       </div>
     </MainBlock>
@@ -40,12 +44,12 @@ const servicesColumns: ColumnDef<unknown>[] = [
     header: "Пакет",
     cell: ({ row }) => (
       <span>
-        {(row.original as PurchasedService).packageLikes === null ? (
+        {(row.original as Service).packageLikes === null ? (
           <p style={{ color: "blue", fontStyle: "italic" }}>
-            {(row.original as PurchasedService).customLikes}
+            {(row.original as Service).customLikes}
           </p>
         ) : (
-          (row.original as PurchasedService).packageLikes
+          (row.original as Service).packageLikes
         )}
       </span>
     ),
