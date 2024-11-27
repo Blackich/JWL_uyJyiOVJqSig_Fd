@@ -1,5 +1,9 @@
 import { adminApi } from "@Admin/utils/utils";
-import { PurchasedService, Service } from "@Admin/utils/types";
+import {
+  PurchasedServiceWithName,
+  Service,
+  StatusPurchasedService,
+} from "@Admin/utils/types";
 
 export const serviceApi = adminApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,11 +16,20 @@ export const serviceApi = adminApi.injectEndpoints({
         method: "PATCH",
       }),
     }),
-    getPurchasedServiceById: builder.query<PurchasedService[], Service["id"]>({
+    getPurchasedServiceById: builder.query<
+      PurchasedServiceWithName[],
+      Service["id"]
+    >({
       query: (id) => `/services/${id}/purchase`,
     }),
-    checkStatusSubscription: builder.query<{ status: string }[], Service["id"]>({
+    checkStatusSubscription: builder.query<
+      StatusPurchasedService[],
+      Service["id"]
+    >({
       query: (id) => `/services/${id}/check`,
+    }),
+    cancelAllSubs: builder.query<{ message: string }, Service["id"]>({
+      query: (id) => `/services/${id}/cancel`,
     }),
   }),
 });

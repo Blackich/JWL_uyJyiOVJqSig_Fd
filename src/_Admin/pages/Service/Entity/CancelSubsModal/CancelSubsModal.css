@@ -1,0 +1,16 @@
+.service-info__cancel-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  width: 400px;
+  padding: 20px;
+  text-align: center;
+
+  .cancel-modal__button {
+    width: 150px;
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+}

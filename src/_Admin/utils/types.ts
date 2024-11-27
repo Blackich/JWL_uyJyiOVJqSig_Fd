@@ -54,6 +54,17 @@ export type PurchasedService = {
   orderId: number;
 };
 
+export type PurchasedServiceWithName = {
+  typeService: string;
+} & PurchasedService;
+
+export type StatusPurchasedService = {
+  status: string;
+  remains?: string;
+  posts?: string;
+  expiry?: boolean;
+};
+
 export type Package = {
   id: number;
   likes: number;

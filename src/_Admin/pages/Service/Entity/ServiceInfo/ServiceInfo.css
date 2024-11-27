@@ -33,6 +33,21 @@
     }
   }
 
+  .service-info__cancel-subs {
+    display: flex;
+    margin-left: auto;
+    cursor: pointer;
+    align-items: center;
+
+    &:hover {
+      svg {
+        transition: all .3s linear;
+        transform: scale(1.1);
+        color: red;
+      }
+    }
+  }
+
   span {
     display: flex;
     font-size: 18px;

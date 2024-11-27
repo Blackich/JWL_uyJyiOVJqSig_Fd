@@ -7,6 +7,7 @@ import { DropdownBtn } from "@ui/Dropdown/DropdownBtn";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { serviceApi } from "@Admin/pages/Service/_serviceApi";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import {
   formatDate,
   formatRUB,
@@ -25,9 +26,14 @@ const renderTimer = ({ days, hours, minutes, seconds }: Timer) => (
 type Props = {
   service: Service;
   refetchService: VoidFunction;
+  setShownModalCancelSubs: (shown: boolean) => void;
 };
 
-export const ServiceInfo: FC<Props> = ({ service, refetchService }) => {
+export const ServiceInfo: FC<Props> = ({
+  service,
+  refetchService,
+  setShownModalCancelSubs,
+}) => {
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [updateServiceStatus] = serviceApi.useUpdateServiceStatusMutation();
 
@@ -42,6 +48,7 @@ export const ServiceInfo: FC<Props> = ({ service, refetchService }) => {
     await updateServiceStatus(Number(service.id));
     refetchService();
   };
+
   return (
     <div className="service-info">
       <span>
@@ -112,6 +119,15 @@ export const ServiceInfo: FC<Props> = ({ service, refetchService }) => {
           }}
         >
           <ContentCopyOutlinedIcon />
+        </div>
+      </span>
+      <span>
+        Warn:&nbsp;<p style={{ color: "#c20000" }}>Остановить все подписки?</p>
+        <div
+          className="service-info__cancel-subs"
+          onClick={() => setShownModalCancelSubs(true)}
+        >
+          <DeleteOutlineOutlinedIcon />
         </div>
       </span>
       <AlertMessage
