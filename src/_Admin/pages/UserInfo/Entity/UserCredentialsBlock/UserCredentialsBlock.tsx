@@ -51,7 +51,15 @@ export const UserCredentialsBlock: FC<Props> = ({
       </span>
       <span>
         Статус:&nbsp;
-        <p>{userInfo.status}</p>
+        {userInfo.status === "active" ? (
+          <>
+            <p style={{ color: "green" }}>active</p>
+          </>
+        ) : (
+          <>
+            <p style={{ color: "red" }}>inactive</p>
+          </>
+        )}
         <DropdownBtn
           className="user-credentials__dropdown"
           menuItemArray={["active", "inactive"]}
