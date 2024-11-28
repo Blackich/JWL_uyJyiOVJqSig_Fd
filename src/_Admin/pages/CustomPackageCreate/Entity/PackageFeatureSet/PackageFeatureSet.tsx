@@ -44,6 +44,13 @@ export const PackageFeatureSet: FC<Props> = ({
     customPackData.reposts,
   );
 
+  const handleDisableButton = () => {
+    const checkCustom = Object.values(customPackData).some(
+      (value) => value === 0,
+    );
+    return !factPrice.price_usd || !factPrice.price_rub || checkCustom;
+  };
+
   return (
     <div className="custom-package__feature-set">
       <div className="custom-package__feature-item">
@@ -68,7 +75,6 @@ export const PackageFeatureSet: FC<Props> = ({
       <TextField
         label="Коэффициент"
         type="number"
-        required
         defaultValue={10}
         onChange={(e) => setCoefficient(Number(e.target.value))}
       />
@@ -102,6 +108,7 @@ export const PackageFeatureSet: FC<Props> = ({
         variant="contained"
         sx={{ height: "55px" }}
         onClick={handleCreateCustomPack}
+        disabled={handleDisableButton()}
       >
         Создать пакет
       </Button>
