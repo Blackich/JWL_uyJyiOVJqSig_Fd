@@ -1,13 +1,19 @@
 import "./CardList.css";
 import { CardInfo } from "@Admin/pages/Overview/Entity/CardInfo/CardInfo";
 import { overviewApi } from "@Admin/pages/Overview/_overviewApi";
-import { TotalUsersSVG } from "@Admin/utils/svg/OverviewSvg";
-import { formatUSD } from "@/utils/utils";
+import { formatRUB, formatUSD } from "@/utils/utils";
+import {
+  TotalUsersSVG,
+  TotalPurchasedPackSVG,
+  TotalSalesSVG,
+} from "@Admin/utils/svg/OverviewSvg";
 
 export const CardList = () => {
   const { data: jp } = overviewApi.useGetBalanceJPQuery();
   const { data: vr } = overviewApi.useGetBalanceVRQuery();
-  const { data: count } = overviewApi.useGetUsersCountQuery();
+  const { data: usersCount } = overviewApi.useGetUsersCountQuery();
+  const { data: totalSpent } = overviewApi.useGetTotalSpentQuery();
+  const { data: boughtPack } = overviewApi.useGetPurchasedPackagesCountQuery();
   return (
     <div className="overview__card-list">
       <CardInfo
@@ -23,12 +29,17 @@ export const CardList = () => {
       <CardInfo
         titleCard="Всего пользователей"
         favicon={<TotalUsersSVG />}
-        cardValue={count ? count : 0}
+        cardValue={usersCount ? usersCount : 0}
       />
       <CardInfo
-        titleCard="Всего пользователей"
-        favicon={<TotalUsersSVG />}
-        cardValue={count ? count : 0}
+        titleCard="Куплено пакетов"
+        favicon={<TotalPurchasedPackSVG />}
+        cardValue={boughtPack ? boughtPack : 0}
+      />
+      <CardInfo
+        titleCard="Всего продаж"
+        favicon={<TotalSalesSVG />}
+        cardValue={totalSpent ? formatRUB(totalSpent) : 0}
       />
     </div>
   );
