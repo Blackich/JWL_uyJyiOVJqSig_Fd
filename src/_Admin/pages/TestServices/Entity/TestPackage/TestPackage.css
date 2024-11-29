@@ -1,0 +1,9 @@
+.test-services__test-package {
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid #DDE7EE;
+  padding: 16px;
+  border-radius: 10px;
+  width: 100%;
+  gap: 15px;
+}

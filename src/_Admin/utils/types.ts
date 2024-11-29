@@ -107,3 +107,9 @@ export type CustomPackageUser = {
   customPackageId: number;
   createdAt: string;
 };
+
+export type TestPackage = {
+  testServiceId: number;
+  employeeId: number;
+  link: string;
+};

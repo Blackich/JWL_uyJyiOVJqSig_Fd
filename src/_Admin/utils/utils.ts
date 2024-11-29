@@ -63,3 +63,9 @@ export const calcPrimeCostCustomPackage = (
 
   return costs * countPosts;
 };
+
+export const extractInstUsername = (url: string) => {
+  const regex = /instagram\.com\/([^/?#]+)(?:\?.*?)?/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+};

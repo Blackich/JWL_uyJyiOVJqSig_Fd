@@ -83,3 +83,8 @@ export function repeat<T>(cb: (i: number) => T, times = 1): T[] {
 
   return res;
 }
+
+export const checkStartsWithInst = (url: string) => {
+  const regex = /^https:\/\/(?:w{3}\.)?instagram\.com\/?/i;
+  return regex.test(url);
+};

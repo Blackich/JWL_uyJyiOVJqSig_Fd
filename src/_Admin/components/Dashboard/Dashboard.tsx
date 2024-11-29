@@ -15,6 +15,8 @@ import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 // import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 // import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
+import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
+import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
 
 export const Dashboard: FC = () => {
   return (
@@ -26,6 +28,12 @@ export const Dashboard: FC = () => {
             title="Главная"
             iconActive={<WindowIcon />}
             iconInactive={<WindowOutlinedIcon />}
+          />
+          <DashboardItem
+            url="/panel/test-services"
+            title="Тестовые услуги"
+            iconActive={<LocalPostOfficeIcon />}
+            iconInactive={<LocalPostOfficeOutlinedIcon />}
           />
           <DashboardItem
             url="/panel/users"
@@ -40,16 +48,16 @@ export const Dashboard: FC = () => {
             iconInactive={<ShoppingCartOutlinedIcon />}
           />
           <DashboardItem
-            url="/panel/package"
-            title="Пакеты"
-            iconActive={<ShoppingBagIcon />}
-            iconInactive={<ShoppingBagOutlinedIcon />}
-          />
-          <DashboardItem
             url="/panel/custom-package/create"
             title="Добавить пакет"
             iconActive={<AddCircleOutlinedIcon />}
             iconInactive={<AddCircleOutlineOutlinedIcon />}
+          />
+          <DashboardItem
+            url="/panel/package"
+            title="Пакеты"
+            iconActive={<ShoppingBagIcon />}
+            iconInactive={<ShoppingBagOutlinedIcon />}
           />
           <DashboardItem
             url="/panel/custom-package"
