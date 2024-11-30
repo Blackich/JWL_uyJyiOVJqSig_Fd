@@ -40,6 +40,9 @@ export const CustomPackage: FC<Props> = ({ customPack }) => {
       ))}
       <div
         className="custom-package-user__img"
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && setShownModalPayment(true)}
         onClick={() => setShownModalPayment(true)}
       ></div>
       <div className="custom-package-user__svg">

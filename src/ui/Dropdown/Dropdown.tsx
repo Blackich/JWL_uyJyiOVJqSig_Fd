@@ -68,10 +68,12 @@ export const Dropdown: FC<DropdownProps> = ({
 
     if (shown) {
       document.addEventListener("click", documentClickListener);
+      document.addEventListener("scroll", documentClickListener);
       window.addEventListener("resize", windowResizeListener);
     }
     return () => {
       document.removeEventListener("click", documentClickListener);
+      document.addEventListener("scroll", documentClickListener);
       window.removeEventListener("resize", windowResizeListener);
     };
   }, [onShownChange, shown, targetRef]);

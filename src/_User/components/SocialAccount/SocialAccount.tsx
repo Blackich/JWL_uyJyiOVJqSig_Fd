@@ -27,7 +27,9 @@ export const SocialAccount: FC<Props> = ({
         data-username={userCred.nickname}
         onClick={(e) => handleClickProfile(e)}
         tabIndex={0}
-        aria-label={t("social_account.chose_profile_aria", {
+        onKeyDown={(e) => e.key === "Enter" && e.currentTarget.click()}
+        role="button"
+        aria-label={t("social_account.profile_selection_aria", {
           name: userCred.nickname,
         })}
       >

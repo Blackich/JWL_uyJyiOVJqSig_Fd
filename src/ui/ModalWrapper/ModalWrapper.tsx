@@ -71,6 +71,8 @@ export const ModalWrapper: FC<ModalWrapperProps> = ({
             className="modal-wrapper__close-btn"
             onClick={onClose}
             tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && e.currentTarget.click()}
+            role="button"
             aria-label={t("modal.close_btn_aria")}
           >
             <CloseSVG />
