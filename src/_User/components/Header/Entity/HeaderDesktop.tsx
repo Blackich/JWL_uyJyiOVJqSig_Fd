@@ -1,9 +1,9 @@
 import "../Header.css";
 import { FC } from "react";
-import { Button } from "@ui/Button/Button";
 import { Navigation } from "./Navigation";
 import { useTranslation } from "react-i18next";
 import { LocaleSwitcher } from "@/locale/components/LocaleSwitcher/LocaleSwitcher";
+import { DropdownBtn } from "@/ui/Dropdown/DropdownBtn";
 
 type Props = {
   userId: number;
@@ -21,14 +21,18 @@ export const HeaderDesktop: FC<Props> = ({ userId, onClickLogout }) => {
         <div className="header__wrapper">
           <Navigation />
           <div className="header__user-cred">
-            id: {userId && <span>{` ${userId}`}</span>}
+            id:&nbsp;
+            {userId ? (
+              <span>{userId}</span>
+            ) : (
+              <span className="skeleton"></span>
+            )}
           </div>
-          <Button
-            onClick={onClickLogout}
+          <DropdownBtn
+            menuItemArray={[t("header.exit_btn")]}
+            menuItemOnClick={[onClickLogout]}
             aria-label={t("header.exit_btn_aria")}
-          >
-            {t("header.exit_btn")}
-          </Button>
+          />
         </div>
       </div>
     </header>
