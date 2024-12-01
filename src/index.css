@@ -77,3 +77,40 @@ a {
 ::-webkit-scrollbar-thumb:active {
   background: rgba(20, 200, 20, 0.5);
 }
+
+.skeleton,
+.skeleton-dark {
+  border-radius: 5px;
+  width: 100%;
+  height: 1em;
+
+}
+
+.skeleton {
+  animation: skeleton-gradient-animation 1s linear infinite alternate;
+}
+
+.skeleton-dark {
+  animation: skeleton-gradient-animation-dark 1s linear infinite alternate;
+}
+
+@keyframes skeleton-gradient-animation {
+  0% {
+    background-color: hsl(0, 0%, 83%);
+  }
+
+  100% {
+    background-color: hsl(0, 0%, 92%);
+  }
+}
+
+@keyframes skeleton-gradient-animation-dark {
+  0% {
+    background-color: hsl(0, 0%, 65%);
+    ;
+  }
+
+  100% {
+    background-color: hsl(0, 0%, 80%);
+  }
+}
