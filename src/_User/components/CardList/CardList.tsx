@@ -1,11 +1,11 @@
 import "./CardList.css";
 import { useState } from "react";
-import { PostQuantity } from "../PostQuantity/PostQuantity";
+import { PostQuantity } from "@User/components/PostQuantity/PostQuantity";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { useAdaptive } from "@/utils/screenWidth";
 import { cardListAddClass } from "./CardListData";
 import { PackageUser } from "@User/utils/types";
-import { Card } from "../Card/Card";
+import { Card, SkeletonCard } from "@User/components/Card/Card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -18,11 +18,12 @@ export const CardList = () => {
   const [activeIndex, setActiveIndex] = useState<number>(1);
   const { data: packageList } = userHomeApi.useGetPackageListQuery();
   const cardList = cardListAddClass(packageList as PackageUser[]);
+
   return (
     <>
       <PostQuantity activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-      <div className="carousel">
-        {cardList && (
+      {cardList ? (
+        <div className="carousel">
           <Swiper
             modules={[Pagination, EffectCoverflow, Autoplay]}
             // spaceBetween={100}
@@ -61,8 +62,7 @@ export const CardList = () => {
                     />
                   </SwiperSlide>
                 ))
-              : cardList &&
-                cardList.map((card) => (
+              : cardList.map((card) => (
                   <SwiperSlide key={card.id}>
                     <Card
                       likes={card.likes}
@@ -74,8 +74,14 @@ export const CardList = () => {
                   </SwiperSlide>
                 ))}
           </Swiper>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="carousel-skeleton">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+      )}
     </>
   );
 };

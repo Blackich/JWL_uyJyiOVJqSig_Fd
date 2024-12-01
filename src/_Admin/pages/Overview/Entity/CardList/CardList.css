@@ -5,19 +5,19 @@
   width: 100%;
 }
 
-@media screen and (max-width: 1800px) {
+@media (max-width: 1800px) {
   .overview__card-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (max-width: 1400px) {
+@media (max-width: 1400px) {
   .overview__card-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media (max-width: 1050px) {
   .overview__card-list {
     grid-template-columns: 100%;
   }

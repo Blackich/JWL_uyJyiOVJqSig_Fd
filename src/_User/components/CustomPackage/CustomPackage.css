@@ -63,7 +63,7 @@
   }
 }
 
-@media all and (max-width: 768px) {
+@media (max-width: 768px) {
   .custom-package-user {
     span:first-child {
       width: 150px;

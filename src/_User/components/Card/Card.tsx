@@ -4,6 +4,7 @@ import { HeartSVG, InfoSVG } from "@User/utils/svg/HomeSvg";
 import { Button } from "@ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import { PaymentModal } from "@User/components/PaymentModal/PaymentModal";
+import { Skeleton } from "@ui/Skeleton/Skeleton";
 import i18next from "i18next";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -86,5 +87,18 @@ export const Card: FC<Props> = ({
         priceUSD={priceUSD}
       />
     </>
+  );
+};
+
+export const SkeletonCard = () => {
+  return (
+    <div className="card__item">
+      <Skeleton w={100} h={25} mt={28} type="dark" />
+      <Skeleton w={150} h={25} mt={50} type="dark" />
+      <Skeleton w={150} h={14} mt={35} type="dark" />
+      <Skeleton w={150} h={14} mt={10} type="dark" />
+      <Skeleton w={150} h={14} mt={10} type="dark" />
+      <Skeleton w={100} h={37} mt={16} mb={20} type="dark" />
+    </div>
   );
 };

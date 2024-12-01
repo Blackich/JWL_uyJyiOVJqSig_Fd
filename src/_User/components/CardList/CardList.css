@@ -7,3 +7,11 @@
   display: flex !important;
   justify-content: center;
 }
+
+.carousel-skeleton {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 50px;
+  overflow: hidden;
+}
