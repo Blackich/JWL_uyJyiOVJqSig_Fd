@@ -25,7 +25,7 @@
   min-width: 280px;
 }
 
-.active-service {
+.service-active {
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { ServiceDescription } from "@User/components/ServiceDescription/ServiceDescription";
 import { SocialAccountList } from "@User/components/SocialAccountList/SocialAccountList";
-import { ServiceInfo } from "@User/components/ServiceActive/ServiceActive";
+import { ServiceActive } from "@User/components/ServiceActive/ServiceActive";
 import { CardList } from "@User/components/CardList/CardList";
 import { Page } from "@User/components/Page/Page";
 import { authUser } from "@User/auth/_authApi";
@@ -52,8 +52,8 @@ export const Home = () => {
             </div>
           </div>
           {activeServices && activeServices.length > 0 && matchIds ? (
-            <div className="active-service">
-              <ServiceInfo activeService={matchIds} customPack={customPack} />
+            <div className="service-active">
+              <ServiceActive activeService={matchIds} customPack={customPack} />
             </div>
           ) : (
             <div className="card-list">

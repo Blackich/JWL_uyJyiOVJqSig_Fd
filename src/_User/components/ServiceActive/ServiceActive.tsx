@@ -18,7 +18,7 @@ type Props = {
   customPack?: CustomPackageUser[];
 };
 
-export const ServiceInfo: FC<Props> = ({ activeService, customPack }) => {
+export const ServiceActive: FC<Props> = ({ activeService, customPack }) => {
   const { data: packageList } = userHomeApi.useGetPackageListQuery();
 
   const currentPackageLike = activeService.packageId
@@ -27,30 +27,36 @@ export const ServiceInfo: FC<Props> = ({ activeService, customPack }) => {
 
   return (
     <>
-      <div className="service-active">
+      <div className="service-active__container">
         {!currentPackageLike ? (
           <p>Loading...</p>
         ) : (
           <>
-            <div className="service-active__main">
-              <p>Активирован пакет {currentPackageLike}</p>
-              <p>На каждый пост вы получаете:</p>
-              <p>{currentPackageLike} лайков</p>
-              <p>
-                {activeService.customPackageId && customPack
-                  ? customPack[0].videoViews
-                  : currentPackageLike * 3}{" "}
-                просмотров
-              </p>
-              <p>А так же репосты, подписки и охват</p>
-              <p>Количество оставшихся постов: {activeService.countPosts}</p>
-              <p>
-                Осталось:{" "}
+            <div className="service-active__title">Активированный Сервис</div>
+            <div className="service-active__card-list">
+              <div className="service-active__card">
+                <p>Количество лайков</p>
+                <p>{currentPackageLike}</p>
+              </div>
+              <div className="service-active__card">
+                <p>Количество просмотров</p>
+                <p>
+                  {activeService.customPackageId && customPack
+                    ? customPack[0].videoViews
+                    : currentPackageLike * 3}
+                </p>
+              </div>
+              <div className="service-active__card">
+                <p>Количество постов</p>
+                <p>{activeService.countPosts}</p>
+              </div>
+              <div className="service-active__card">
+                <p>Оставшееся время</p>
                 <Countdown
                   date={Date.now() + remainingTime(activeService.createdAt)}
                   renderer={renderTimer}
                 />
-              </p>
+              </div>
             </div>
           </>
         )}
