@@ -1,21 +1,25 @@
 import "./SocialAccount.css";
 import { FC, MouseEvent } from "react";
-import { TrashSVG } from "@User/utils/svg/HomeSvg";
+import { AvatarMockSVG, TrashSVG } from "@User/utils/svg/HomeSvg";
 import { UserSocial } from "@User/utils/types";
 import { useTranslation } from "react-i18next";
 
 type Props = {
   userCred: UserSocial;
   activeUserId: number;
+  avatarColor?: { bg: string; person: string };
   handleClickTrash: (e: MouseEvent<HTMLButtonElement>) => void;
   handleClickProfile: (e: MouseEvent<HTMLDivElement>) => void;
+  photoId?: number;
 };
 
 export const SocialAccount: FC<Props> = ({
   userCred,
   activeUserId,
+  avatarColor,
   handleClickTrash,
   handleClickProfile,
+  photoId,
 }) => {
   const { t } = useTranslation();
   return (
@@ -33,13 +37,17 @@ export const SocialAccount: FC<Props> = ({
           name: userCred.nickname,
         })}
       >
-        <img
-          src="https://loremflickr.com/100/100/cat"
-          alt={t("social_account.profile_photo_alt", {
-            name: userCred.nickname,
-          })}
-          className="social-account__photo"
-        />
+        {photoId ? (
+          <img
+            src={`https://reqres.in/img/faces/${photoId}-image.jpg`}
+            alt={t("social_account.profile_photo_alt", {
+              name: userCred.nickname,
+            })}
+            className="social-account__photo"
+          />
+        ) : (
+          <AvatarMockSVG bg={avatarColor?.bg} person={avatarColor?.person} />
+        )}
         <div className="social-account__username">{userCred.nickname}</div>
         <button
           className="social-account__del-btn"
@@ -52,5 +60,14 @@ export const SocialAccount: FC<Props> = ({
         </button>
       </div>
     </>
+  );
+};
+
+export const SkeletonSocialAccount = () => {
+  return (
+    <div className="social-account">
+      <div className="social-account__photo skeleton" />
+      <div className="social-account__username skeleton"></div>
+    </div>
   );
 };

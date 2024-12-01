@@ -1,7 +1,10 @@
 import "./SocialAccountList.css";
 import { FC, MouseEvent, useEffect, useState } from "react";
 import { Button } from "@ui/Button/Button";
-import { SocialAccount } from "@User/components/SocialAccount/SocialAccount";
+import {
+  SkeletonSocialAccount,
+  SocialAccount,
+} from "@User/components/SocialAccount/SocialAccount";
 import { DeleteUserModal } from "@User/components/UserModal/DeleteUserModal";
 import { AddUserModal } from "@User/components/UserModal/AddUserModal";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
@@ -80,7 +83,7 @@ export const SocialAccountList: FC<Props> = ({
     if (userList?.length === 0) {
       localStorage.removeItem("activeUserId");
       return;
-    };
+    }
     if (!localStorage.getItem("activeUserId")) {
       setActiveUserId(userList[0].id);
       localStorage.setItem("activeUserId", userList[0].id.toFixed());
@@ -101,13 +104,15 @@ export const SocialAccountList: FC<Props> = ({
 
         {userList ? (
           userList.length > 0 ? (
-            userList.map((user) => (
+            userList.map((user, i) => (
               <SocialAccount
                 key={user.id}
                 activeUserId={activeUserId}
                 userCred={user}
                 handleClickTrash={handleClickTrash}
                 handleClickProfile={handleClickProfile}
+                avatarColor={avatarColor[i]}
+                photoId={i+1}
               />
             ))
           ) : (
@@ -116,7 +121,11 @@ export const SocialAccountList: FC<Props> = ({
             </div>
           )
         ) : (
-          <div>loading</div>
+          <>
+            <SkeletonSocialAccount />
+            <SkeletonSocialAccount />
+            <SkeletonSocialAccount />
+          </>
         )}
       </div>
       <AddUserModal
@@ -144,3 +153,20 @@ export const SocialAccountList: FC<Props> = ({
     </>
   );
 };
+
+const avatarColor = [
+  {
+    bg: "#e5ebff",
+    person: "#4294ff",
+  },
+  { bg: "#58ce4f", person: "#d6ffd6" },
+  { bg: "#42ecff", person: "#e5fcff" },
+  {
+    bg: "#ff6c6c",
+    person: "#ffe5e5",
+  },
+  {
+    bg: "#e3ed5b",
+    person: "#f8faeb",
+  },
+];

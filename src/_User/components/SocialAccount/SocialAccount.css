@@ -28,13 +28,13 @@
   border-radius: 50%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
 }
 
 .social-account__username {
   font-size: 18px;
   margin-left: 10px;
-  max-width: 200px;
+  max-width: 185px;
 
   overflow: hidden;
   white-space: nowrap;
