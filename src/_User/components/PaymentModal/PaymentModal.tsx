@@ -1,13 +1,16 @@
 import "./PaymentModal.css";
 import { FC } from "react";
-import { ModalWrapper } from "@ui/ModalWrapper/ModalWrapper";
+import { useAppSelector } from "@store/store";
 import { authUser } from "@User/auth/_authApi";
-import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { useTranslation } from "react-i18next";
-import { paymentPackApi } from "@User/Payment/_paymentPackApi";
-import { handlerErrorAxios } from "@/utils/utils";
-import { CreditCardSVG, SbpSVG } from "@User/utils/svg/HomeSvg";
 import { PaymentType } from "@User/Payment/type";
+import { handlerErrorAxios } from "@/utils/utils";
+import { skipToken } from "@reduxjs/toolkit/query";
+import { userHomeApi } from "@User/pages/Home/_homeApi";
+import { ModalWrapper } from "@ui/ModalWrapper/ModalWrapper";
+import { paymentPackApi } from "@User/Payment/_paymentPackApi";
+import { CreditCardSVG, SbpSVG } from "@User/utils/svg/HomeSvg";
+import { getSocialAccId, getSocialAccName } from "@User/auth/_user.slice";
 
 type Props = {
   shownModal: boolean;
@@ -29,20 +32,20 @@ export const PaymentModal: FC<Props> = ({
   customPackageId,
 }) => {
   const { t, i18n } = useTranslation();
+  const nicknameId = useAppSelector(getSocialAccId);
+  const nickname = useAppSelector(getSocialAccName);
   const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { data: packageList } = userHomeApi.useGetPackageListQuery();
-  const { data: userList } = userHomeApi.useGetSocialListQuery(
-    userCred?.id as number,
+  const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
+    userCred?.id || skipToken,
   );
   const [fetchPaymentYooKassa] =
     paymentPackApi.usePaymentPackYooKassaMutation();
 
-  const nickname = userList?.find(
-    (user) => user.id == Number(localStorage.getItem("activeUserId")),
-  )?.nickname;
-  const nicknameId = userList?.find(
-    (user) => user.id == Number(localStorage.getItem("activeUserId")),
-  )?.id;
+  const matchedService = activeServices?.find(
+    (service) => service.socialNicknameId === nicknameId,
+  );
+
   const packageId = customPackageId
     ? customPackageId
     : packageList?.find((pack) => pack.likes === likes)?.id;
@@ -70,7 +73,7 @@ export const PaymentModal: FC<Props> = ({
     });
   };
 
-  if (!localStorage.getItem("activeUserId")) {
+  if (!nicknameId || matchedService) {
     return (
       <ModalWrapper shown={shownModal} onClose={onClose}>
         <div className="payment-modal">

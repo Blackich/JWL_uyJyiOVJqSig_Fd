@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { authReducer } from "@Admin/auth/_auth.slice";
 import { userApi } from "@User/utils/utils";
 import { adminApi } from "@Admin/utils/utils";
+import { userReducer } from "@User/auth/_user.slice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    user: userReducer,
     [adminApi.reducerPath]: adminApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
   },

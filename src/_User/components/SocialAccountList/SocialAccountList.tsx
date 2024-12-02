@@ -1,10 +1,6 @@
 import "./SocialAccountList.css";
 import { FC, MouseEvent, useEffect, useState } from "react";
 import { Button } from "@ui/Button/Button";
-import {
-  SkeletonSocialAccount,
-  SocialAccount,
-} from "@User/components/SocialAccount/SocialAccount";
 import { DeleteUserModal } from "@User/components/UserModal/DeleteUserModal";
 import { AddUserModal } from "@User/components/UserModal/AddUserModal";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
@@ -12,17 +8,10 @@ import { authUser } from "@User/auth/_authApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
-
-const handleClickGetCredentialUser = (e: MouseEvent<HTMLElement>) => {
-  e.stopPropagation();
-  const clickedUser = e.currentTarget.closest(
-    ".social-account",
-  ) as HTMLDivElement;
-  if (!clickedUser) return;
-  const user = clickedUser.dataset?.username;
-  if (!user) return;
-  return user;
-};
+import {
+  SkeletonSocialAccount,
+  SocialAccount,
+} from "@User/components/SocialAccount/SocialAccount";
 
 type Props = {
   activeUserId: number;
@@ -34,6 +23,7 @@ export const SocialAccountList: FC<Props> = ({
   setActiveUserId,
 }) => {
   const { t } = useTranslation();
+
   const [shownModalAddInst, setShownModalAddInst] = useState<boolean>(false);
   const [shownModalDeleteInst, setShownModalDeleteInst] =
     useState<boolean>(false);
@@ -43,14 +33,18 @@ export const SocialAccountList: FC<Props> = ({
 
   const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { data: userList, refetch: updateSocialAccList } =
-    userHomeApi.useGetSocialListQuery((userCred?.id as number) || skipToken);
+    userHomeApi.useGetSocialListQuery(userCred?.id || skipToken);
   const [fetchDeleteInstAccount] = userHomeApi.useDeleteInstAccountMutation();
+  const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
+    userCred?.id || skipToken,
+  );
 
-  const handleClickTrash = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleClickTrash = (
+    e: MouseEvent<HTMLButtonElement>,
+    socAccName: string,
+  ) => {
     e.stopPropagation();
-    const user = handleClickGetCredentialUser(e);
-    if (!user) return;
-    setChosenName(user);
+    setChosenName(socAccName);
     setShownModalDeleteInst(true);
   };
 
@@ -71,11 +65,9 @@ export const SocialAccountList: FC<Props> = ({
     _onCloseClearNameApproveModal();
   };
 
-  const handleClickProfile = (e: MouseEvent<HTMLDivElement>) => {
-    const nickname = handleClickGetCredentialUser(e);
-    const userId = userList?.find((user) => user.nickname === nickname)?.id;
-    setActiveUserId(userId as number);
-    localStorage.setItem("activeUserId", userId?.toFixed() as string);
+  const handleClickProfile = (socAccId: number) => {
+    setActiveUserId(socAccId);
+    localStorage.setItem("activeUserId", socAccId?.toFixed() as string);
   };
 
   useEffect(() => {
@@ -108,11 +100,11 @@ export const SocialAccountList: FC<Props> = ({
               <SocialAccount
                 key={user.id}
                 activeUserId={activeUserId}
-                userCred={user}
+                socialAcc={user}
                 handleClickTrash={handleClickTrash}
                 handleClickProfile={handleClickProfile}
                 avatarColor={avatarColor[i]}
-                photoId={i+1}
+                photoId={i + 1}
               />
             ))
           ) : (
@@ -134,6 +126,8 @@ export const SocialAccountList: FC<Props> = ({
       />
       <DeleteUserModal
         username={chosenName}
+        userList={userList}
+        activeServices={activeServices}
         shownModal={shownModalDeleteInst}
         onClose={_onCloseClearNameApproveModal}
         handleDeleteInstUser={handleDeleteInstUser}

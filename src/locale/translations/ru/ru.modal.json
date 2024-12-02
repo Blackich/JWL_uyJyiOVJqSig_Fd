@@ -11,6 +11,9 @@
   "modal.delete_user_delete_btn": "Удалить",
   "modal.delete_user_delete_btn_aria": "Удалить аккаунт {name}",
 
+  "modal.cannot_delete_user_title": "Удаление аккаунта невозможно",
+  "modal.cannot_delete_user_description": "Удаление аккаунта с активированным сервисом невозможно, пожалуйста дождитесь окончания времени действия услуги.",
+
   "modal.payment_package_no_acc": "Нет активного аккаунта",
   "modal.payment_package_title": "Как вы хотите оплатить?",
   "modal.payment_package_subtitle": "Сводка",

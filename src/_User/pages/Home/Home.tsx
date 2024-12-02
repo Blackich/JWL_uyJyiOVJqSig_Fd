@@ -1,5 +1,5 @@
 import "./Home.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { ServiceDescription } from "@User/components/ServiceDescription/ServiceDescription";
 import { SocialAccountList } from "@User/components/SocialAccountList/SocialAccountList";
@@ -15,22 +15,36 @@ import {
 } from "./HomeData";
 import { useTranslation } from "react-i18next";
 import { CustomPackage } from "@User/components/CustomPackage/CustomPackage";
+import { selectSocialAccId, selectSocialAccName } from "@User/auth/_user.slice";
+import { useAppDispatch } from "@store/store";
 
 export const Home = () => {
   const { i18n } = useTranslation();
+  const dispatch = useAppDispatch();
   const [activeUserId, setActiveUserId] = useState<number>(0);
 
   const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
-    (userCred?.id as number) || skipToken,
+    userCred?.id || skipToken,
   );
   const { data: customPack } = userHomeApi.useGetCustomPackByUserIdQuery(
-    Number(userCred?.id) || skipToken,
+    userCred?.id || skipToken,
+  );
+  const { data: userList } = userHomeApi.useGetSocialListQuery(
+    userCred?.id || skipToken,
   );
 
   const matchIds = activeServices?.find(
     (service) => service.socialNicknameId === activeUserId,
   );
+
+  useEffect(() => {
+    if (!activeUserId) return;
+    dispatch(selectSocialAccId(activeUserId));
+    if (!userList) return;
+    const socName = userList.find((user) => user.id === activeUserId)?.nickname;
+    dispatch(selectSocialAccName(socName));
+  }, [activeUserId, userList, dispatch]);
 
   return (
     <>
@@ -60,7 +74,7 @@ export const Home = () => {
               <CardList />
             </div>
           )}
-          {customPack && customPack?.length > 0 && !matchIds && (
+          {customPack && customPack?.length > 0 && (
             <div className="custom-package-user__container">
               <CustomPackage customPack={customPack} />
             </div>

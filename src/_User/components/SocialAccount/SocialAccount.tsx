@@ -5,16 +5,19 @@ import { UserSocial } from "@User/utils/types";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-  userCred: UserSocial;
+  socialAcc: UserSocial;
   activeUserId: number;
   avatarColor?: { bg: string; person: string };
-  handleClickTrash: (e: MouseEvent<HTMLButtonElement>) => void;
-  handleClickProfile: (e: MouseEvent<HTMLDivElement>) => void;
+  handleClickTrash: (
+    e: MouseEvent<HTMLButtonElement>,
+    nickname: string,
+  ) => void;
+  handleClickProfile: (id: number) => void;
   photoId?: number;
 };
 
 export const SocialAccount: FC<Props> = ({
-  userCred,
+  socialAcc,
   activeUserId,
   avatarColor,
   handleClickTrash,
@@ -26,34 +29,33 @@ export const SocialAccount: FC<Props> = ({
     <>
       <div
         className={`social-account ${
-          activeUserId === userCred.id ? "active" : ""
+          activeUserId === socialAcc.id ? "active" : ""
         }`}
-        data-username={userCred.nickname}
-        onClick={(e) => handleClickProfile(e)}
+        onClick={() => handleClickProfile(socialAcc.id)}
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && e.currentTarget.click()}
         role="button"
         aria-label={t("social_account.profile_selection_aria", {
-          name: userCred.nickname,
+          name: socialAcc.nickname,
         })}
       >
         {photoId ? (
           <img
             src={`https://reqres.in/img/faces/${photoId}-image.jpg`}
             alt={t("social_account.profile_photo_alt", {
-              name: userCred.nickname,
+              name: socialAcc.nickname,
             })}
             className="social-account__photo"
           />
         ) : (
           <AvatarMockSVG bg={avatarColor?.bg} person={avatarColor?.person} />
         )}
-        <div className="social-account__username">{userCred.nickname}</div>
+        <div className="social-account__username">{socialAcc.nickname}</div>
         <button
           className="social-account__del-btn"
-          onClick={(e) => handleClickTrash(e)}
+          onClick={(e) => handleClickTrash(e, socialAcc.nickname)}
           aria-label={t("social_account.profile_delete_aria", {
-            name: userCred.nickname,
+            name: socialAcc.nickname,
           })}
         >
           <TrashSVG />
