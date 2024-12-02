@@ -70,11 +70,21 @@ export const SocialAccountList: FC<Props> = ({
     localStorage.setItem("activeUserId", socAccId?.toFixed() as string);
   };
 
+  const validateLS =
+    localStorage.getItem("activeUserId") &&
+    userList?.find(
+      (user) => user.id === Number(localStorage.getItem("activeUserId")),
+    );
+
   useEffect(() => {
     if (!userList) return;
     if (userList?.length === 0) {
       localStorage.removeItem("activeUserId");
       return;
+    }
+    if (!validateLS) {
+      setActiveUserId(userList[0].id);
+      localStorage.setItem("activeUserId", userList[0].id.toFixed());
     }
     if (!localStorage.getItem("activeUserId")) {
       setActiveUserId(userList[0].id);
@@ -82,7 +92,7 @@ export const SocialAccountList: FC<Props> = ({
     } else {
       setActiveUserId(Number(localStorage.getItem("activeUserId")));
     }
-  }, [userList, setActiveUserId]);
+  }, [userList, setActiveUserId, validateLS]);
 
   return (
     <>
