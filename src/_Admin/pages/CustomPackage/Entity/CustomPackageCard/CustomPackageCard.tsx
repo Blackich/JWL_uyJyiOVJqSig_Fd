@@ -11,7 +11,7 @@ export const CustomPackageCard: FC<Props> = ({ customPackage }) => {
   return (
     <>
       {customPackage.map((pack_detail) => (
-        <div key={performance.now()} className="custom-package__card">
+        <div key={pack_detail.price_rub} className="custom-package__card">
           <span>
             {pack_detail.likes}&nbsp;<p>Лайки</p>
           </span>

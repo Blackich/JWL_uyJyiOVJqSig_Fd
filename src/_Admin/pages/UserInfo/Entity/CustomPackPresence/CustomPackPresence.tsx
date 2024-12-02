@@ -42,7 +42,7 @@ export const CustomPackPresence: FC<Props> = ({ userInfo }) => {
         customPackageUser.map((pack) => (
           <div
             className="custom-pack-presence__details"
-            key={performance.now()}
+            key={pack.price_rub}
           >
             <span>
               {pack.likes}&nbsp;<p>Лайки</p>
