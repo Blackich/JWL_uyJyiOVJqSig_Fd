@@ -11,9 +11,8 @@ type Props = {
 };
 
 export const CustomPackage: FC<Props> = ({ customPack }) => {
-  const [shownModalPayment, setShownModalPayment] = useState<boolean>(false);
-
   const { i18n } = useTranslation();
+  const [shownModalPayment, setShownModalPayment] = useState<boolean>(false);
 
   return (
     <div className="custom-package-user">

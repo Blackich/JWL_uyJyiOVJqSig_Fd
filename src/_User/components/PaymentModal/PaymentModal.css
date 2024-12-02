@@ -70,7 +70,11 @@
   &:focus-visible {
     background-color: #c8e1ff
   }
+}
 
+.payment-modal__message {
+  text-align: center;
+  padding: 35px;
 }
 
 @media (max-width: 850px) {
@@ -85,5 +89,4 @@
   .payment-modal__wrapper {
     flex-direction: column;
   }
-
 }
