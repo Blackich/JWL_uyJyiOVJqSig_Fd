@@ -45,7 +45,9 @@ export const ModalWrapper: FC<ModalWrapperProps> = ({
         onClose();
       }
     };
-    document.addEventListener("keydown", documentKeydownListener);
+    document.addEventListener("keydown", documentKeydownListener, {
+      capture: true,
+    });
     return () => {
       document.removeEventListener("keydown", documentKeydownListener);
     };
