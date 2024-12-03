@@ -72,9 +72,22 @@
   }
 }
 
-.payment-modal__message {
-  text-align: center;
-  padding: 35px;
+.payment-modal__no-acc {
+  width: 300px;
+  padding: 20px;
+
+  .payment-modal__title {
+    text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: 700;
+
+    .payment-modal__text {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
 }
 
 @media (max-width: 850px) {
@@ -82,7 +95,7 @@
     width: 300px;
 
     button {
-      flex: 1 1 calc((100% - 10px * 1) / 2);
+      flex: 1 1 calc((100% - 10px) / 2);
     }
   }
 

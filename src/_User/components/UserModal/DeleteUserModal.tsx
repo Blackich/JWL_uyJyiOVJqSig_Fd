@@ -66,6 +66,7 @@ export const DeleteUserModal: FC<Props> = ({
             className="inst-modal__button"
             width="150px"
             onClick={handleDeleteInstUser}
+            style={{ width: "150px", backgroundColor: "#c81414b3" }}
             aria-label={t("modal.delete_user_delete_btn_aria", {
               name: username,
             })}

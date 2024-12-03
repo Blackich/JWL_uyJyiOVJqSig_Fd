@@ -10,11 +10,13 @@
   "modal.delete_user_description": "Are you sure you want to delete account",
   "modal.delete_user_delete_btn": "Delete",
   "modal.delete_user_delete_btn_aria": "Delete an account {name}",
-
   "modal.cannot_delete_user_title": "Account deletion is not possible",
   "modal.cannot_delete_user_description": "It is not possible to delete an account with activated service, please wait until the service expires.",
 
-  "modal.payment_package_no_acc": "No active account",
+  "modal.payment_package_no_acc_title": "No active account",
+  "modal.payment_package_no_acc_text": "Please select an account before paying.",
+  "modal.payment_package_no_services_title": "Technical problems",
+  "modal.payment_package_no_services_text": "There are currently problems with the service. Please try again later.",
   "modal.payment_package_title": "How do you want to pay?",
   "modal.payment_package_subtitle": "Summary",
   "modal.payment_package_pack": "Package",

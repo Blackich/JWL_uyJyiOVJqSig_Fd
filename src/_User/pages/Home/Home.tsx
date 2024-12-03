@@ -74,7 +74,7 @@ export const Home = () => {
               <CardList />
             </div>
           )}
-          {customPack && customPack?.length > 0 && (
+          {customPack && customPack?.length > 0 && !matchIds && (
             <div className="custom-package-user__container">
               <CustomPackage customPack={customPack} />
             </div>

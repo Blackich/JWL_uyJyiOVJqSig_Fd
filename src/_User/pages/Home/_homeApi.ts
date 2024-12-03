@@ -43,5 +43,8 @@ export const userHomeApi = userApi.injectEndpoints({
     getCustomPackByUserId: builder.query<CustomPackageUser[], AuthUser["id"]>({
       query: (id) => `/custom/${id}`,
     }),
+    checkStatusServices: builder.query<{ message: string }, void>({
+      query: () => `/services/check-status`,
+    }),
   }),
 });

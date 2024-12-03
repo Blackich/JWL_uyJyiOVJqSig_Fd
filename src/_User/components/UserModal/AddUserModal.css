@@ -38,6 +38,7 @@
 .inst-modal__description {
   text-align: center;
   font-size: 18px;
+  font-weight: 500;
 }
 
 .inst-modal__button {
