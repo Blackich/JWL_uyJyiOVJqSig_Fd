@@ -9,6 +9,7 @@ import { RemarkModal } from "./Entity/RemarkModal/RemarkModal";
 import { UserCredentialsBlock } from "./Entity/UserCredentialsBlock/UserCredentialsBlock";
 import { SocialAccountBlock } from "./Entity/SocialAccountBlock/SocialAccountBlock";
 import { CustomPackPresence } from "./Entity/CustomPackPresence/CustomPackPresence";
+import { PurchasedServicesBlock } from "./Entity/PurchasedServicesBlock/PurchasedServicesBlock";
 
 export const UserInfo = () => {
   const { id } = useParams();
@@ -32,6 +33,7 @@ export const UserInfo = () => {
               setModalRemarkShow={setModalRemarkShow}
             />
             <SocialAccountBlock userInfo={userInfo} />
+            <PurchasedServicesBlock userInfo={userInfo} />
             <CustomPackPresence userInfo={userInfo} />
           </>
         )}

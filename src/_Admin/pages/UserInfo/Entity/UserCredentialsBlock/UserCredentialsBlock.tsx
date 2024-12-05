@@ -39,7 +39,7 @@ export const UserCredentialsBlock: FC<Props> = ({
   };
 
   return (
-    <div className="main-block--user-credentials">
+    <div className="user-credentials">
       <span>
         Token:&nbsp;<p>{userInfo.token}</p>
       </span>
@@ -57,7 +57,7 @@ export const UserCredentialsBlock: FC<Props> = ({
           </>
         ) : (
           <>
-            <p style={{ color: "red" }}>inactive</p>
+            <p style={{ color: "#c20000" }}>inactive</p>
           </>
         )}
         <DropdownBtn

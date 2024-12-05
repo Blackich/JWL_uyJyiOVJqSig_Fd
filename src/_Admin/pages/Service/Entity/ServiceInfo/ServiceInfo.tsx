@@ -100,7 +100,7 @@ export const ServiceInfo: FC<Props> = ({
           </>
         ) : (
           <>
-            Статус:&nbsp;<p style={{ color: "red" }}>inactive</p>
+            Статус:&nbsp;<p style={{ color: "#c20000" }}>inactive</p>
           </>
         )}
         <DropdownBtn
