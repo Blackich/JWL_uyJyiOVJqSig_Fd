@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .scroll {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  main {
+    padding: 30px 0 40px 0;
+  }
+}
