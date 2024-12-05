@@ -1,0 +1,7 @@
+.login_container {
+  flex-direction: column;
+  display: flex;
+  height: calc(100vh - 120px);
+  justify-content: center;
+  align-items: center;
+}

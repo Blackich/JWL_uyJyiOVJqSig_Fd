@@ -36,7 +36,6 @@
 
   span {
     font-weight: 500;
-
   }
 }
 
@@ -93,6 +92,8 @@
 @media (max-width: 850px) {
   .payment-modal {
     width: 300px;
+    gap: 10px;
+    padding: 10px;
 
     button {
       flex: 1 1 calc((100% - 10px) / 2);
@@ -101,5 +102,57 @@
 
   .payment-modal__wrapper {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 374px) {
+  .payment-modal {
+    width: 230px;
+    gap: 5px;
+    padding: 5px;
+    font-size: 18px;
+
+    button {
+      flex: auto;
+      gap: 5px;
+      max-width: 66px;
+      height: 60px;
+
+      span {
+        font-size: 10px;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  
+  .payment-modal__wrapper {
+    min-width: 220px;
+  }
+
+  .payment-modal__summary {
+    font-size: 16px;
+    min-width: 220px;
+  }
+
+  .payment-modal__info-list {
+    font-size: 14px;
+  }
+
+  .payment-modal__no-acc {
+    width: 230px;
+    gap: 5px;
+    padding: 5px 0 15px;
+
+    .payment-modal__title {
+      font-size: 20px;
+
+      .payment-modal__text {
+        font-size: 16px;
+      }
+    }
   }
 }

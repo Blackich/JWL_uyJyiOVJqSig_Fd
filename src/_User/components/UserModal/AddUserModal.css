@@ -44,3 +44,30 @@
 .inst-modal__button {
   margin: 10px auto;
 }
+
+@media (max-width: 374px) {
+  .add-user-modal {
+    width: 230px;
+    gap: 5px;
+    padding: 5px 0 15px;
+  }
+
+  .inst-modal__image {
+    width: 80px;
+    height: 80px;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .inst-modal__title {
+    font-size: 20px;
+  }
+
+  .inst-modal__description {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}

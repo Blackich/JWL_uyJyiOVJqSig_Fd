@@ -68,7 +68,6 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
           <Input
             placeholder="@username"
             className="inst-modal__input"
-            width="250px"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             aria-label={t("modal.add_user_input_aria")}

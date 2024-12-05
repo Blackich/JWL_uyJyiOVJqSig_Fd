@@ -5,6 +5,7 @@
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   border-radius: var(--border-radius);
+  container: social-account / inline-size;
 
   &:hover {
     cursor: pointer;
@@ -34,7 +35,7 @@
 .social-account__username {
   font-size: 18px;
   margin-left: 10px;
-  max-width: 185px;
+  max-width: 65%;
 
   overflow: hidden;
   white-space: nowrap;
@@ -68,5 +69,14 @@
       color: rgb(171, 24, 24);
       transform: scale(1.2);
     }
+  }
+}
+
+@container social-account (width > 400px) {
+  .social-account__username {
+    max-width: 70%;
+  }
+  .social-account__username.skeleton {
+    max-width: 50cqw;
   }
 }

@@ -148,7 +148,7 @@ export const PaymentModal: FC<Props> = ({
             <button
               onClick={() => handleClickPayYooKassa("bank_card")}
               className="payment-modal__btn"
-              aria-label={t("")}
+              aria-label={t("modal.payment_package_YooKassa_bc_aria")}
             >
               <CreditCardSVG />
               <span>{t("modal.payment_package_YooKassa_bc")}</span>
@@ -156,7 +156,7 @@ export const PaymentModal: FC<Props> = ({
             <button
               onClick={() => handleClickPayYooKassa("sbp")}
               className="payment-modal__btn"
-              aria-label={t("")}
+              aria-label={t("modal.payment_package_YooKassa_sbp_aria")}
             >
               <SbpSVG />
               <span>{t("modal.payment_package_YooKassa_sbp")}</span>

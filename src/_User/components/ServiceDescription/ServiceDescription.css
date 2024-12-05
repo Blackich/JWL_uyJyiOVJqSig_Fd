@@ -40,6 +40,27 @@
   }
 
   .service-description__text {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 500px) {
+  .service-description {
+    padding: 0 0 0 15px;
+    gap: 10px;
+  }
+  .service-description__wrapper {
+    padding: 10px 10px;
+    gap: 5px;
+  }
+
+  .service-description__title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .service-description__text {
     font-size: 14px;
     font-weight: 400;
   }
