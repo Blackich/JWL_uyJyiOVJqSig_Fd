@@ -7,6 +7,7 @@
 .burger-checkbox {
   position: absolute;
   visibility: hidden;
+  padding: 20px 0;
 }
 
 .burger {

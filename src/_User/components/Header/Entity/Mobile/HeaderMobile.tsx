@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { LocaleSwitcher } from "@/locale/components/LocaleSwitcher/LocaleSwitcher";
 
 type Props = {
-  userId: number;
+  userId?: number;
   onClickLogout: () => void;
 };
 
@@ -16,7 +16,8 @@ export const HeaderMobile: FC<Props> = ({ userId, onClickLogout }) => {
     <header className="header header__mobile">
       <div className="container header_container">
         <div className="header__logo">
-          LOGO <LocaleSwitcher />
+          <div className="header__logo-img"></div>
+          <LocaleSwitcher />
         </div>
         <div
           className="menu"

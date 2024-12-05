@@ -6,7 +6,7 @@ import { LocaleSwitcher } from "@/locale/components/LocaleSwitcher/LocaleSwitche
 import { DropdownBtn } from "@/ui/Dropdown/DropdownBtn";
 
 type Props = {
-  userId: number;
+  userId?: number;
   onClickLogout: () => void;
 };
 
@@ -16,7 +16,8 @@ export const HeaderDesktop: FC<Props> = ({ userId, onClickLogout }) => {
     <header className="header">
       <div className="container header_container">
         <div className="header__logo">
-          LOGO <LocaleSwitcher />
+          <div className="header__logo-img"></div>
+          <LocaleSwitcher />
         </div>
         <div className="header__wrapper">
           <Navigation />

@@ -6,7 +6,7 @@ import { HeaderMobile } from "./Entity/Mobile/HeaderMobile";
 
 type Props = {
   onClickLogout: () => void;
-  userId: number;
+  userId?: number;
 };
 
 export const Header: FC<Props> = ({ userId, onClickLogout }) => {
