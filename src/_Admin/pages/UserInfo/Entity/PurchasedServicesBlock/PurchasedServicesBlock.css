@@ -1,46 +1,49 @@
-.main-block--user-purchased-services {
+.user-purchased-services {
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(156, 156, 156);
   border-radius: 10px;
-  width: 730px;
+  width: 350px;
   height: 281.7px;
   gap: 10px;
   overflow: hidden;
 
   .user-purchased-services__list {
+    display: flex;
+    flex-direction: column;
     overflow: auto;
   }
 
-  #user-th {
+  .user-purchased-services__item {
     display: flex;
+    padding: 11.5px 10px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
 
-    #user-td {
-      font-size: 18px;
-      font-weight: 500;
+    .ups-nickname {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 130px;
+      margin-right: 20px;
+    }
+
+    .ups-date {
+      margin-left: auto;
+    }
+
+    &:hover {
+      background-color: #b9e3ff;
+      cursor: pointer;
     }
   }
 
-  #user-tr {
-    display: flex;
-  }
-
-  #user-th #user-td,
-  #user-tr #user-td {
-    display: flex;
-    font-size: 16px;
-    font-weight: 400;
-    border-radius: 0%;
-
-    padding: 5px 10px;
-    border: 1px solid rgb(156, 156, 156);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  #user-td:nth-child(1) {
-    min-width: 100px;
-    /* overflow: hidden; */
+  .no-services-user {
+    margin: auto 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0 20px;
   }
 }

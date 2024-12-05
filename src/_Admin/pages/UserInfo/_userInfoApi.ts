@@ -30,11 +30,6 @@ export const userInfoApi = adminApi.injectEndpoints({
     getUserSocialAccounts: builder.query<UserSocialAccount[], User["id"]>({
       query: (id) => `/users/${id}/social`,
     }),
-    getUserPurchasedServices: builder.query<UserPurchasedService[], User["id"]>(
-      {
-        query: (id) => `/users/${id}/services`,
-      },
-    ),
     getCustomPackageByUserId: builder.query<
       CustomPackageSettings[],
       User["id"]
@@ -49,6 +44,9 @@ export const userInfoApi = adminApi.injectEndpoints({
         url: `/users/${id}/custom`,
         method: "DELETE",
       }),
+    }),
+    getServicesByUserId: builder.query<UserPurchasedService[], User["id"]>({
+      query: (id) => `/users/${id}/services`,
     }),
   }),
 });

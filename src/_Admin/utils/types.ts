@@ -20,12 +20,7 @@ export type UserSocialAccount = {
 export type UserPurchasedService = {
   id: number;
   nickname: string;
-  likes: number;
-  countPosts: number;
-  cost: number;
-  currency: string;
   status: number;
-  customPackage: number;
   createdAt: string;
 };
 
