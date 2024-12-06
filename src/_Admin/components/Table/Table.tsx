@@ -1,5 +1,7 @@
 import "./Table.css";
 import { FC, useState } from "react";
+import { Link } from "react-router-dom";
+import { Button, TextField } from "@mui/material";
 import {
   ColumnDef,
   flexRender,
@@ -11,31 +13,32 @@ import {
   RowData,
   useReactTable,
 } from "@tanstack/react-table";
-import { Button, Input } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   tableData: RowData[];
   columnsSetup: ColumnDef<RowData>[];
   navigateUrl?: string;
+  initialSort?: { id: string; desc: boolean }[];
 };
 
-export const Table: FC<Props> = ({ tableData, navigateUrl, columnsSetup }) => {
-  const navigate = useNavigate();
+export const Table: FC<Props> = ({
+  tableData,
+  navigateUrl,
+  columnsSetup,
+  initialSort,
+}) => {
   const [columnFilters, setColumnFilters] = useState("");
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });
 
-  const handleClickСell = (id: number) => {
-    if (!navigateUrl) return;
-    navigate(`${navigateUrl}/${id}`);
-  };
-
   const table = useReactTable({
     data: tableData || [],
     columns: columnsSetup,
+    initialState: {
+      sorting: initialSort || [],
+    },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -51,17 +54,7 @@ export const Table: FC<Props> = ({ tableData, navigateUrl, columnsSetup }) => {
   return (
     <>
       <div className="table-extra">
-        <Input
-          type="search"
-          className="table-extra__search"
-          style={{ marginBottom: "15px" }}
-          value={columnFilters}
-          onChange={(e) => setColumnFilters(e.target.value)}
-        />
-
         <div className="table-extra__pagination">
-          Станица {table.getState().pagination.pageIndex + 1} из{" "}
-          {table.getPageCount()}
           <Button
             style={{ border: "1px solid black" }}
             onClick={() => table.firstPage()}
@@ -90,7 +83,16 @@ export const Table: FC<Props> = ({ tableData, navigateUrl, columnsSetup }) => {
           >
             {">>"}
           </Button>
+          Станица {table.getState().pagination.pageIndex + 1} из{" "}
+          {table.getPageCount()}
         </div>
+        <TextField
+          label="Поиск"
+          variant="outlined"
+          className="table-extra__search"
+          value={columnFilters}
+          onChange={(e) => setColumnFilters(e.target.value)}
+        />
       </div>
       <div className="table-list">
         {table.getHeaderGroups().map((headerGroup) => (
@@ -98,7 +100,6 @@ export const Table: FC<Props> = ({ tableData, navigateUrl, columnsSetup }) => {
             {headerGroup.headers.map((header) => (
               <div key={header.id} className="th">
                 {String(header.column.columnDef.header)}
-
                 {header.column.getCanSort() && (
                   <>
                     <Button
@@ -124,17 +125,19 @@ export const Table: FC<Props> = ({ tableData, navigateUrl, columnsSetup }) => {
         {table.getRowModel().rows.map((row) => (
           <div key={row.id} className="tr">
             {row.getVisibleCells().map((cell) => (
-              <div
+              <Link
                 key={cell.id}
                 className="td"
                 id="td"
-                onClick={() =>
-                  //@ts-expect-error Id will be from tableData
-                  handleClickСell(cell.getContext().row?.original?.id)
+                to={
+                  navigateUrl
+                    ? //@ts-expect-error Id will be from tableData
+                      `${navigateUrl}/${cell.getContext().row?.original?.id}`
+                    : ""
                 }
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </div>
+              </Link>
             ))}
           </div>
         ))}
