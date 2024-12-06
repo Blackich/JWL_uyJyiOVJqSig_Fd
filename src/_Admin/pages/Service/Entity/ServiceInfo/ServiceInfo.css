@@ -9,35 +9,12 @@
     margin-left: auto;
   }
 
-  .service-info__copy {
-    display: flex;
-    margin-left: auto;
-    cursor: pointer;
-    align-items: center;
-    padding: 5px 6px;
-    transition: all .3s linear;
-
-    svg {
-      width: 17px;
-      height: 17px;
-      transition: all .3s linear;
-    }
-
-    &:hover {
-      border-radius: 5px;
-      background-color: rgba(205, 225, 255, 0.8);
-
-      svg {
-        transform: scale(1.2);
-      }
-    }
-  }
-
   .service-info__cancel-subs {
     display: flex;
     margin-left: auto;
     cursor: pointer;
     align-items: center;
+    transition: all .3s linear;
 
     &:hover {
       svg {

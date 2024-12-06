@@ -7,8 +7,7 @@ import { Service } from "@Admin/utils/types";
 import { daysUntilFutureDate } from "@/utils/utils";
 
 export const ServiceList = () => {
-  const { data: serviceList } =
-    serviceListApi.useGetServiceListQuery();
+  const { data: serviceList } = serviceListApi.useGetServiceListQuery();
 
   return (
     <MainBlock title={"Услуги"}>
@@ -18,6 +17,7 @@ export const ServiceList = () => {
             tableData={serviceList}
             columnsSetup={servicesColumns}
             navigateUrl="/panel/services"
+            initialSort={[{ id: "createdAt", desc: true }]}
           />
         )}
       </div>
@@ -57,7 +57,12 @@ const servicesColumns: ColumnDef<unknown>[] = [
   {
     accessorKey: "createdAt",
     header: "Истечёт",
-    cell: ({ getValue }) => daysUntilFutureDate(getValue() as string),
+    cell: ({ getValue }) =>
+      daysUntilFutureDate(getValue() as string) !== 0 ? (
+        daysUntilFutureDate(getValue() as string)
+      ) : (
+        <p style={{ color: "#c20000", fontWeight: "500" }}>Истёк</p>
+      ),
   },
   {
     accessorKey: "countPosts",

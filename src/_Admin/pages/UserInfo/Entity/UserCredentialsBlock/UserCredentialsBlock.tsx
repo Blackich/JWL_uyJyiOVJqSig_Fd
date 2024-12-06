@@ -1,9 +1,11 @@
 import "./UserCredentialsBlock.css";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
 import { DropdownBtn } from "@ui/Dropdown/DropdownBtn";
-import { formatDate } from "@/utils/utils";
+import { formatDateNTime } from "@/utils/utils";
 import { User } from "@Admin/utils/types";
+import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
+import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 
 type Props = {
   userInfo: User;
@@ -18,6 +20,7 @@ export const UserCredentialsBlock: FC<Props> = ({
   invaldateUsersTable,
   setModalRemarkShow,
 }) => {
+  const [isOpenAlertCopy, setOpenAlertCopy] = useState<boolean>(false);
   const [updateUserStatus] = userInfoApi.useUpdateUserStatusMutation();
 
   const onClickActiveStatus = async () => {
@@ -42,9 +45,19 @@ export const UserCredentialsBlock: FC<Props> = ({
     <div className="user-credentials">
       <span>
         Token:&nbsp;<p>{userInfo.token}</p>
+        <div
+          className="copy-btn"
+          onClick={() => {
+            navigator.clipboard.writeText(userInfo.token);
+            setOpenAlertCopy(true);
+          }}
+        >
+          <ContentCopyOutlinedIcon />
+        </div>
       </span>
+
       <span>
-        Создан:&nbsp;<p>{formatDate(userInfo.createdAt)}</p>
+        Создан:&nbsp;<p>{formatDateNTime(userInfo.createdAt)}</p>
       </span>
       <span>
         Приглашен:&nbsp;<p>{userInfo.fullName}</p>
@@ -74,6 +87,12 @@ export const UserCredentialsBlock: FC<Props> = ({
           menuItemOnClick={[onClickChangeRemark]}
         />
       </span>
+      <AlertMessage
+        type="success"
+        message="Token скопирован в буфер обмена"
+        isOpen={isOpenAlertCopy}
+        onClose={() => setOpenAlertCopy(false)}
+      />
     </div>
   );
 };

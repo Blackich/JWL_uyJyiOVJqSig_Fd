@@ -9,7 +9,7 @@ import { serviceApi } from "@Admin/pages/Service/_serviceApi";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import {
-  formatDate,
+  formatDateNTime,
   formatRUB,
   formatUSD,
   pluralize,
@@ -82,16 +82,22 @@ export const ServiceInfo: FC<Props> = ({
         </p>
       </span>
       <span>
-        Куплен:&nbsp;<p>{formatDate(service.createdAt)}</p>
+        Куплен:&nbsp;<p>{formatDateNTime(service.createdAt)}</p>
       </span>
       <span>
-        Осталось:&nbsp;
-        <p>
-          <Countdown
-            date={Date.now() + remainingTime(service.createdAt)}
-            renderer={renderTimer}
-          />
-        </p>
+        {remainingTime(service.createdAt) > 0 ? (
+          <>
+            Осталось:&nbsp;
+            <p>
+              <Countdown
+                date={Date.now() + remainingTime(service.createdAt)}
+                renderer={renderTimer}
+              />
+            </p>
+          </>
+        ) : (
+          <p style={{ color: "#c20000" }}>Время действия истекло</p>
+        )}
       </span>
       <span>
         {service.status === 1 ? (
@@ -112,7 +118,7 @@ export const ServiceInfo: FC<Props> = ({
       <span>
         orderId:&nbsp;<p>{service.orderId}</p>
         <div
-          className="service-info__copy"
+          className="copy-btn"
           onClick={() => {
             navigator.clipboard.writeText(service.orderId);
             setOpenAlertSuccess(true);

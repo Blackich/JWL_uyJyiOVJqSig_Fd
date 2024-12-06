@@ -30,7 +30,7 @@ export const UserAddition: FC<Props> = ({ usersList, packageId }) => {
     }).then((res) => {
       if (res?.data) return setOpenAlertSuccess(true);
       if (res?.error) return setOpenAlertError(true);
-    });;
+    });
     setQuery("");
     setAproveValue(null);
   };

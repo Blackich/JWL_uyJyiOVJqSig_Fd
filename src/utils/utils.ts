@@ -28,6 +28,17 @@ export const formatDate = (value: string) => {
   }).format(date);
 };
 
+export const formatDateNTime = (value: string) => {
+  const date = new Date(value);
+  return Intl.DateTimeFormat("ru-RU", {
+    month: "short",
+    day: "numeric",
+    year: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+  }).format(date);
+};
+
 export const remainingTime = (date: string): number => {
   const month = 1000 * 60 * 60 * 24 * 30;
   const ms = new Date(date).getTime() + month;
@@ -45,6 +56,7 @@ export const daysUntilFutureDate = (date: string) => {
   const hoursDifference = Math.floor(
     differenceInMilliseconds / (1000 * 60 * 60),
   );
+  const minutesDifference = Math.floor(differenceInMilliseconds / (1000 * 60));
   return daysDifference > 0
     ? `${daysDifference} ${pluralize(daysDifference, ["день", "дня", "дней"])}`
     : hoursDifference > 0
@@ -52,6 +64,12 @@ export const daysUntilFutureDate = (date: string) => {
         "час",
         "часа",
         "часов",
+      ])}`
+    : minutesDifference > 0
+    ? `${minutesDifference} ${pluralize(minutesDifference, [
+        "минута",
+        "минуты",
+        "минут",
       ])}`
     : 0;
 };
