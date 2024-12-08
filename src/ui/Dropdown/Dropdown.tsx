@@ -4,6 +4,7 @@ import {
   HTMLAttributes,
   RefObject,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -38,7 +39,7 @@ export const Dropdown: FC<DropdownProps> = ({
   const [coords, setCoords] = useState({ top: 0, right: 0 });
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const trap = createFocusTrap(ref.current as HTMLDivElement, {
       allowOutsideClick: true,
     });

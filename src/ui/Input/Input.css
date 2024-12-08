@@ -3,15 +3,10 @@
   position: relative;
   width: fit-content;
 
-
   .input~span {
     position: absolute;
     color: #626262;
-    padding: 16.5px 14px;
-    font-family: "Roboto",
-      "Helvetica",
-      "Arial",
-      sans-serif;
+    padding: 14px;
     font-weight: 400;
     font-size: 16px;
     pointer-events: none;
@@ -25,19 +20,14 @@
     padding: 0 10px;
     background: var(--input-active__bg-color);
     letter-spacing: 1.2px;
-    
   }
-    .input:focus~span {
-      color: #1976D2;
-    }
 
+  .input:focus~span {
+    color: #1976D2;
+  }
 }
 
 .input {
-  font-family: "Roboto",
-    "Helvetica",
-    "Arial",
-    sans-serif;
   font-weight: 400;
   font-size: 16px;
   padding: 18px 13px;
@@ -63,7 +53,6 @@
 
     &::placeholder {
       opacity: 0;
-
     }
   }
 }
