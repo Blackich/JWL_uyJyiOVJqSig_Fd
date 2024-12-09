@@ -1,22 +1,30 @@
 import "./DropdownSelect.css";
 import { Dropdown } from "./Dropdown";
 import {
+  CSSProperties,
   Dispatch,
   FC,
   HTMLAttributes,
   SetStateAction,
+  useEffect,
   useRef,
   useState,
 } from "react";
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
+  bg?: string;
   label: string;
   itemId: number;
   menuItemArray: string[];
   setChosenItemId: Dispatch<SetStateAction<number>>;
 }
 
+interface CustomStyleProps extends CSSProperties {
+  "--select-active__bg-color": string;
+}
+
 export const DropdownSelect: FC<Props> = ({
+  bg,
   label,
   itemId,
   menuItemArray,
@@ -26,22 +34,36 @@ export const DropdownSelect: FC<Props> = ({
   const [shownDropdown, setDropdownShow] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (itemId === 0) return;
+    setInputValue(menuItemArray[itemId - 1]);
+  }, [itemId, menuItemArray]);
+
   return (
     <div
       className={`dropdown-select ${className} ${
         shownDropdown ? "active" : ""
       }`}
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && e.currentTarget.click()}
       onClick={(e) => {
         e.stopPropagation();
         setDropdownShow(!shownDropdown);
       }}
       ref={ref}
     >
-      {itemId === 0 && !inputValue ? (
-        <p style={{ color: "#616161cc" }}>{label}</p>
-      ) : (
-        inputValue
-      )}
+      <p
+        className={`dropdown-select__label ${
+          itemId === 0 && !shownDropdown ? "" : "up"
+        }`}
+        style={
+          { "--select-active__bg-color": bg ? bg : "#fff" } as CustomStyleProps
+        }
+      >
+        {label}
+      </p>
+      <p>{inputValue}</p>
       <Dropdown
         shown={shownDropdown}
         onShownChange={setDropdownShow}
@@ -55,10 +77,12 @@ export const DropdownSelect: FC<Props> = ({
               className={`dropdown-select__menu-item ${
                 itemId === i + 1 ? "active" : ""
               }`}
-              onClick={() => {
-                setChosenItemId(i + 1);
-                setInputValue(menuItemArray[i]);
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.currentTarget.click();
+                }
               }}
+              onClick={() => setChosenItemId(i + 1)}
             >
               {menuItem}
             </button>
