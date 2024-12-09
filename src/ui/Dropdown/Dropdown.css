@@ -5,4 +5,15 @@
   border-radius: 10px;
   padding: 8px 0;
   z-index: 3;
+  animation: open-animate 0.2s linear;
+}
+
+@keyframes open-animate {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

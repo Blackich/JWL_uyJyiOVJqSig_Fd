@@ -17,6 +17,11 @@
     border-bottom: 2px solid var(--color-accent-hover);
     cursor: default;
     width: fit-content;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .footer__contact-link {

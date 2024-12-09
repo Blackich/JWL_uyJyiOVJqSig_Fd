@@ -21,24 +21,22 @@ export const Input: FC<Props> = ({
   ...restProps
 }) => {
   return (
-    <>
-      <div className={`input-wrapper ${className}`}>
-        <input
-          type={type}
-          className="input"
-          style={{ width: width }}
-          {...restProps}
-          required
-        />
-        <span
-          className="input-label"
-          style={
-            { "--input-active__bg-color": bg ? bg : "#fff" } as CustomStyleProps
-          }
-        >
-          {placeholder}
-        </span>
-      </div>
-    </>
+    <div className={`input-wrapper ${className}`}>
+      <input
+        type={type}
+        className="input"
+        style={{ width: width }}
+        {...restProps}
+        required
+      />
+      <span
+        className="input-label"
+        style={
+          { "--input-active__bg-color": bg ? bg : "#fff" } as CustomStyleProps
+        }
+      >
+        {placeholder}
+      </span>
+    </div>
   );
 };
