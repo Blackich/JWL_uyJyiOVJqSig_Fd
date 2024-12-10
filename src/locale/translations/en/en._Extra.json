@@ -1,0 +1,11 @@
+{
+  "extra-services.account": "Account",
+  "extra_services.price": "Price",
+  "extra_services.select_label": "Select a service",
+  "extra_services.input_link": "Link",
+  "extra_services.input_count": "Quantity",
+  "extra_services.min_count_warn": "Min",
+  "extra_services.purchase_btn": "Order now",
+  "extra_services.activation_info": "The service will be activated within an hour.",
+  "extra_services.view_story_warn": "Warn: Views go to the most recently published story."
+}

@@ -1,0 +1,11 @@
+{
+  "extra-services.account": "Аккаунт",
+  "extra_services.price": "Цена",
+  "extra_services.select_label": "Выберите услугу",
+  "extra_services.input_link": "Ссылка",
+  "extra_services.input_count": "Количество",
+  "extra_services.min_count_warn": "Минимум",
+  "extra_services.purchase_btn": "Купить",
+  "extra_services.activation_info": "Активация услуги произойдет в течении часа.",
+  "extra_services.view_story_warn": "Внимание: Просмотры идут на последнюю опубликованную историю."
+}
