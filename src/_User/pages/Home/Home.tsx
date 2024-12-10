@@ -1,12 +1,10 @@
 import "./Home.css";
-import { useEffect, useState } from "react";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { ServiceDescription } from "@User/components/ServiceDescription/ServiceDescription";
 import { SocialAccountList } from "@User/components/SocialAccountList/SocialAccountList";
 import { ServiceActive } from "@User/components/ServiceActive/ServiceActive";
 import { CardList } from "@User/components/CardList/CardList";
 import { Page } from "@User/components/Page/Page";
-import { authUser } from "@User/auth/_authApi";
 import { userHomeApi } from "./_homeApi";
 import { Description } from "@User/components/Description/Description";
 import {
@@ -15,36 +13,24 @@ import {
 } from "./HomeData";
 import { useTranslation } from "react-i18next";
 import { CustomPackage } from "@User/components/CustomPackage/CustomPackage";
-import { selectSocialAccId, selectSocialAccName } from "@User/auth/_user.slice";
-import { useAppDispatch } from "@store/store";
+import { useAppSelector } from "@store/store";
+import { getSocialAccId, getUserId } from "@User/auth/_user.slice";
 
 export const Home = () => {
   const { i18n } = useTranslation();
-  const dispatch = useAppDispatch();
-  const [activeUserId, setActiveUserId] = useState<number>(0);
+  const pickedAccId = useAppSelector(getSocialAccId);
+  const userId = useAppSelector(getUserId);
 
-  const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
-    userCred?.id || skipToken,
+    userId || skipToken,
   );
   const { data: customPack } = userHomeApi.useGetCustomPackByUserIdQuery(
-    userCred?.id || skipToken,
-  );
-  const { data: userList } = userHomeApi.useGetSocialListQuery(
-    userCred?.id || skipToken,
+    userId || skipToken,
   );
 
   const matchIds = activeServices?.find(
-    (service) => service.socialNicknameId === activeUserId,
+    (service) => service.socialNicknameId === pickedAccId,
   );
-
-  useEffect(() => {
-    if (!activeUserId) return;
-    dispatch(selectSocialAccId(activeUserId));
-    if (!userList) return;
-    const socName = userList.find((user) => user.id === activeUserId)?.nickname;
-    dispatch(selectSocialAccName(socName));
-  }, [activeUserId, userList, dispatch]);
 
   return (
     <>
@@ -52,10 +38,7 @@ export const Home = () => {
         <div className="container home-container">
           <div className="social-acc-info">
             <div className="social-acc-info__inst">
-              <SocialAccountList
-                activeUserId={activeUserId}
-                setActiveUserId={setActiveUserId}
-              />
+              <SocialAccountList />
             </div>
             <div className="social-acc-info__description">
               {i18n.language === "ru" ? (

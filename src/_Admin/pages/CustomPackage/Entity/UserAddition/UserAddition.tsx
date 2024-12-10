@@ -2,8 +2,8 @@ import "./UserAddition.css";
 import { FC, useState } from "react";
 import { Button } from "@mui/material";
 import { User } from "@Admin/utils/types";
-import { SearchBar } from "@/ui/SearchBar/SearchBar";
-import { AlertMessage } from "@/ui/AlertMessage/AlertMessage";
+import { SearchBar } from "@ui/SearchBar/SearchBar";
+import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { customPackageApi } from "@Admin/pages/CustomPackage/_customPackageApi";
 
 type Props = {

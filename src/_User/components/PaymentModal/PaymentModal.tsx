@@ -1,7 +1,6 @@
 import "./PaymentModal.css";
 import { FC } from "react";
 import { useAppSelector } from "@store/store";
-import { authUser } from "@User/auth/_authApi";
 import { useTranslation } from "react-i18next";
 import { PaymentType } from "@User/Payment/type";
 import { handlerErrorAxios } from "@/utils/utils";
@@ -9,7 +8,11 @@ import { skipToken } from "@reduxjs/toolkit/query";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { ModalWrapper } from "@ui/ModalWrapper/ModalWrapper";
 import { paymentPackApi } from "@User/Payment/_paymentPackApi";
-import { getSocialAccId, getSocialAccName } from "@User/auth/_user.slice";
+import {
+  getSocialAccId,
+  getSocialAccName,
+  getUserId,
+} from "@User/auth/_user.slice";
 import {
   ServicesUnavailableSVG,
   CreditCardSVG,
@@ -37,30 +40,30 @@ export const PaymentModal: FC<Props> = ({
   customPackageId,
 }) => {
   const { t, i18n } = useTranslation();
-  const nicknameId = useAppSelector(getSocialAccId);
-  const nickname = useAppSelector(getSocialAccName);
+  const pickedAccId = useAppSelector(getSocialAccId);
+  const pickedAccName = useAppSelector(getSocialAccName);
+  const userId = useAppSelector(getUserId);
 
-  const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { data: packageList } = userHomeApi.useGetPackageListQuery();
   const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
-    userCred?.id || skipToken,
+    userId || skipToken,
   );
   const { data: checkStatus } = userHomeApi.useCheckStatusServicesQuery();
   const [fetchPaymentYooKassa] =
     paymentPackApi.usePaymentPackYooKassaMutation();
 
   const matchedService = activeServices?.find(
-    (service) => service.socialNicknameId === nicknameId,
+    (service) => service.socialNicknameId === pickedAccId,
   );
   const packageId = customPackageId
     ? customPackageId
     : packageList?.find((pack) => pack.likes === likes)?.id;
 
   const handleClickPayYooKassa = async (paymentType: PaymentType) => {
-    if (!userCred || !nicknameId || !packageId) return;
+    if (!userId || !pickedAccId || !packageId) return;
     await fetchPaymentYooKassa({
-      userId: userCred.id,
-      socialNicknameId: nicknameId,
+      userId: userId,
+      socialNicknameId: pickedAccId,
       packageId: packageId,
       customPackage: customPackageId ? 1 : 0,
       countPosts: countPosts,
@@ -79,7 +82,7 @@ export const PaymentModal: FC<Props> = ({
     });
   };
 
-  if (!nicknameId || matchedService) {
+  if (!pickedAccId || matchedService) {
     return (
       <ModalWrapper shown={shownModal} onClose={onClose}>
         <div className="payment-modal__no-acc">
@@ -127,7 +130,7 @@ export const PaymentModal: FC<Props> = ({
                 {t("modal.payment_package_pack")}: <span>{likes}</span>
               </p>
               <p>
-                {t("modal.payment_package_acc")}: <span>{nickname}</span>
+                {t("modal.payment_package_acc")}: <span>{pickedAccName}</span>
               </p>
               <p>
                 {t("modal.payment_package_posts_q")}: <span>{countPosts}</span>

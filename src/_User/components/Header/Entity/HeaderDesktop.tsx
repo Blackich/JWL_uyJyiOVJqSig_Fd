@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Navigation } from "./Navigation";
 import { useTranslation } from "react-i18next";
 import { LocaleSwitcher } from "@/locale/components/LocaleSwitcher/LocaleSwitcher";
-import { DropdownBtn } from "@/ui/Dropdown/DropdownBtn";
+import { DropdownBtn } from "@ui/Dropdown/DropdownBtn";
 
 type Props = {
   userId?: number;

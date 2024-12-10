@@ -5,11 +5,12 @@ import { Button } from "@ui/Button/Button";
 import { PersonAddSVG } from "@User/utils/svg/HomeSvg";
 import { Input } from "@ui/Input/Input";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
-import { authUser } from "@User/auth/_authApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
 import { handlerErrorAxios } from "@/utils/utils";
+import { useAppSelector } from "@store/store";
+import { getUserId } from "@User/auth/_user.slice";
 
 type Props = {
   shownModal: boolean;
@@ -18,6 +19,7 @@ type Props = {
 
 export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
   const { t } = useTranslation();
+  const userId = useAppSelector(getUserId);
 
   const [username, setUsername] = useState<string>("");
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
@@ -26,9 +28,8 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
   const [errMaxAcc, setErrMaxAcc] = useState<boolean>(false);
   const [errMaxAllAcc, setErrMaxAllAcc] = useState<boolean>(false);
 
-  const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { refetch: updateSocialAccList } = userHomeApi.useGetSocialListQuery(
-    (userCred?.id as number) || skipToken,
+    userId || skipToken,
   );
   const [fetchAddInstAccount] = userHomeApi.useAddInstAccountMutation();
 
@@ -39,7 +40,8 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
 
   // validation add inst acc
   const handleAddInstUser = async () => {
-    await fetchAddInstAccount({ id: userCred?.id as number, username }).then(
+    if (!userId || !username) return;
+    await fetchAddInstAccount({ id: userId as number, username }).then(
       (res) => {
         if (res?.data) return setOpenAlertSuccess(true);
         if (res?.error) {

@@ -1,7 +1,7 @@
 import "./CancelSubsModal.css";
 import { FC } from "react";
 import { Button } from "@mui/material";
-import { ModalWrapper } from "@/ui/ModalWrapper/ModalWrapper";
+import { ModalWrapper } from "@ui/ModalWrapper/ModalWrapper";
 import { serviceApi } from "@Admin/pages/Service/_serviceApi";
 
 type Props = {

@@ -1,28 +1,27 @@
 import "./SocialAccountList.css";
-import { FC, MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useState } from "react";
 import { Button } from "@ui/Button/Button";
 import { DeleteUserModal } from "@User/components/UserModal/DeleteUserModal";
 import { AddUserModal } from "@User/components/UserModal/AddUserModal";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
-import { authUser } from "@User/auth/_authApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
+import { useAppDispatch, useAppSelector } from "@/store/store";
 import {
   SkeletonSocialAccount,
   SocialAccount,
 } from "@User/components/SocialAccount/SocialAccount";
+import {
+  getUserId,
+  selectSocialAccId,
+  selectSocialAccName,
+} from "@User/auth/_user.slice";
 
-type Props = {
-  activeUserId: number;
-  setActiveUserId: (id: number) => void;
-};
-
-export const SocialAccountList: FC<Props> = ({
-  activeUserId,
-  setActiveUserId,
-}) => {
+export const SocialAccountList = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const userId = useAppSelector(getUserId);
 
   const [shownModalAddInst, setShownModalAddInst] = useState<boolean>(false);
   const [shownModalDeleteInst, setShownModalDeleteInst] =
@@ -31,13 +30,17 @@ export const SocialAccountList: FC<Props> = ({
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
   const [chosenName, setChosenName] = useState<string>("");
 
-  const { data: userCred } = authUser.useCheckAuthUserQuery();
   const { data: userList, refetch: updateSocialAccList } =
-    userHomeApi.useGetSocialListQuery(userCred?.id || skipToken);
+    userHomeApi.useGetSocialListQuery(userId || skipToken);
   const [fetchDeleteInstAccount] = userHomeApi.useDeleteInstAccountMutation();
   const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
-    userCred?.id || skipToken,
+    userId || skipToken,
   );
+
+  const getNicknameById = (id: number) => {
+    const user = userList?.find((user) => user.id === id);
+    return user?.nickname;
+  };
 
   const handleClickTrash = (
     e: MouseEvent<HTMLButtonElement>,
@@ -54,9 +57,10 @@ export const SocialAccountList: FC<Props> = ({
   };
 
   const handleDeleteInstUser = async () => {
+    if (!userId || !chosenName) return;
     await fetchDeleteInstAccount({
-      id: userCred?.id as number,
-      username: chosenName as string,
+      id: userId,
+      username: chosenName,
     }).then((res) => {
       if (res?.data) return setOpenAlertSuccess(true);
       if (res?.error) return setOpenAlertError(true);
@@ -66,33 +70,11 @@ export const SocialAccountList: FC<Props> = ({
   };
 
   const handleClickProfile = (socAccId: number) => {
-    setActiveUserId(socAccId);
+    const nickname = getNicknameById(socAccId);
+    dispatch(selectSocialAccId(socAccId));
+    dispatch(selectSocialAccName(nickname));
     localStorage.setItem("activeUserId", socAccId?.toFixed() as string);
   };
-
-  const validateLS =
-    localStorage.getItem("activeUserId") &&
-    userList?.find(
-      (user) => user.id === Number(localStorage.getItem("activeUserId")),
-    );
-
-  useEffect(() => {
-    if (!userList) return;
-    if (userList?.length === 0) {
-      localStorage.removeItem("activeUserId");
-      return;
-    }
-    if (!validateLS) {
-      setActiveUserId(userList[0].id);
-      localStorage.setItem("activeUserId", userList[0].id.toFixed());
-    }
-    if (!localStorage.getItem("activeUserId")) {
-      setActiveUserId(userList[0].id);
-      localStorage.setItem("activeUserId", userList[0].id.toFixed());
-    } else {
-      setActiveUserId(Number(localStorage.getItem("activeUserId")));
-    }
-  }, [userList, setActiveUserId, validateLS]);
 
   return (
     <>
@@ -109,7 +91,6 @@ export const SocialAccountList: FC<Props> = ({
             userList.map((user, i) => (
               <SocialAccount
                 key={user.id}
-                activeUserId={activeUserId}
                 socialAcc={user}
                 handleClickTrash={handleClickTrash}
                 handleClickProfile={handleClickProfile}

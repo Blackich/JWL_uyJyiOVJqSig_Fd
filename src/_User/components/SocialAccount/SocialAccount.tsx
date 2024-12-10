@@ -3,10 +3,11 @@ import { FC, MouseEvent } from "react";
 import { AvatarMockSVG, TrashSVG } from "@User/utils/svg/HomeSvg";
 import { UserSocial } from "@User/utils/types";
 import { useTranslation } from "react-i18next";
+import { useAppSelector } from "@store/store";
+import { getSocialAccId } from "@User/auth/_user.slice";
 
 type Props = {
   socialAcc: UserSocial;
-  activeUserId: number;
   avatarColor?: { bg: string; person: string };
   handleClickTrash: (
     e: MouseEvent<HTMLButtonElement>,
@@ -18,18 +19,18 @@ type Props = {
 
 export const SocialAccount: FC<Props> = ({
   socialAcc,
-  activeUserId,
   avatarColor,
   handleClickTrash,
   handleClickProfile,
   photoId,
 }) => {
   const { t } = useTranslation();
+  const pickedAccId = useAppSelector(getSocialAccId);
   return (
     <>
       <div
         className={`social-account ${
-          activeUserId === socialAcc.id ? "active" : ""
+          pickedAccId === socialAcc.id ? "active" : ""
         }`}
         onClick={() => handleClickProfile(socialAcc.id)}
         tabIndex={0}
