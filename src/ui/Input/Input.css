@@ -14,7 +14,8 @@
   }
 
   .input:valid~span,
-  .input:focus~span {
+  .input:focus~span,
+  .input:disabled~span {
     transform: translate(10px, -57%);
     padding: 0 7px;
     background: var(--input-active__bg-color);
@@ -53,6 +54,11 @@
     &::placeholder {
       opacity: 0;
     }
+  }
+
+  &:disabled {
+    border: 1px solid #ccc;
+    outline: 0 solid #ccc;
   }
 
   &::-webkit-outer-spin-button,

@@ -2,10 +2,10 @@ import "./Input.css";
 import { CSSProperties, FC, InputHTMLAttributes } from "react";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string;
-  placeholder?: string;
   bg?: string;
   width?: string;
+  className?: string;
+  placeholder?: string;
 }
 
 interface CustomStyleProps extends CSSProperties {
