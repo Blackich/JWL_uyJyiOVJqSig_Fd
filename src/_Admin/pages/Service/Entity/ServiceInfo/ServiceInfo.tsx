@@ -14,7 +14,7 @@ import {
   formatUSD,
   pluralize,
   remainingTime,
-} from "@/utils/utils";
+} from "@utils/utils";
 
 const renderTimer = ({ days, hours, minutes, seconds }: Timer) => (
   <>

@@ -2,7 +2,7 @@ import "./SocialAccountBlock.css";
 import { FC } from "react";
 import { User } from "@Admin/utils/types";
 import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
-import { formatDate } from "@/utils/utils";
+import { formatDate } from "@utils/utils";
 import { InstagramSVG, TelegramSVG } from "@Admin/utils/svg/UserUnfoSvg";
 
 type Props = {

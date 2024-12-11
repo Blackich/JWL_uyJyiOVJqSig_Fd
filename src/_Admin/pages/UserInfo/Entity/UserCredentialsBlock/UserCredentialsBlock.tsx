@@ -2,7 +2,7 @@ import "./UserCredentialsBlock.css";
 import { FC, useState } from "react";
 import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
 import { DropdownBtn } from "@ui/Dropdown/DropdownBtn";
-import { formatDateNTime } from "@/utils/utils";
+import { formatDateNTime } from "@utils/utils";
 import { User } from "@Admin/utils/types";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";

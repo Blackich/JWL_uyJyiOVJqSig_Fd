@@ -11,6 +11,7 @@ export default defineConfig({
       "@store": "/src/store/",
       "@assets": "/src/assets/",
       "@ui": "/src/ui/",
+      "@utils": "/src/utils/",
     },
   },
   plugins: [react()],

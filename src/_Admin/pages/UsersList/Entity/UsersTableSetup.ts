@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { formatDate } from "@/utils/utils";
+import { formatDate } from "@utils/utils";
 
 export const usersColumns: ColumnDef<unknown>[] = [
   {

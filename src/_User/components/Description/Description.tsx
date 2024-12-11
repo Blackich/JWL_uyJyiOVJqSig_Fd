@@ -1,4 +1,4 @@
-import { useAdaptive } from "@/utils/screenWidth";
+import { useAdaptive } from "@utils/screenWidth";
 import { FC } from "react";
 
 type Props = {

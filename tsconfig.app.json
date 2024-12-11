@@ -22,13 +22,13 @@
 
     "baseUrl": "src",
     "paths": {
+      "@/*": ["./*"],
       "@Admin/*": ["_Admin/*"],
       "@User/*": ["_User/*"],
-      "@/*": ["./*"],
+      "@utils*": ["utils/*"],
       "@store/*": ["store/*"],
       "@assets/*": ["assets/*"],
-      "@ui/*": ["ui/*"],
-      
+      "@ui/*": ["ui/*"]
     }
   },
   "include": ["src"],

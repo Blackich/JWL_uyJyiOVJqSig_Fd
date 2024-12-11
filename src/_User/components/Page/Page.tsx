@@ -60,11 +60,9 @@ export const Page: FC<Props> = ({ children }) => {
       dispatch(selectSocialAccId(userList[0].id));
       dispatch(selectSocialAccName(userList[0].nickname));
       localStorage.setItem("activeUserId", userList[0].id.toFixed());
-      console.log("pздесь 1");
     } else {
       dispatch(selectSocialAccName(validateLS.nickname));
       dispatch(selectSocialAccId(validateLS.id));
-      console.log("pздесь 2");
     }
   }, [userList, validateLS, dispatch, activeSocAccLS]);
 

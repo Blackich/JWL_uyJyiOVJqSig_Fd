@@ -4,7 +4,7 @@ import { Table } from "@Admin/components/Table/Table";
 import { serviceListApi } from "./_serviceListApi";
 import { ColumnDef } from "@tanstack/react-table";
 import { Service } from "@Admin/utils/types";
-import { daysUntilFutureDate } from "@/utils/utils";
+import { daysUntilFutureDate } from "@utils/utils";
 
 export const ServiceList = () => {
   const { data: serviceList } = serviceListApi.useGetServiceListQuery();

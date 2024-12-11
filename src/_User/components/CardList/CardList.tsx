@@ -2,7 +2,7 @@ import "./CardList.css";
 import { useState } from "react";
 import { PostQuantity } from "@User/components/PostQuantity/PostQuantity";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
-import { useAdaptive } from "@/utils/screenWidth";
+import { useAdaptive } from "@utils/screenWidth";
 import { cardListAddClass } from "./CardListData";
 import { PackageUser } from "@User/utils/types";
 import { Card, SkeletonCard } from "@User/components/Card/Card";

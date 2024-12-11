@@ -1,7 +1,7 @@
 import "./TestPackage.css";
 import { ChangeEvent, useState } from "react";
 import { useAppSelector } from "@/store/store";
-import { checkStartsWithInst } from "@/utils/utils";
+import { checkStartsWithInst } from "@utils/utils";
 import { getEmployeeId } from "@Admin/auth/_auth.slice";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { testServiceApi } from "@Admin/pages/TestServices/_testServicesApi";

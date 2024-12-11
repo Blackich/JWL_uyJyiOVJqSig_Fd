@@ -1,7 +1,7 @@
 import "../Header.css";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useAdaptive } from "@/utils/screenWidth";
+import { useAdaptive } from "@utils/screenWidth";
 
 export const Navigation = () => {
   const { t } = useTranslation();

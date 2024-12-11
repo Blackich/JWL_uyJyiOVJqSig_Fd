@@ -1,6 +1,6 @@
 import "./PackageCard.css";
 import { FC } from "react";
-import { formatUSD, formatRUB } from "@/utils/utils";
+import { formatUSD, formatRUB } from "@utils/utils";
 
 type Props = {
   likes: number;

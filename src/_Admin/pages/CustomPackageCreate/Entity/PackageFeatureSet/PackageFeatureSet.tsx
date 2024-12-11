@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { CustomPackWithoutPrice, PackageDetails } from "@Admin/utils/types";
 import { packageApi } from "@Admin/pages/Packages/_packageApi";
 import { calcPrimeCostCustomPackage } from "@Admin/utils/utils";
-import { formatRUB, formatUSD } from "@/utils/utils";
+import { formatRUB, formatUSD } from "@utils/utils";
 import { Button, TextField } from "@mui/material";
 
 type Props = {

@@ -1,7 +1,7 @@
 import "./PurchasedServicesBlock.css";
 import { FC } from "react";
 import { User } from "@Admin/utils/types";
-import { formatDate } from "@/utils/utils";
+import { formatDate } from "@utils/utils";
 import { useNavigate } from "react-router-dom";
 import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
 

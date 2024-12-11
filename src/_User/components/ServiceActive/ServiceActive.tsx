@@ -3,7 +3,7 @@ import { FC } from "react";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import Countdown, { zeroPad } from "react-countdown";
 import { ActivatedService, CustomPackageUser, Timer } from "@User/utils/types";
-import { pluralize, remainingTime } from "@/utils/utils";
+import { pluralize, remainingTime } from "@utils/utils";
 
 const renderTimer = ({ days, hours, minutes, seconds }: Timer) => (
   <span>

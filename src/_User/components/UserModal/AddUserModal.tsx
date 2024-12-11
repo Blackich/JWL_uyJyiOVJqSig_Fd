@@ -8,7 +8,7 @@ import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
-import { handlerErrorAxios } from "@/utils/utils";
+import { handlerErrorAxios } from "@utils/utils";
 import { useAppSelector } from "@store/store";
 import { getUserId } from "@User/auth/_user.slice";
 

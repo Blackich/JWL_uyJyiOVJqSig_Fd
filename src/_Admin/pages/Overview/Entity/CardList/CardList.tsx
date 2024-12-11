@@ -1,7 +1,7 @@
 import "./CardList.css";
 import { CardInfo } from "@Admin/pages/Overview/Entity/CardInfo/CardInfo";
 import { overviewApi } from "@Admin/pages/Overview/_overviewApi";
-import { formatRUB, formatUSD } from "@/utils/utils";
+import { formatRUB, formatUSD } from "@utils/utils";
 import {
   TotalUsersSVG,
   TotalPurchasedPackSVG,

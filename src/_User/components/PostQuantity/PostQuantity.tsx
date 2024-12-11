@@ -2,7 +2,7 @@ import "./PostQuantity.css";
 import { FC } from "react";
 import { Button } from "@ui/Button/Button";
 import { useTranslation } from "react-i18next";
-import { useAdaptive } from "@/utils/screenWidth";
+import { useAdaptive } from "@utils/screenWidth";
 
 type Props = {
   activeIndex: number;

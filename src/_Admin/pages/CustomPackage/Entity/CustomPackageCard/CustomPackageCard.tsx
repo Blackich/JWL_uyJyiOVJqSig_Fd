@@ -1,7 +1,7 @@
 import "./CustomPackageCard.css";
 import { FC } from "react";
 import { CustomPackageSettings } from "@Admin/utils/types";
-import { formatRUB, formatUSD } from "@/utils/utils";
+import { formatRUB, formatUSD } from "@utils/utils";
 
 type Props = {
   customPackage: CustomPackageSettings[];

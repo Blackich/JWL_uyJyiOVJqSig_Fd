@@ -2,7 +2,7 @@ import "./CustomPackPresence.css";
 import { FC, useState } from "react";
 import { User } from "@Admin/utils/types";
 import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
-import { formatRUB, formatUSD } from "@/utils/utils";
+import { formatRUB, formatUSD } from "@utils/utils";
 import { DropdownBtn } from "@ui/Dropdown/DropdownBtn";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 
