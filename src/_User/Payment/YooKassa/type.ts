@@ -1,5 +1,5 @@
 export type Currency = "RUB" | "USD";
-export type PaymentType = "bank_card" | "sbp"; 
+export type PaymentTypeYooKassa = "bank_card" | "sbp";
 
 export type PaymentPackYooKassa = {
   userId: number;
@@ -8,11 +8,21 @@ export type PaymentPackYooKassa = {
   countPosts: number;
   cost: number;
   currency: Currency;
-  type?: PaymentType;
+  type?: PaymentTypeYooKassa;
   customPackage: number;
 };
 
-export type PaymentPackYooKassaResponse = {
+export type PaymentExtraYooKassa = {
+  userId: number;
+  socialNicknameId: number;
+  serviceId: number;
+  count: number;
+  priceRUB: number;
+  priceUSD: number;
+  type: PaymentTypeYooKassa;
+};
+
+export type YooKassaResponse = {
   id: string;
   amount: {
     value: string;
