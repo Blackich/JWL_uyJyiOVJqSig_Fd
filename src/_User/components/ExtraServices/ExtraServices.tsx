@@ -4,10 +4,10 @@ import { Input } from "@ui/Input/Input";
 import { Button } from "@ui/Button/Button";
 import { useAppSelector } from "@store/store";
 import { useTranslation } from "react-i18next";
-import { formatRUB, formatUSD } from "@/utils/utils";
+import { formatRUB, formatUSD } from "@utils/utils";
+import { getSocialAccName } from "@User/auth/_user.slice";
 import { DropdownSelect } from "@ui/Dropdown/DropdownSelect";
 import { PaymentModal } from "@User/components/PaymentModal/PaymentModal";
-import { getSocialAccId, getSocialAccName } from "@User/auth/_user.slice";
 
 type Props = {
   selectItems: { ru: string[]; en: string[] };
@@ -15,7 +15,6 @@ type Props = {
 
 export const ExtraServices: FC<Props> = ({ selectItems }) => {
   const { t, i18n } = useTranslation();
-  const pickedAccId = useAppSelector(getSocialAccId);
   const pickedAccName = useAppSelector(getSocialAccName);
 
   const [shownModalPayment, setShownModalPayment] = useState<boolean>(false);
@@ -23,8 +22,14 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
   const [count, setCount] = useState<number>(0);
   const price =
     (count / 1000) *
-    (priceTable[`${i18n.language}_${serviceId}` as keyof typeof priceTable] ||
-      0);
+    (priceTable[`${serviceId}` as unknown as keyof typeof priceTable] || 0);
+
+  const paymentModalData = {
+    serviceId: serviceId,
+    count,
+    priceRUB: +(price * 108).toFixed(0),
+    priceUSD: +price.toFixed(2),
+  };
 
   return (
     <div className="extra-services__wrapper">
@@ -64,7 +69,9 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
       <Input
         disabled
         placeholder={t("extra_services.price")}
-        value={i18n.language === "ru" ? formatRUB(price) : formatUSD(price)}
+        value={
+          i18n.language === "ru" ? formatRUB(price * 108) : formatUSD(price)
+        }
       />
       <div className="extra-services__info">
         {t("extra_services.activation_info")}
@@ -86,19 +93,15 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
       <PaymentModal
         shownModal={shownModalPayment}
         onClose={() => setShownModalPayment(false)}
-        likes={count}
-        priceRUB={price}
-        priceUSD={price}
-        countPosts={count}
-        customPackageId={serviceId}
+        modalId={1}
+        modalData={paymentModalData}
       />
     </div>
   );
 };
 
 const priceTable = {
-  ru_1: 1.4 * 108,
-  ru_2: 2.4 * 108,
-  en_1: 1.4,
-  en_2: 2.4,
+  1: 1.4,
+  2: 2.4,
+  3: 3.4,
 };

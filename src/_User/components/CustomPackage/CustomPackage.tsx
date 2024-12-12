@@ -2,7 +2,7 @@ import "./CustomPackage.css";
 import { FC, useState } from "react";
 import { CustomPackageUser } from "@User/utils/types";
 import { useTranslation } from "react-i18next";
-import { formatRUB, formatUSD } from "@/utils/utils";
+import { formatRUB, formatUSD } from "@utils/utils";
 import { ArrowClickSVG } from "@User/utils/svg/HomeSvg";
 import { PaymentModal } from "@User/components/PaymentModal/PaymentModal";
 
@@ -13,6 +13,14 @@ type Props = {
 export const CustomPackage: FC<Props> = ({ customPack }) => {
   const { i18n } = useTranslation();
   const [shownModalPayment, setShownModalPayment] = useState<boolean>(false);
+
+  const paymentModalData = {
+    likes: customPack[0].likes,
+    countPosts: customPack[0].countPosts,
+    priceRUB: customPack[0].price_rub,
+    priceUSD: customPack[0].price_usd,
+    customPackageId: customPack[0].id,
+  };
 
   return (
     <div className="custom-package-user">
@@ -50,11 +58,8 @@ export const CustomPackage: FC<Props> = ({ customPack }) => {
       <PaymentModal
         shownModal={shownModalPayment}
         onClose={() => setShownModalPayment(false)}
-        likes={customPack[0].likes}
-        countPosts={customPack[0].countPosts}
-        priceRUB={customPack[0].price_rub}
-        priceUSD={customPack[0].price_usd}
-        customPackageId={customPack[0].id}
+        modalId={0}
+        modalData={paymentModalData}
       />
     </div>
   );

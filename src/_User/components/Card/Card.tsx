@@ -28,6 +28,14 @@ export const Card: FC<Props> = ({
   const handleClickPayment = () => {
     setShownModalPayment(true);
   };
+
+  const paymentModalData = {
+    likes: likes,
+    countPosts: activeIndex === 1 ? 15 : 30,
+    priceRUB: priceRUB,
+    priceUSD: priceUSD,
+  };
+
   return (
     <>
       <div className="card__item">
@@ -81,10 +89,8 @@ export const Card: FC<Props> = ({
       <PaymentModal
         shownModal={shownModalPayment}
         onClose={() => setShownModalPayment(false)}
-        likes={likes}
-        countPosts={activeIndex === 1 ? 15 : 30}
-        priceRUB={priceRUB}
-        priceUSD={priceUSD}
+        modalId={0}
+        modalData={paymentModalData}
       />
     </>
   );

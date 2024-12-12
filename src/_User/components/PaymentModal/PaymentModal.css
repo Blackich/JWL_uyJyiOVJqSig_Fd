@@ -71,24 +71,6 @@
   }
 }
 
-.payment-modal__no-acc {
-  width: 300px;
-  padding: 20px;
-
-  .payment-modal__title {
-    text-align: center;
-    padding: 15px;
-    font-size: 24px;
-    font-weight: 700;
-
-    .payment-modal__text {
-      margin-top: 15px;
-      font-size: 18px;
-      font-weight: 500;
-    }
-  }
-}
-
 @media (max-width: 850px) {
   .payment-modal {
     width: 300px;
@@ -128,7 +110,7 @@
       }
     }
   }
-  
+
   .payment-modal__wrapper {
     min-width: 220px;
   }
@@ -140,19 +122,5 @@
 
   .payment-modal__info-list {
     font-size: 14px;
-  }
-
-  .payment-modal__no-acc {
-    width: 230px;
-    gap: 5px;
-    padding: 5px 0 15px;
-
-    .payment-modal__title {
-      font-size: 20px;
-
-      .payment-modal__text {
-        font-size: 16px;
-      }
-    }
   }
 }
