@@ -1,3 +1,4 @@
+import { PrimeCostCustomPackage } from "./types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseUrlAdmin = {
@@ -24,40 +25,51 @@ export const calcPrimeCostPackage = (
   ratio: number[],
   likes: number,
 ) => {
-  const package1k = ratio.map((coefficient) => {
+  const package1kCount = ratio.map((coefficient) => {
     const count = likes * coefficient < 100 ? 115 : likes * coefficient * 1.02;
     return count;
   });
-
-  const costs = package1k.reduce((acc, _, i) => {
-    const res = primeCost[i] * (package1k[i] / 1000);
+  const costs = package1kCount.reduce((acc, _, i) => {
+    const res = primeCost[i] * (package1kCount[i] / 1000);
     return acc + res;
   }, 0);
 
   return costs * 15;
 };
 
-export const calcPrimeCostCustomPackage = (
-  primeCost: number[],
-  likes: number,
-  reach: number,
-  videoViews: number,
-  countPosts: number = 15,
-  saves: number,
-  autoProfileVisits: number,
-  autoShares: number,
-) => {
-  const package1k = [
-    likes * 1.02,
-    reach * 1.02,
-    saves * 1.02,
-    autoProfileVisits * 1.02,
-    autoShares * 1.02,
-    videoViews * 1.02,
-  ];
+export const calcPrimeCostCustomPackage = ({
+  primeCost,
+  likes,
+  reach,
+  videoViews,
+  saves,
+  profileVisits,
+  reposts,
+  countPosts = 15,
+  videoViewsExtra = 115,
+  impressionExtra = 115,
+}: PrimeCostCustomPackage) => {
+  const package1k = {
+    likes: likes * 1.02,
+    reach: reach * 1.02,
+    saves: saves <= 100 ? 115 : saves * 1.02,
+    profileVisits: profileVisits <= 100 ? 115 : profileVisits * 1.02,
+    reposts: reposts <= 100 ? 115 : reposts * 1.02,
+    videoViews: videoViews * 1.02,
+    videoViewsExtra,
+    impressionExtra,
+  };
+  const packArray = Object.entries(package1k);
 
-  const costs = package1k.reduce((acc, _, i) => {
-    const res = primeCost[i] * (package1k[i] / 1000);
+  const costs = packArray.reduce((acc, element) => {
+    const typeService = element[0];
+    const count = element[1];
+    const priceByTypeService = primeCost.find(
+      (item) => item[0] === typeService,
+    )?.[1];
+
+    if (!priceByTypeService) return acc;
+    const res = priceByTypeService * (count / 1000);
     return acc + res;
   }, 0);
 

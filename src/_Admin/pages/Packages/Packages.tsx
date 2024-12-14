@@ -13,8 +13,7 @@ export const Packages = () => {
   const { data: packageDetails } = packageApi.useGetPackageDetailsQuery();
   const { data: exchangeRate } = packageApi.useGetExchangeRateQuery();
   const primeCostList = packageDetails?.map((detail) => detail.price);
-  const ratioPackageList = packageDetails?.map((detail) => detail.ratio);
-
+  const ratioPackageList = packageDetails?.map((detail) => Number(detail.ratio));
   return (
     <>
       <MainBlock title={"Пакеты"}>

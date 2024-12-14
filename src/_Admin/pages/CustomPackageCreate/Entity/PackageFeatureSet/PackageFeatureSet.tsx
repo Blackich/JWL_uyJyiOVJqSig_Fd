@@ -29,20 +29,21 @@ export const PackageFeatureSet: FC<Props> = ({
 }) => {
   const [coefficient, setCoefficient] = useState<number>(10);
   const { data: exchangeRate } = packageApi.useGetExchangeRateQuery();
-  const primeCostList = packageDetails.map(
-    (pack_details) => pack_details.price,
-  );
-
-  const primeCost = calcPrimeCostCustomPackage(
-    primeCostList,
-    customPackData.likes,
-    customPackData.reach,
-    customPackData.videoViews,
-    customPackData.countPosts,
-    customPackData.saves,
-    customPackData.profileVisits,
-    customPackData.reposts,
-  );
+  const primeCostList = packageDetails.map((pack_details) => [
+    pack_details.typeService,
+    pack_details.price,
+  ]);
+  
+  const primeCost = calcPrimeCostCustomPackage({
+    primeCost: primeCostList as [string, number][],
+    likes: customPackData.likes,
+    reach: customPackData.reach,
+    videoViews: customPackData.videoViews,
+    countPosts: customPackData.countPosts,
+    saves: customPackData.saves,
+    profileVisits: customPackData.profileVisits,
+    reposts: customPackData.reposts,
+  });
 
   const handleDisableButton = () => {
     const checkCustom = Object.values(customPackData).some(

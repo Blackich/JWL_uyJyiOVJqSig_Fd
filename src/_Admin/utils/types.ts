@@ -107,4 +107,18 @@ export type TestPackage = {
   testServiceId: number;
   employeeId: number;
   link: string;
+  speed: number;
+};
+
+export type PrimeCostCustomPackage = {
+  primeCost: [string, number][];
+  likes: number;
+  reach: number;
+  videoViews: number;
+  countPosts: number;
+  saves: number;
+  profileVisits: number;
+  reposts: number;
+  videoViewsExtra?: number;
+  impressionExtra?: number;
 };

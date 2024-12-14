@@ -17,7 +17,9 @@ export const CustomPackage = () => {
     <MainBlock title={`Пакет ${id}`}>
       <div className="main-block--custom-package">
         {customPackage && <CustomPackageCard customPackage={customPackage} />}
-        {usersList && <UserAddition usersList={usersList} packageId={Number(id)} />}
+        {usersList && (
+          <UserAddition usersList={usersList} packageId={Number(id)} />
+        )}
       </div>
     </MainBlock>
   );
