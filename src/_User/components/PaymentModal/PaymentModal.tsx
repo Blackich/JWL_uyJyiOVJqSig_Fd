@@ -1,7 +1,7 @@
 import "./PaymentModal.css";
 import { FC } from "react";
+import { ModalData } from "./type";
 import { useAppSelector } from "@store/store";
-import { ExtraService, Package } from "./type";
 import { useTranslation } from "react-i18next";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { systemsIndex } from "./Entity/PaymentSystems";
@@ -15,7 +15,7 @@ type Props = {
   shownModal: boolean;
   onClose: VoidFunction;
   modalId: number;
-  modalData: Package | ExtraService;
+  modalData: ModalData;
 };
 
 export const PaymentModal: FC<Props> = ({
@@ -25,8 +25,8 @@ export const PaymentModal: FC<Props> = ({
   modalData,
 }) => {
   const { t } = useTranslation();
-  const SummaryToRender = summaryIndex[modalId];
-  const SystemsToRender = systemsIndex[modalId];
+  const SummaryToRender = summaryIndex[modalId] as FC<ModalData>;
+  const SystemsToRender = systemsIndex[modalId] as FC<ModalData>;
 
   const pickedAccId = useAppSelector(getSocialAccId);
   const userId = useAppSelector(getUserId);

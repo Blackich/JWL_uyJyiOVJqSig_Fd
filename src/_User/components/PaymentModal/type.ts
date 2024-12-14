@@ -1,3 +1,5 @@
+export type ModalData = Package | ExtraService;
+
 export type Package = {
   likes: number;
   priceRUB: number;
