@@ -8,6 +8,9 @@ export const overviewApi = adminApi.injectEndpoints({
     getBalanceJP: builder.query<number, void>({
       query: () => "/info/balance/jp",
     }),
+    getBalanceWQ: builder.query<number, void>({
+      query: () => "/info/balance/wq",
+    }),
     getUsersCount: builder.query<number, void>({
       query: () => "/info/users/count",
     }),

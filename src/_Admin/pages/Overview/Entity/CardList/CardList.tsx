@@ -11,6 +11,7 @@ import {
 export const CardList = () => {
   const { data: jp } = overviewApi.useGetBalanceJPQuery();
   const { data: vr } = overviewApi.useGetBalanceVRQuery();
+  const { data: wq } = overviewApi.useGetBalanceWQQuery();
   const { data: usersCount } = overviewApi.useGetUsersCountQuery();
   const { data: totalSpent } = overviewApi.useGetTotalSpentQuery();
   const { data: boughtPack } = overviewApi.useGetPurchasedPackagesCountQuery();
@@ -25,6 +26,11 @@ export const CardList = () => {
         titleCard="JustPanel"
         favicon="justanotherpanel.com"
         cardValue={jp ? formatUSD(jp) : 0}
+      />
+      <CardInfo
+        titleCard="Wiq"
+        favicon="wiq.ru"
+        cardValue={wq ? formatUSD(wq) : 0}
       />
       <CardInfo
         titleCard="Всего пользователей"
