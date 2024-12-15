@@ -1,4 +1,4 @@
 export const selectItems = {
-  ru: ["Подписчики", "Просмотры (Story)", "Комментарии"],
-  en: ["Followers", "Story views", "Comments"],
+  ru: ["Подписчики", "Просмотры (Story)", "Комментарии AI"],
+  en: ["Followers", "Story views", "Comments AI"],
 };

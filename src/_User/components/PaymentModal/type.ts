@@ -9,8 +9,9 @@ export type Package = {
 };
 
 export type ExtraService = {
-  serviceId: number;
   count: number;
+  serviceId: number;
+  selectItems: { ru: string[]; en: string[] };
   priceRUB: number;
   priceUSD: number;
 };

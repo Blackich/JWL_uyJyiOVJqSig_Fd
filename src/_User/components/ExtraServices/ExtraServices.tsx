@@ -8,6 +8,8 @@ import { formatRUB, formatUSD } from "@utils/utils";
 import { getSocialAccName } from "@User/auth/_user.slice";
 import { DropdownSelect } from "@ui/Dropdown/DropdownSelect";
 import { PaymentModal } from "@User/components/PaymentModal/PaymentModal";
+import { ExtraCountNComment } from "./Entity/ExtraCountNComment";
+import { ExtraInfo } from "./Entity/ExtraInfo";
 
 type Props = {
   selectItems: { ru: string[]; en: string[] };
@@ -25,8 +27,9 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
     (priceTable[`${serviceId}` as unknown as keyof typeof priceTable] || 0);
 
   const paymentModalData = {
-    serviceId: serviceId,
     count,
+    serviceId,
+    selectItems,
     priceRUB: +(price * 108).toFixed(0),
     priceUSD: +price.toFixed(2),
   };
@@ -45,26 +48,11 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
         menuItemArray={i18n.language === "ru" ? selectItems.ru : selectItems.en}
       />
 
-      <div className="input-info">
-        <Input
-          type="number"
-          placeholder={t("extra_services.input_count")}
-          value={count === 0 ? "" : count}
-          onChange={(e) => {
-            if (Number(e.target.value) > 100000) return;
-            setCount(Number(e.target.value));
-          }}
-          onKeyDown={(e) => {
-            const invalidChars = ["e", "E", "+", "-"];
-            if (invalidChars.includes(e.key)) {
-              e.preventDefault();
-            }
-          }}
-        />
-        <div className="input-info__text">
-          {t("extra_services.min_count_warn")}: 500
-        </div>
-      </div>
+      <ExtraCountNComment
+        count={count}
+        setCount={setCount}
+        serviceId={serviceId}
+      />
 
       <Input
         disabled
@@ -73,14 +61,9 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
           i18n.language === "ru" ? formatRUB(price * 108) : formatUSD(price)
         }
       />
-      <div className="extra-services__info">
-        {t("extra_services.activation_info")}
-        {serviceId === 2 && (
-          <div className="extra-services__warning-text">
-            {t("extra_services.view_story_warn")}
-          </div>
-        )}
-      </div>
+
+      <ExtraInfo serviceId={serviceId} />
+
       <Button
         className="extra-services__btn"
         disabled={count < 500 || serviceId === 0}

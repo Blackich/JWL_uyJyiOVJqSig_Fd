@@ -37,7 +37,7 @@ export const SummaryPackage: FC<Props> = ({
       <p>
         {t("modal.payment_package_price")}:{" "}
         <span>
-          {i18n.language === "ru" ? formatRUB(priceRUB) : formatUSD(priceUSD)}{" "}
+          {i18n.language === "ru" ? formatRUB(priceRUB) : formatUSD(priceUSD)}
         </span>
       </p>
     </div>
