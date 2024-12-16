@@ -39,6 +39,7 @@ export type Service = {
   createdAt: string;
   cost: number;
   currency: string;
+  paymentServiceName: string;
 };
 
 export type PurchasedService = {
@@ -121,4 +122,21 @@ export type PrimeCostCustomPackage = {
   reposts: number;
   videoViewsExtra?: number;
   impressionExtra?: number;
+};
+
+export type ExtraInfoAdminSide = {
+  id: number;
+  userId: number;
+  invitedName: string;
+  nickname: string;
+  extraServiceId: number;
+  extraServiceName: string;
+  count: number;
+  priceRUB: string;
+  priceUSD: string;
+  siteId: number;
+  paymentOrderId: string;
+  createdAt: string;
+  siteServiceInfo: [number, number, number] | null;
+  paymentServiceName: string;
 };

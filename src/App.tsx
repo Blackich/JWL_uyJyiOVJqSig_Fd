@@ -19,6 +19,8 @@ import { CustomPackageCreate } from "@Admin/pages/CustomPackageCreate/CustomPack
 import { CustomPackageList } from "@Admin/pages/CustomPackageList/CustomPackageList";
 import { CustomPackage } from "@Admin/pages/CustomPackage/CustomPackage";
 import { TestServices } from "@Admin/pages/TestServices/TestServices";
+import { ExtraList } from "@Admin/pages/ExtraList/ExtraList";
+import { Extra as ExtraAdmin } from "@Admin/pages/Extra/Extra";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -106,6 +108,24 @@ export const App: FC = () => {
           element={
             <PrivateRoute>
               <Service />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/extra"
+          element={
+            <PrivateRoute>
+              <ExtraList />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/extra/:id"
+          element={
+            <PrivateRoute>
+              <ExtraAdmin />
             </PrivateRoute>
           }
         ></Route>

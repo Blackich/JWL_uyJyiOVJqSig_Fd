@@ -1,0 +1,33 @@
+.extra-purchase {
+  height: fit-content;
+}
+
+.extra-purchase__item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 10px;
+  width: 250px;
+  overflow: hidden;
+
+  span {
+    display: flex;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 4px 6px;
+
+    &:hover {
+      background-color: #b9e3ff;
+      cursor: default;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      max-width: 230px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}

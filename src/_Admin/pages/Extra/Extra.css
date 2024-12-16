@@ -1,0 +1,6 @@
+.main-block--extra {
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+  gap: 30px;
+}

@@ -43,6 +43,12 @@ export const Dashboard: FC = () => {
           />
           <DashboardItem
             url="/panel/services"
+            title="Купленные пакеты"
+            iconActive={<ShoppingCartIcon />}
+            iconInactive={<ShoppingCartOutlinedIcon />}
+          />
+          <DashboardItem
+            url="/panel/extra"
             title="Купленные услуги"
             iconActive={<ShoppingCartIcon />}
             iconInactive={<ShoppingCartOutlinedIcon />}
