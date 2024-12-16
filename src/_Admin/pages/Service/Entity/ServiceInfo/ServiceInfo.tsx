@@ -116,6 +116,9 @@ export const ServiceInfo: FC<Props> = ({
         />
       </span>
       <span>
+        Оплачен:&nbsp;<p>{service.paymentServiceName}</p>
+      </span>
+      <span>
         orderId:&nbsp;<p>{service.orderId}</p>
         <div
           className="copy-btn"

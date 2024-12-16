@@ -133,3 +133,9 @@
     background-color: var(--color-table-hover);
   }
 }
+
+.table-list:has(.td:nth-child(10):hover) {
+  .td:nth-child(10) {
+    background-color: var(--color-table-hover);
+  }
+}

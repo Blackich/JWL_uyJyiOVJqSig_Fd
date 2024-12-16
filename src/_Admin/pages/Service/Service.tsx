@@ -21,7 +21,7 @@ export const Service = () => {
   );
 
   return (
-    <MainBlock title={`Услуга ${id}`}>
+    <MainBlock title={`Пакет ${id}`}>
       <div className="main-block--service">
         {service && (
           <ServiceInfo

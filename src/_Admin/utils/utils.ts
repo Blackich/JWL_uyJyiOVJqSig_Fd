@@ -81,3 +81,9 @@ export const extractInstUsername = (url: string) => {
   const match = url.match(regex);
   return match ? match[1] : null;
 };
+
+export const siteNameById = {
+  1: "V",
+  2: "J",
+  3: "W",
+};

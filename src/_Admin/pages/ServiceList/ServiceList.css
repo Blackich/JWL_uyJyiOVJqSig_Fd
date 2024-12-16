@@ -11,43 +11,37 @@
 
   #td.td:nth-child(1),
   .th:nth-child(1) {
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 130px;
+    max-width: 130px;
   }
 
   #td.td:nth-child(4),
   .th:nth-child(4) {
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 130px;
+    max-width: 130px;
   }
 
   #td.td:nth-child(5),
   .th:nth-child(5) {
-    min-width: 120px;
-    max-width: 120px;
+    min-width: 130px;
+    max-width: 130px;
   }
 
   #td.td:nth-child(6),
   .th:nth-child(6) {
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 130px;
+    max-width: 130px;
+  }
+
+  #td.td:nth-child(7),
+  .th:nth-child(7) {
+    min-width: 130px;
+    max-width: 130px;
   }
 
   #td.td:nth-child(8),
   .th:nth-child(8) {
-    min-width: 110px;
-    max-width: 110px;
-  }
-
-  #td.td:nth-child(9),
-  .th:nth-child(9) {
-    min-width: 110px;
-    max-width: 110px;
-  }
-
-  #td.td:nth-child(10),
-  .th:nth-child(10) {
-    min-width: 115px;
-    max-width: 115px;
+    min-width: 150px;
+    max-width: 150px;
   }
 }

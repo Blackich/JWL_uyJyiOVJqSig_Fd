@@ -4,13 +4,13 @@ import { Table } from "@Admin/components/Table/Table";
 import { serviceListApi } from "./_serviceListApi";
 import { ColumnDef } from "@tanstack/react-table";
 import { Service } from "@Admin/utils/types";
-import { daysUntilFutureDate } from "@utils/utils";
+import { daysUntilFutureDate, formatRUB, formatUSD } from "@utils/utils";
 
 export const ServiceList = () => {
   const { data: serviceList } = serviceListApi.useGetServiceListQuery();
 
   return (
-    <MainBlock title={"Услуги"}>
+    <MainBlock title={"Пакеты"}>
       <div className="main-block--service-list">
         {serviceList && (
           <Table
@@ -55,6 +55,10 @@ const servicesColumns: ColumnDef<unknown>[] = [
     ),
   },
   {
+    accessorKey: "countPosts",
+    header: "Постов",
+  },
+  {
     accessorKey: "createdAt",
     header: "Истечёт",
     cell: ({ getValue }) =>
@@ -65,20 +69,22 @@ const servicesColumns: ColumnDef<unknown>[] = [
       ),
   },
   {
-    accessorKey: "countPosts",
-    header: "Постов",
-  },
-  {
-    accessorKey: "orderId",
-    header: "orderId",
-    enableSorting: false,
-  },
-  {
     accessorKey: "cost",
     header: "Цена",
+    cell: ({ row }) => (
+      <span>
+        {(row.original as Service).currency === "USD" ? (
+          <p style={{ color: "blue" }}>
+            {formatUSD((row.original as Service).cost)}
+          </p>
+        ) : (
+          formatRUB((row.original as Service).cost)
+        )}
+      </span>
+    ),
   },
   {
-    accessorKey: "currency",
-    header: "Валюта",
+    accessorKey: "paymentServiceName",
+    header: "Оплачено",
   },
 ];
