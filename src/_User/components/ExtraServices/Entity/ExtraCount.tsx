@@ -8,11 +8,7 @@ type Props = {
   serviceId: number;
 };
 
-export const ExtraCountNComment: FC<Props> = ({
-  count,
-  setCount,
-  serviceId,
-}) => {
+export const ExtraCount: FC<Props> = ({ count, setCount, serviceId }) => {
   return (
     <div className="input-info">
       <Input
@@ -20,6 +16,7 @@ export const ExtraCountNComment: FC<Props> = ({
         placeholder={t("extra_services.input_count")}
         value={count === 0 ? "" : count}
         onChange={(e) => {
+          if (serviceId === 0) return;
           if (Number(e.target.value) > 100000) return;
           setCount(Number(e.target.value));
         }}
@@ -32,7 +29,7 @@ export const ExtraCountNComment: FC<Props> = ({
       />
       <div className="input-info__text">
         {t("extra_services.min_count_warn")}:{" "}
-        {minQuantity[serviceId as keyof typeof minQuantity]}
+        {minQuantity[serviceId as keyof typeof minQuantity] || 100}
       </div>
     </div>
   );
@@ -43,4 +40,5 @@ const minQuantity = {
   1: 500,
   2: 100,
   3: 10,
+  4: 10,
 };

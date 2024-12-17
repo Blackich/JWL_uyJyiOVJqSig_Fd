@@ -11,6 +11,7 @@ type Props = {
   count: number;
   priceRUB: number;
   priceUSD: number;
+  countComments?: number;
 };
 
 export const SystemsExtra: FC<Props> = ({
@@ -18,15 +19,16 @@ export const SystemsExtra: FC<Props> = ({
   serviceId,
   priceRUB,
   priceUSD,
+  countComments,
 }) => {
   const userId = useAppSelector(getUserId);
   const pickedAccId = useAppSelector(getSocialAccId);
-
+  const quantity = countComments ? countComments : count;
   const [fetchPaymentYooKassa] = yooKassaApi.usePaymentExtraYooKassaMutation();
   const handlePayYooKassa = async (paymentType: PaymentTypeYooKassa) => {
-    if (!userId || !pickedAccId || !serviceId || !count) return;
+    if (!userId || !pickedAccId || !serviceId) return;
     await fetchPaymentYooKassa({
-      count,
+      count: quantity,
       userId,
       priceRUB,
       priceUSD,

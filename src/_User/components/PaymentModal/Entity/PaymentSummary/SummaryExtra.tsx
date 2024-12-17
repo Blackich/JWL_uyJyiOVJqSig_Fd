@@ -1,14 +1,15 @@
 import { FC } from "react";
-import { useAppSelector } from "@/store/store";
+import { useAppSelector } from "@store/store";
 import { useTranslation } from "react-i18next";
 import { formatRUB, formatUSD } from "@utils/utils";
-import { getSocialAccName } from "@/_User/auth/_user.slice";
+import { getSocialAccName } from "@User/auth/_user.slice";
 
 type Props = {
   count: number;
   serviceId: number;
   priceRUB: number;
   priceUSD: number;
+  countComment?: number;
   selectItems: { ru: string[]; en: string[] };
 };
 
@@ -18,6 +19,7 @@ export const SummaryExtra: FC<Props> = ({
   priceUSD,
   serviceId,
   selectItems,
+  countComment,
 }) => {
   const { i18n } = useTranslation();
   const pickedAccName = useAppSelector(getSocialAccName);
@@ -36,7 +38,8 @@ export const SummaryExtra: FC<Props> = ({
         Аккаунт: <span>{pickedAccName}</span>
       </p>
       <p>
-        Количество: <span>{count}</span>
+        Количество:{" "}
+        <span>{serviceId === 4 && countComment ? countComment : count}</span>
       </p>
       <p>
         Цена:{" "}

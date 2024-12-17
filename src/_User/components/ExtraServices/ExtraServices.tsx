@@ -5,11 +5,17 @@ import { Button } from "@ui/Button/Button";
 import { useAppSelector } from "@store/store";
 import { useTranslation } from "react-i18next";
 import { formatRUB, formatUSD } from "@utils/utils";
-import { getSocialAccName } from "@User/auth/_user.slice";
 import { DropdownSelect } from "@ui/Dropdown/DropdownSelect";
 import { PaymentModal } from "@User/components/PaymentModal/PaymentModal";
-import { ExtraCountNComment } from "./Entity/ExtraCountNComment";
+import { ExtraCount } from "./Entity/ExtraCount";
 import { ExtraInfo } from "./Entity/ExtraInfo";
+import { InputComment } from "@ui/InputComment/InputComment";
+import { userExtraApi } from "@User/pages/Extra/_extraApi";
+import {
+  getSocialAccId,
+  getSocialAccName,
+  getUserId,
+} from "@User/auth/_user.slice";
 
 type Props = {
   selectItems: { ru: string[]; en: string[] };
@@ -17,14 +23,41 @@ type Props = {
 
 export const ExtraServices: FC<Props> = ({ selectItems }) => {
   const { t, i18n } = useTranslation();
+  const userId = useAppSelector(getUserId);
+  const pickedAccId = useAppSelector(getSocialAccId);
   const pickedAccName = useAppSelector(getSocialAccName);
 
   const [shownModalPayment, setShownModalPayment] = useState<boolean>(false);
+  const [countComments, setCountComments] = useState<number>(0);
+  const [processedLines, setProcessedLines] = useState<string[]>([]);
   const [serviceId, setServiceId] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const price =
-    (count / 1000) *
-    (priceTable[`${serviceId}` as unknown as keyof typeof priceTable] || 0);
+    serviceId === 4
+      ? (countComments / 10) *
+        (priceTable[serviceId as keyof typeof priceTable] || 0)
+      : (count / 1000) *
+        (priceTable[serviceId as keyof typeof priceTable] || 0);
+
+  const [saveCommentsBeforePayment] =
+    userExtraApi.useSaveCommentsBeforePaymentMutation();
+
+  const handleLinesProcessed = (lines: string[]) => {
+    setProcessedLines(lines);
+  };
+
+  const onClickPaymentBtn = async () => {
+    if (serviceId === 4 && countComments >= 1) {
+      if (!userId || !pickedAccId) return;
+      await saveCommentsBeforePayment({
+        userId,
+        countComments,
+        comments: processedLines,
+        socialNicknameId: pickedAccId,
+      });
+    }
+    setShownModalPayment(true);
+  };
 
   const paymentModalData = {
     count,
@@ -32,6 +65,7 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
     selectItems,
     priceRUB: +(price * 108).toFixed(0),
     priceUSD: +price.toFixed(2),
+    countComments,
   };
 
   return (
@@ -48,11 +82,16 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
         menuItemArray={i18n.language === "ru" ? selectItems.ru : selectItems.en}
       />
 
-      <ExtraCountNComment
-        count={count}
-        setCount={setCount}
-        serviceId={serviceId}
-      />
+      {serviceId === 4 ? (
+        <InputComment
+          count={countComments}
+          setCount={setCountComments}
+          onLinesProcessed={handleLinesProcessed}
+          min={10}
+        />
+      ) : (
+        <ExtraCount count={count} setCount={setCount} serviceId={serviceId} />
+      )}
 
       <Input
         disabled
@@ -61,15 +100,11 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
           i18n.language === "ru" ? formatRUB(price * 108) : formatUSD(price)
         }
       />
-
       <ExtraInfo serviceId={serviceId} />
-
       <Button
         className="extra-services__btn"
-        disabled={count < 500 || serviceId === 0}
-        onClick={() => {
-          setShownModalPayment(true);
-        }}
+        disabled={serviceId === 0}
+        onClick={onClickPaymentBtn}
       >
         {t("extra_services.purchase_btn")}
       </Button>
@@ -87,4 +122,5 @@ const priceTable = {
   1: 1.4,
   2: 2.4,
   3: 3.4,
+  4: 12,
 };

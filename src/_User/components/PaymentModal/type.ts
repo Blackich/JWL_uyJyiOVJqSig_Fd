@@ -14,4 +14,5 @@ export type ExtraService = {
   selectItems: { ru: string[]; en: string[] };
   priceRUB: number;
   priceUSD: number;
+  countComment?: number;
 };

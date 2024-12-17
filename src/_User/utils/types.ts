@@ -57,3 +57,10 @@ export type CustomPackageUser = {
   price_rub: number;
   price_usd: number;
 };
+
+export type SendExtraComments = {
+  userId: number;
+  comments: string[];
+  countComments: number;
+  socialNicknameId: number;
+};
