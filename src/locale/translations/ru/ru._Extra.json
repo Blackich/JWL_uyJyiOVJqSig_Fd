@@ -7,5 +7,6 @@
   "extra_services.min_count_warn": "Минимум",
   "extra_services.purchase_btn": "Купить",
   "extra_services.activation_info": "Активация услуги произойдет в течении часа.",
-  "extra_services.view_story_warn": "Внимание: Просмотры идут на последнюю опубликованную историю."
+  "extra_services.view_story_warn": "Внимание: Просмотры идут на последнюю опубликованную историю.",
+  "extra_services.input_comment_placeholder": "Комментарии (1 в строке)"
 }

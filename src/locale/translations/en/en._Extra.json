@@ -7,5 +7,6 @@
   "extra_services.min_count_warn": "Min",
   "extra_services.purchase_btn": "Order now",
   "extra_services.activation_info": "The service will be activated within an hour.",
-  "extra_services.view_story_warn": "Warn: Views go to the most recently published story."
+  "extra_services.view_story_warn": "Warn: Views go to the most recently published story.",
+  "extra_services.input_comment_placeholder": "Comments (1 per line)"
 }
