@@ -4,11 +4,17 @@ import { Input } from "@ui/Input/Input";
 
 type Props = {
   count: number;
-  setCount: (count: number) => void;
   serviceId: number;
+  setCount: (count: number) => void;
+  minQuantity: Record<number, number>;
 };
 
-export const ExtraCount: FC<Props> = ({ count, setCount, serviceId }) => {
+export const ExtraCount: FC<Props> = ({
+  count,
+  setCount,
+  serviceId,
+  minQuantity,
+}) => {
   return (
     <div className="input-info">
       <Input
@@ -33,12 +39,4 @@ export const ExtraCount: FC<Props> = ({ count, setCount, serviceId }) => {
       </div>
     </div>
   );
-};
-
-const minQuantity = {
-  0: 100,
-  1: 500,
-  2: 100,
-  3: 10,
-  4: 10,
 };

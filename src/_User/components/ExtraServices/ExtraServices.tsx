@@ -59,6 +59,18 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
     setShownModalPayment(true);
   };
 
+  const isDisabledBtnCondition = (): boolean => {
+    if (!pickedAccName) return true;
+    if (serviceId === 0) return true;
+    if (serviceId === 4 && countComments < 10) return true;
+    if (
+      serviceId !== 4 &&
+      count < minQuantity[serviceId as keyof typeof minQuantity]
+    )
+      return true;
+    return false;
+  };
+
   const paymentModalData = {
     count,
     serviceId,
@@ -90,7 +102,12 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
           min={10}
         />
       ) : (
-        <ExtraCount count={count} setCount={setCount} serviceId={serviceId} />
+        <ExtraCount
+          count={count}
+          setCount={setCount}
+          serviceId={serviceId}
+          minQuantity={minQuantity}
+        />
       )}
 
       <Input
@@ -103,7 +120,7 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
       <ExtraInfo serviceId={serviceId} />
       <Button
         className="extra-services__btn"
-        disabled={serviceId === 0}
+        disabled={isDisabledBtnCondition()}
         onClick={onClickPaymentBtn}
       >
         {t("extra_services.purchase_btn")}
@@ -116,6 +133,14 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
       />
     </div>
   );
+};
+
+const minQuantity = {
+  0: 100,
+  1: 500,
+  2: 100,
+  3: 10,
+  4: 10,
 };
 
 const priceTable = {
