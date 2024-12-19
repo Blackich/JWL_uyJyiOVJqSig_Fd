@@ -17,7 +17,7 @@ export const ExtraList = () => {
             tableData={extraList}
             columnsSetup={servicesColumns}
             navigateUrl="/panel/extra"
-            // initialSort={[{ id: "createdAt", desc: true }]}
+            initialSort={[{ id: "createdAt", desc: true }]}
           />
         )}
       </div>

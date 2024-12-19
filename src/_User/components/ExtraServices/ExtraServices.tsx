@@ -95,12 +95,14 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
       />
 
       {serviceId === 4 ? (
-        <InputComment
-          count={countComments}
-          setCount={setCountComments}
-          onLinesProcessed={handleLinesProcessed}
-          min={10}
-        />
+        <div style={{ height: "300px" }}>
+          <InputComment
+            count={countComments}
+            setCount={setCountComments}
+            onLinesProcessed={handleLinesProcessed}
+            min={10}
+          />
+        </div>
       ) : (
         <ExtraCount
           count={count}

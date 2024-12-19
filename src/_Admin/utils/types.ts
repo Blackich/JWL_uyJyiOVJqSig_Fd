@@ -140,3 +140,10 @@ export type ExtraInfoAdminSide = {
   siteServiceInfo: [number, number, number] | null;
   paymentServiceName: string;
 };
+
+export type SendExtraCommentsAdmin = {
+  extraId: number;
+  extraServiceId: number;
+  comments: string[];
+  link: string;
+};

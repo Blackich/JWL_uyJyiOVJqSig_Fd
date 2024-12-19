@@ -1,16 +1,26 @@
 import "./InputComment.css";
 import { t } from "i18next";
 import { Input } from "@ui/Input/Input";
-import { ChangeEvent, FC, useEffect, useMemo, useState } from "react";
+import {
+  ChangeEvent,
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 type Props = {
+  bg?: string;
   min?: number;
   count: number;
   setCount: (count: number) => void;
   onLinesProcessed: (lines: string[]) => void;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 export const InputComment: FC<Props> = ({
+  bg,
   min,
   count,
   setCount,
@@ -38,6 +48,8 @@ export const InputComment: FC<Props> = ({
     setCount(trimmedLines.length);
   }, [trimmedLines, setCount, onLinesProcessed]);
 
+  const bgColor = { "--bg-color-input-comment": bg || "#fff" } as CSSProperties;
+
   return (
     <div className="input-comment">
       <div>
@@ -45,19 +57,24 @@ export const InputComment: FC<Props> = ({
           disabled
           placeholder={t("extra_services.input_count")}
           value={count}
+          bg={bg ? bg : "#fff"}
         />
-        <div className="input-comment__text">
-          {t("extra_services.min_count_warn")}: {min || 10}
-        </div>
+        {min && (
+          <div className="input-comment__text">
+            {t("extra_services.min_count_warn")}: {min || 10}
+          </div>
+        )}
       </div>
       <div
         className="input-comment__textaria-wrapper"
         data-placeholder={t("extra_services.input_comment_placeholder")}
+        style={bgColor}
       >
         <textarea
           className="input-comment__textaria"
           onChange={handleTextareaChange}
           spellCheck={false}
+          style={bgColor}
         />
       </div>
     </div>

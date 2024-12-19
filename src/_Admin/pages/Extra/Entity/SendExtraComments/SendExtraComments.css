@@ -1,0 +1,8 @@
+.extra-service-comments {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  gap: 20px;
+  height: calc(100% + 16px);
+  padding-bottom: 20px;
+}

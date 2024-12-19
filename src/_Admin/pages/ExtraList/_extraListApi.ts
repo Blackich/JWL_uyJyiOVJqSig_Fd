@@ -1,10 +1,15 @@
 import { adminApi } from "@Admin/utils/utils";
 import { ExtraInfoAdminSide } from "@Admin/utils/types";
 
-export const extraListApi = adminApi.injectEndpoints({
+const adminApiWithTag = adminApi.enhanceEndpoints({
+  addTagTypes: ["ExtraList"],
+});
+
+export const extraListApi = adminApiWithTag.injectEndpoints({
   endpoints: (builder) => ({
     getExtraList: builder.query<ExtraInfoAdminSide[], void>({
       query: () => "extra",
+      providesTags: ["ExtraList"],
     }),
   }),
 });
