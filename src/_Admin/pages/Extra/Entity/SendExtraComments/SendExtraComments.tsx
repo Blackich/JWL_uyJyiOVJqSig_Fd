@@ -46,9 +46,9 @@ export const SendExtraComments: FC<Props> = ({
       link,
     }).then((res) => {
       if (res?.data) {
+        setOpenAlertSuccess(true);
         invaldateExtraTable();
         invaldateExtra();
-        setOpenAlertSuccess(true);
         return;
       }
       if (res?.error) return setOpenAlertError(true);

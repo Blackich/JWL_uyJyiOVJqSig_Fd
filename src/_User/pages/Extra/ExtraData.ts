@@ -3,7 +3,7 @@ export const selectItems = {
     "Подписчики",
     "Просмотры (Story)",
     "Комментарии AI",
-    "Комментарии собственные",
+    "Комментарии кастомные",
   ],
   en: ["Followers", "Story views", "Comments AI", "Сomments custom"],
 };

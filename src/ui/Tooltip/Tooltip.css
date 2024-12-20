@@ -1,0 +1,28 @@
+.tooltip-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  anchor-name: --tooltip;
+
+  &:hover .tooltip {
+    opacity: 1;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  padding: 10px;
+  margin: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 10px;
+  position-anchor: --tooltip;
+  position-area: var(--tooltip-position);
+  max-width: 220px;
+  background-color: #292929;
+  color: #fff;
+  opacity: 0;
+  z-index: 1;
+  transition: all .3s ease-in-out;
+}

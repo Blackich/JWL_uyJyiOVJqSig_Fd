@@ -13,6 +13,8 @@
   animation: serviceActiveAnimation 6s infinite;
 
   .service-active__title {
+    display: flex;
+    gap: 20px;
     font-size: 28px;
     font-weight: 700;
   }
@@ -76,5 +78,22 @@
       }
     }
   }
+}
 
+@media (max-width: 374px) {
+  .service-active__container {
+    .service-active__title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .service-active__card-list {
+      gap: 20px;
+
+      .service-active__card {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
 }

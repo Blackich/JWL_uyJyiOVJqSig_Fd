@@ -1,9 +1,13 @@
 import "./ServiceActive.css";
 import { FC } from "react";
-import { userHomeApi } from "@User/pages/Home/_homeApi";
+import { t } from "i18next";
+import { Tooltip } from "@ui/Tooltip/Tooltip";
 import Countdown, { zeroPad } from "react-countdown";
-import { ActivatedService, CustomPackageUser, Timer } from "@User/utils/types";
+import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { pluralize, remainingTime } from "@utils/utils";
+import { TooltipHelpSVG } from "@User/utils/svg/HomeSvg";
+import { ActivatedService, CustomPackageUser, Timer } from "@User/utils/types";
+import { useAdaptive } from "@/utils/screenWidth";
 
 const renderTimer = ({ days, hours, minutes, seconds }: Timer) => (
   <span>
@@ -19,6 +23,7 @@ type Props = {
 };
 
 export const ServiceActive: FC<Props> = ({ activeService, customPack }) => {
+  const { isDesktop } = useAdaptive();
   const { data: packageList } = userHomeApi.useGetPackageListQuery();
 
   const currentPackageLike = activeService.packageId
@@ -32,7 +37,15 @@ export const ServiceActive: FC<Props> = ({ activeService, customPack }) => {
           <p>Loading...</p>
         ) : (
           <>
-            <div className="service-active__title">Активированный Сервис</div>
+            <div className="service-active__title">
+              Активированный Сервис
+              <Tooltip
+                tooltip={toolTip()}
+                postion={isDesktop ? "bottom right" : "bottom left"}
+              >
+                <TooltipHelpSVG />
+              </Tooltip>
+            </div>
             <div className="service-active__card-list">
               <div className="service-active__card">
                 <p>Количество лайков</p>
@@ -61,6 +74,19 @@ export const ServiceActive: FC<Props> = ({ activeService, customPack }) => {
           </>
         )}
       </div>
+    </>
+  );
+};
+
+const toolTip = () => {
+  return (
+    <>
+      <p>{t("card.etc")}</p>
+      <p>+ {t("card.reach")}</p>
+      <p>+ {t("card.profile_visits")}</p>
+      <p>+ {t("card.impressions")}</p>
+      <p>+ {t("card.reposts")}</p>
+      <p>+ {t("card.saves")}</p>
     </>
   );
 };
