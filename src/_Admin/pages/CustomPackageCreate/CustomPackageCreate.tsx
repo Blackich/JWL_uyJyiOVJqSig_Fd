@@ -13,7 +13,7 @@ export const CustomPackageCreate = () => {
   const dispatch = useDispatch();
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
-  const { data: packageDetails } = packageApi.useGetPackageDetailsQuery();
+  const { data: packageSettings } = packageApi.useGetPackageSettingsQuery();
   const [createCustomPack] =
     customPackageCreateApi.useCreateCustomPackageMutation();
   const invaldateCustomPackage = () =>
@@ -55,24 +55,22 @@ export const CustomPackageCreate = () => {
             setCustomPackData={setCustomPackData}
           />
 
-          {packageDetails && (
+          {packageSettings && (
             <PackageFeatureSet
               customPackData={customPackData}
-              packageDetails={packageDetails}
+              packageSettings={packageSettings}
               factPrice={factPrice}
               setFactPrice={setFactPrice}
               handleCreateCustomPack={handleCreateCustomPack}
             />
           )}
         </div>
-        <div className="package-details__container">
-          {packageDetails &&
-            packageDetails.map((pack_details) => (
-              <div style={{ marginTop: "10px" }} key={pack_details.id}>
-                {pack_details.id}.{" "}
-                {pack_details.siteId === 1 ? "Venro" : "JustPanel"}{" "}
-                {pack_details.serviceId} {pack_details.typeService}{" "}
-                {pack_details.price}
+        <div className="package-settings__container">
+          {packageSettings &&
+            packageSettings.map((setting) => (
+              <div style={{ marginTop: "10px" }} key={setting.id}>
+                {setting.id}. {setting.siteId === 1 ? "Venro" : "JustPanel"}{" "}
+                {setting.serviceId} {setting.typeService} {setting.price}
               </div>
             ))}
         </div>

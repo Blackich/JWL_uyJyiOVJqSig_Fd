@@ -1,6 +1,6 @@
 import "./PackageFeatureSet.css";
 import { FC, useState } from "react";
-import { CustomPackWithoutPrice, PackageDetails } from "@Admin/utils/types";
+import { CustomPackWithoutPrice, PackageSettings } from "@Admin/utils/types";
 import { packageApi } from "@Admin/pages/Packages/_packageApi";
 import { calcPrimeCostCustomPackage } from "@Admin/utils/utils";
 import { formatRUB, formatUSD } from "@utils/utils";
@@ -8,7 +8,7 @@ import { Button, TextField } from "@mui/material";
 
 type Props = {
   customPackData: CustomPackWithoutPrice;
-  packageDetails: PackageDetails[];
+  packageSettings: PackageSettings[];
   factPrice: { price_usd: number; price_rub: number };
   handleCreateCustomPack: VoidFunction;
   setFactPrice: ({
@@ -22,16 +22,16 @@ type Props = {
 
 export const PackageFeatureSet: FC<Props> = ({
   customPackData,
-  packageDetails,
+  packageSettings,
   factPrice,
   setFactPrice,
   handleCreateCustomPack,
 }) => {
   const [coefficient, setCoefficient] = useState<number>(10);
   const { data: exchangeRate } = packageApi.useGetExchangeRateQuery();
-  const primeCostList = packageDetails.map((pack_details) => [
-    pack_details.typeService,
-    pack_details.price,
+  const primeCostList = packageSettings.map((setting) => [
+    setting.typeService,
+    setting.price,
   ]);
   
   const primeCost = calcPrimeCostCustomPackage({

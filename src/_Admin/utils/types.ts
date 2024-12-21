@@ -70,7 +70,7 @@ export type Package = {
   price_usd_30: number;
 };
 
-export type PackageDetails = {
+export type PackageSettings = {
   id: number;
   siteId: number;
   typeService: string;

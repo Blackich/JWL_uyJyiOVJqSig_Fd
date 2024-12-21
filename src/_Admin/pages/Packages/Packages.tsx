@@ -1,19 +1,21 @@
 import "./Packages.css";
 import { useState } from "react";
-import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { PackageCard } from "@Admin/pages/Packages/Entity/PackageCard/PackageCard";
 import { Button } from "@mui/material";
 import { packageApi } from "./_packageApi";
 import { calcPrimeCostPackage } from "@Admin/utils/utils";
+import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
+import { PackageCard } from "@Admin/pages/Packages/Entity/PackageCard/PackageCard";
 
 export const Packages = () => {
   const [indexButton, setIndexButton] = useState<number>(1);
 
   const { data: packages } = packageApi.useGetPackagesQuery();
-  const { data: packageDetails } = packageApi.useGetPackageDetailsQuery();
+  const { data: packageSettings } = packageApi.useGetPackageSettingsQuery();
   const { data: exchangeRate } = packageApi.useGetExchangeRateQuery();
-  const primeCostList = packageDetails?.map((detail) => detail.price);
-  const ratioPackageList = packageDetails?.map((detail) => Number(detail.ratio));
+  const primeCostList = packageSettings?.map((setting) => setting.price);
+  const ratioPackageList = packageSettings?.map((setting) =>
+    Number(setting.ratio),
+  );
   return (
     <>
       <MainBlock title={"Пакеты"}>
@@ -55,14 +57,12 @@ export const Packages = () => {
                 />
               ))}
           </div>
-          <div className="package-details__container">
-            {packageDetails &&
-              packageDetails.map((pack_details) => (
-                <div style={{ marginTop: "10px" }} key={pack_details.id}>
-                  {pack_details.id}.{" "}
-                  {pack_details.siteId === 1 ? "Venro" : "JustPanel"}{" "}
-                  {pack_details.serviceId} {pack_details.typeService}{" "}
-                  {pack_details.price}
+          <div className="package-settings__container">
+            {packageSettings &&
+              packageSettings.map((setting) => (
+                <div style={{ marginTop: "10px" }} key={setting.id}>
+                  {setting.id}. {setting.siteId === 1 ? "Venro" : "JustPanel"}{" "}
+                  {setting.serviceId} {setting.typeService} {setting.price}
                 </div>
               ))}
           </div>

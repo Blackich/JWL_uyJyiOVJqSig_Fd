@@ -10,33 +10,33 @@ type Props = {
 export const CustomPackageCard: FC<Props> = ({ customPackage }) => {
   return (
     <>
-      {customPackage.map((pack_detail) => (
-        <div key={pack_detail.price_rub} className="custom-package__card">
+      {customPackage.map((cp_setting) => (
+        <div key={cp_setting.price_rub} className="custom-package__card">
           <span>
-            {pack_detail.likes}&nbsp;<p>Лайки</p>
+            {cp_setting.likes}&nbsp;<p>Лайки</p>
           </span>
           <span>
-            {pack_detail.reach}&nbsp;<p>Охват</p>
+            {cp_setting.reach}&nbsp;<p>Охват</p>
           </span>
           <span>
-            {pack_detail.saves}&nbsp;<p>Сохранения</p>
+            {cp_setting.saves}&nbsp;<p>Сохранения</p>
           </span>
           <span>
-            {pack_detail.profileVisits}&nbsp;<p>Посещения</p>
+            {cp_setting.profileVisits}&nbsp;<p>Посещения</p>
           </span>
           <span>
-            {pack_detail.reposts}&nbsp;<p>Репосты</p>
+            {cp_setting.reposts}&nbsp;<p>Репосты</p>
           </span>
           <span>
-            {pack_detail.videoViews}&nbsp;<p>Просмотры видео</p>
+            {cp_setting.videoViews}&nbsp;<p>Просмотры видео</p>
           </span>
           <span>
-            {pack_detail.countPosts}&nbsp;<p>Постов</p>
+            {cp_setting.countPosts}&nbsp;<p>Постов</p>
           </span>
           <span style={{ marginTop: "15px" }}>
-            {formatUSD(pack_detail.price_usd)}
+            {formatUSD(cp_setting.price_usd)}
           </span>
-          <span>{formatRUB(pack_detail.price_rub)}</span>
+          <span>{formatRUB(cp_setting.price_rub)}</span>
         </div>
       ))}
     </>
