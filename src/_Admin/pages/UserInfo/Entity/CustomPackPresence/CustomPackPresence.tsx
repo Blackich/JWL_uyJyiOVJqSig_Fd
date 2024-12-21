@@ -14,14 +14,18 @@ export const CustomPackPresence: FC<Props> = ({ userInfo }) => {
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
 
-  const { data: customPackageUser } =
+  const { data: customPackageUser, refetch: refetchCustomPack } =
     userInfoApi.useGetCustomPackageByUserIdQuery(Number(userInfo.id));
   const [deleteCustomPack] =
     userInfoApi.useDeleteCustomPackageByUserIdMutation();
 
   const onClickDeleteCustomPack = async () => {
     await deleteCustomPack(Number(userInfo.id)).then((res) => {
-      if (res?.data) return setOpenAlertSuccess(true);
+      if (res?.data) {
+        refetchCustomPack();
+        setOpenAlertSuccess(true);
+        return;
+      }
       if (res?.error) return setOpenAlertError(true);
     });
   };

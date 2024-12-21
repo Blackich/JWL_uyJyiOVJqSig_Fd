@@ -6,7 +6,11 @@ import {
   CustomPackageSettings,
 } from "@Admin/utils/types";
 
-export const userInfoApi = adminApi.injectEndpoints({
+const adminApiWithTag = adminApi.enhanceEndpoints({
+  addTagTypes: ["UserInfo"],
+});
+
+export const userInfoApi = adminApiWithTag.injectEndpoints({
   endpoints: (builder) => ({
     getUserInfo: builder.query<User, User["id"]>({
       query: (id) => `/users/${id}`,
@@ -35,6 +39,7 @@ export const userInfoApi = adminApi.injectEndpoints({
       User["id"]
     >({
       query: (id) => `/users/${id}/custom`,
+      providesTags: ["UserInfo"],
     }),
     deleteCustomPackageByUserId: builder.mutation<
       { message: string },

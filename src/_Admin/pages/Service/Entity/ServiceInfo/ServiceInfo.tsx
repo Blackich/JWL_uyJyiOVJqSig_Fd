@@ -26,12 +26,14 @@ const renderTimer = ({ days, hours, minutes, seconds }: Timer) => (
 type Props = {
   service: Service;
   refetchService: VoidFunction;
+  invaldateServiceTable: VoidFunction;
   setShownModalCancelSubs: (shown: boolean) => void;
 };
 
 export const ServiceInfo: FC<Props> = ({
   service,
   refetchService,
+  invaldateServiceTable,
   setShownModalCancelSubs,
 }) => {
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
@@ -41,12 +43,14 @@ export const ServiceInfo: FC<Props> = ({
     if (service.status === 1) return;
     await updateServiceStatus(Number(service.id));
     refetchService();
+    invaldateServiceTable();
   };
 
   const onClickInactiveStatus = async () => {
     if (service.status === 0) return;
     await updateServiceStatus(Number(service.id));
     refetchService();
+    invaldateServiceTable();
   };
 
   return (

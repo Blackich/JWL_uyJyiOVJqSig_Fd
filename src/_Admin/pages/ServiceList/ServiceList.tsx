@@ -61,12 +61,16 @@ const servicesColumns: ColumnDef<unknown>[] = [
   {
     accessorKey: "createdAt",
     header: "Истечёт",
-    cell: ({ getValue }) =>
-      daysUntilFutureDate(getValue() as string) !== 0 ? (
-        daysUntilFutureDate(getValue() as string)
-      ) : (
-        <p style={{ color: "#c20000", fontWeight: "500" }}>Истёк</p>
-      ),
+    cell: ({ getValue, row }) => {
+      const dateTimeService = daysUntilFutureDate(getValue() as string);
+      const status = (row.original as Service).status;
+
+      if (dateTimeService !== 0 && status === 1) return dateTimeService;
+      if (dateTimeService !== 0 && status === 0)
+        return <p style={{ color: "#c20000", fontWeight: "500" }}>Отменён</p>;
+
+      return <p style={{ color: "#c20000", fontWeight: "500" }}>Истёк</p>;
+    },
   },
   {
     accessorKey: "cost",

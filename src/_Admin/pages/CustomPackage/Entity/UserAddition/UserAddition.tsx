@@ -2,8 +2,10 @@ import "./UserAddition.css";
 import { FC, useState } from "react";
 import { Button } from "@mui/material";
 import { User } from "@Admin/utils/types";
+import { useAppDispatch } from "@store/store";
 import { SearchBar } from "@ui/SearchBar/SearchBar";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
+import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
 import { customPackageApi } from "@Admin/pages/CustomPackage/_customPackageApi";
 
 type Props = {
@@ -11,6 +13,7 @@ type Props = {
   packageId: number;
 };
 export const UserAddition: FC<Props> = ({ usersList, packageId }) => {
+  const dispatch = useAppDispatch();
   const [query, setQuery] = useState("");
   const [isAproveValue, setAproveValue] = useState<boolean | null>(null);
 
@@ -21,6 +24,8 @@ export const UserAddition: FC<Props> = ({ usersList, packageId }) => {
 
   const [addCustomPackToUser] =
     customPackageApi.useAddCustomPackToUserMutation();
+  const invalidateCustomPackPresence = () =>
+    dispatch(userInfoApi.util.invalidateTags(["UserInfo"]));
 
   const handleAddPackToUser = async () => {
     if (!isAproveValue) return;
@@ -28,7 +33,11 @@ export const UserAddition: FC<Props> = ({ usersList, packageId }) => {
       userId: Number(query),
       packageId,
     }).then((res) => {
-      if (res?.data) return setOpenAlertSuccess(true);
+      if (res?.data) {
+        invalidateCustomPackPresence();
+        setOpenAlertSuccess(true);
+        return;
+      }
       if (res?.error) return setOpenAlertError(true);
     });
     setQuery("");

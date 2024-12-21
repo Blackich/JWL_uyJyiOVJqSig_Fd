@@ -1,14 +1,17 @@
 import "./Service.css";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { serviceApi } from "./_serviceApi";
+import { useParams } from "react-router-dom";
+import { useAppDispatch } from "@store/store";
 import { ServiceInfo } from "./Entity/ServiceInfo/ServiceInfo";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
+import { serviceListApi } from "@Admin/pages/ServiceList/_serviceListApi";
 import { ServicePurchase } from "./Entity/ServicePurchase/ServicePurchase";
 import { CancelSubsModal } from "./Entity/CancelSubsModal/CancelSubsModal";
 
 export const Service = () => {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
   const [shownModalCancelSubs, setShownModalCancelSubs] =
     useState<boolean>(false);
 
@@ -20,6 +23,9 @@ export const Service = () => {
     Number(id),
   );
 
+  const invaldateServiceTable = () =>
+    dispatch(serviceListApi.util.invalidateTags(["ServiceList"]));
+
   return (
     <MainBlock title={`Пакет ${id}`}>
       <div className="main-block--service">
@@ -27,6 +33,7 @@ export const Service = () => {
           <ServiceInfo
             service={service}
             refetchService={refetchService}
+            invaldateServiceTable={invaldateServiceTable}
             setShownModalCancelSubs={setShownModalCancelSubs}
           />
         )}
