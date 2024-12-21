@@ -9,7 +9,7 @@ import { PackageCard } from "@Admin/pages/Packages/Entity/PackageCard/PackageCar
 export const Packages = () => {
   const [indexButton, setIndexButton] = useState<number>(1);
 
-  const { data: packages } = packageApi.useGetPackagesQuery();
+  const { data: packageDetails } = packageApi.useGetPackageDetailsQuery();
   const { data: packageSettings } = packageApi.useGetPackageSettingsQuery();
   const { data: exchangeRate } = packageApi.useGetExchangeRateQuery();
   const primeCostList = packageSettings?.map((setting) => setting.price);
@@ -35,24 +35,24 @@ export const Packages = () => {
             </Button>
           </div>
           <div className="package__container">
-            {packages &&
+            {packageDetails &&
               exchangeRate &&
               primeCostList &&
               ratioPackageList &&
-              packages.map((pack) => (
+              packageDetails.map((detail) => (
                 <PackageCard
-                  key={pack.id}
-                  likes={pack.likes}
-                  actCostRUB15={pack.price_rub_15}
-                  actCostRUB30={pack.price_rub_30}
-                  actCostUSD15={pack.price_usd_15}
-                  actCostUSD30={pack.price_usd_30}
+                  key={detail.id}
+                  likes={detail.likes}
+                  actCostRUB15={detail.price_rub_15}
+                  actCostRUB30={detail.price_rub_30}
+                  actCostUSD15={detail.price_usd_15}
+                  actCostUSD30={detail.price_usd_30}
                   indexButton={indexButton}
                   usdRub={exchangeRate}
                   primeCost={calcPrimeCostPackage(
                     primeCostList,
                     ratioPackageList,
-                    pack.likes,
+                    detail.likes,
                   )}
                 />
               ))}

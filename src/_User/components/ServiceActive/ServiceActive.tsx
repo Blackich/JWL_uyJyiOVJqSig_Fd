@@ -6,8 +6,12 @@ import Countdown, { zeroPad } from "react-countdown";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { pluralize, remainingTime } from "@utils/utils";
 import { TooltipHelpSVG } from "@User/utils/svg/HomeSvg";
-import { ActivatedService, CustomPackageUser, Timer } from "@User/utils/types";
-import { useAdaptive } from "@/utils/screenWidth";
+import { useAdaptive } from "@utils/screenWidth";
+import {
+  ActivatedService,
+  CustomPackageDetailsUser,
+  Timer,
+} from "@User/utils/types";
 
 const renderTimer = ({ days, hours, minutes, seconds }: Timer) => (
   <span>
@@ -19,15 +23,15 @@ const renderTimer = ({ days, hours, minutes, seconds }: Timer) => (
 
 type Props = {
   activeService: ActivatedService;
-  customPack?: CustomPackageUser[];
+  customPack?: CustomPackageDetailsUser[];
 };
 
 export const ServiceActive: FC<Props> = ({ activeService, customPack }) => {
   const { isDesktop } = useAdaptive();
-  const { data: packageList } = userHomeApi.useGetPackageListQuery();
+  const { data: packageDetails } = userHomeApi.useGetPackageDetailsQuery();
 
   const currentPackageLike = activeService.packageId
-    ? packageList?.[activeService.packageId - 1]?.likes
+    ? packageDetails?.[activeService.packageId - 1]?.likes
     : customPack && customPack[0].likes;
 
   return (

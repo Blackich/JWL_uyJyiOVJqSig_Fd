@@ -1,42 +1,42 @@
 import "./CustomPackageCard.css";
 import { FC } from "react";
-import { CustomPackageSettings } from "@Admin/utils/types";
+import { CustomPackageDetails } from "@Admin/utils/types";
 import { formatRUB, formatUSD } from "@utils/utils";
 
 type Props = {
-  customPackage: CustomPackageSettings[];
+  customPackageDetails: CustomPackageDetails[];
 };
 
-export const CustomPackageCard: FC<Props> = ({ customPackage }) => {
+export const CustomPackageCard: FC<Props> = ({ customPackageDetails }) => {
   return (
     <>
-      {customPackage.map((cp_setting) => (
-        <div key={cp_setting.price_rub} className="custom-package__card">
+      {customPackageDetails.map((cp_details) => (
+        <div key={cp_details.price_rub} className="custom-package__card">
           <span>
-            {cp_setting.likes}&nbsp;<p>Лайки</p>
+            {cp_details.likes}&nbsp;<p>Лайки</p>
           </span>
           <span>
-            {cp_setting.reach}&nbsp;<p>Охват</p>
+            {cp_details.reach}&nbsp;<p>Охват</p>
           </span>
           <span>
-            {cp_setting.saves}&nbsp;<p>Сохранения</p>
+            {cp_details.saves}&nbsp;<p>Сохранения</p>
           </span>
           <span>
-            {cp_setting.profileVisits}&nbsp;<p>Посещения</p>
+            {cp_details.profileVisits}&nbsp;<p>Посещения</p>
           </span>
           <span>
-            {cp_setting.reposts}&nbsp;<p>Репосты</p>
+            {cp_details.reposts}&nbsp;<p>Репосты</p>
           </span>
           <span>
-            {cp_setting.videoViews}&nbsp;<p>Просмотры видео</p>
+            {cp_details.videoViews}&nbsp;<p>Просмотры видео</p>
           </span>
           <span>
-            {cp_setting.countPosts}&nbsp;<p>Постов</p>
+            {cp_details.countPosts}&nbsp;<p>Постов</p>
           </span>
           <span style={{ marginTop: "15px" }}>
-            {formatUSD(cp_setting.price_usd)}
+            {formatUSD(cp_details.price_usd)}
           </span>
-          <span>{formatRUB(cp_setting.price_rub)}</span>
+          <span>{formatRUB(cp_details.price_rub)}</span>
         </div>
       ))}
     </>

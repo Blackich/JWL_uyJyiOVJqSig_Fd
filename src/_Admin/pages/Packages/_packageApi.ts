@@ -1,4 +1,4 @@
-import { Package, PackageSettings } from "@Admin/utils/types";
+import { PackageDetails, PackageSettings } from "@Admin/utils/types";
 import { adminApi } from "@Admin/utils/utils";
 
 export const packageApi = adminApi.injectEndpoints({
@@ -9,8 +9,8 @@ export const packageApi = adminApi.injectEndpoints({
       transformResponse: (response: { conversion_rates: { RUB: number } }) =>
         response.conversion_rates.RUB,
     }),
-    getPackages: builder.query<Package[], void>({
-      query: () => "/package",
+    getPackageDetails: builder.query<PackageDetails[], void>({
+      query: () => "/package/details",
     }),
     getPackageSettings: builder.query<PackageSettings[], void>({
       query: () => "/package/settings",

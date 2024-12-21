@@ -1,11 +1,11 @@
-import { CustomPackageSettings } from "@Admin/utils/types";
+import { CustomPackageDetails } from "@Admin/utils/types";
 import { adminApi } from "@Admin/utils/utils";
 
 export const customPackageCreateApi = adminApi.injectEndpoints({
   endpoints: (builder) => ({
     createCustomPackage: builder.mutation<
       { message: string },
-      CustomPackageSettings
+      CustomPackageDetails
     >({
       query: ({
         likes,
@@ -18,7 +18,7 @@ export const customPackageCreateApi = adminApi.injectEndpoints({
         price_usd,
         price_rub,
       }) => ({
-        url: "/package/custom",
+        url: "/custom-package",
         method: "POST",
         body: {
           likes,

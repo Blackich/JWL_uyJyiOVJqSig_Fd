@@ -9,16 +9,17 @@ import { UserAddition } from "./Entity/UserAddition/UserAddition";
 export const CustomPackage = () => {
   const { id } = useParams();
   const { data: usersList } = usersListApi.useGetUsersQuery();
-  const { data: customPackage } = customPackageApi.useGetCustomPackageByIdQuery(
-    Number(id),
-  );
+  const { data: customPackageDetails } =
+    customPackageApi.useGetCustomPackageDetailsByIdQuery(Number(id));
 
   return (
     <MainBlock title={`Пакет ${id}`}>
       <div className="main-block--custom-package">
-        {customPackage && <CustomPackageCard customPackage={customPackage} />}
+        {customPackageDetails && (
+          <CustomPackageCard customPackageDetails={customPackageDetails} />
+        )}
         {usersList && (
-          <UserAddition usersList={usersList} packageId={Number(id)} />
+          <UserAddition usersList={usersList} customPackageId={Number(id)} />
         )}
       </div>
     </MainBlock>

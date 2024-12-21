@@ -61,7 +61,7 @@ export type StatusPurchasedService = {
   expiry?: boolean;
 };
 
-export type Package = {
+export type PackageDetails = {
   id: number;
   likes: number;
   price_rub_15: number;
@@ -81,7 +81,7 @@ export type PackageSettings = {
   ratio: number;
 };
 
-export type CustomPackageSettings = {
+export type CustomPackageDetails = {
   likes: number;
   reach: number;
   saves: number;
@@ -94,7 +94,7 @@ export type CustomPackageSettings = {
 };
 
 export type CustomPackWithoutPrice = Omit<
-  CustomPackageSettings,
+  CustomPackageDetails,
   "price_rub" | "price_usd"
 >;
 

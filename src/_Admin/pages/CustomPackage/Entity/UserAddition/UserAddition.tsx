@@ -10,9 +10,9 @@ import { customPackageApi } from "@Admin/pages/CustomPackage/_customPackageApi";
 
 type Props = {
   usersList: User[];
-  packageId: number;
+  customPackageId: number;
 };
-export const UserAddition: FC<Props> = ({ usersList, packageId }) => {
+export const UserAddition: FC<Props> = ({ usersList, customPackageId }) => {
   const dispatch = useAppDispatch();
   const [query, setQuery] = useState("");
   const [isAproveValue, setAproveValue] = useState<boolean | null>(null);
@@ -31,7 +31,7 @@ export const UserAddition: FC<Props> = ({ usersList, packageId }) => {
     if (!isAproveValue) return;
     await addCustomPackToUser({
       userId: Number(query),
-      packageId,
+      customPackageId,
     }).then((res) => {
       if (res?.data) {
         invalidateCustomPackPresence();

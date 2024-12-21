@@ -24,7 +24,7 @@ export const Home = () => {
   const { data: activeServices } = userHomeApi.useGetActiveServiceQuery(
     userId || skipToken,
   );
-  const { data: customPack } = userHomeApi.useGetCustomPackByUserIdQuery(
+  const { data: customPack } = userHomeApi.useGetCustomPackDetailsByUserIdQuery(
     userId || skipToken,
   );
 

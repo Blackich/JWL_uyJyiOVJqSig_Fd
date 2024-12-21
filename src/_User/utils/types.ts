@@ -17,7 +17,7 @@ export type ResponseServer = {
   message: string;
 };
 
-export type PackageUser = {
+export type PackageDetailsUser = {
   id: number;
   likes: number;
   price_rub_15: number;
@@ -30,7 +30,7 @@ export type CardClassName = {
   className: string;
 };
 
-export interface CardList extends PackageUser {
+export interface CardList extends PackageDetailsUser {
   className: CardClassName["className"];
 }
 
@@ -49,7 +49,7 @@ export type Timer = {
   seconds: number;
 };
 
-export type CustomPackageUser = {
+export type CustomPackageDetailsUser = {
   id: number;
   likes: number;
   videoViews: number;

@@ -1,13 +1,13 @@
 import "./CustomPackage.css";
 import { FC, useState } from "react";
-import { CustomPackageUser } from "@User/utils/types";
+import { CustomPackageDetailsUser } from "@User/utils/types";
 import { useTranslation } from "react-i18next";
 import { formatRUB, formatUSD } from "@utils/utils";
 import { ArrowClickSVG } from "@User/utils/svg/HomeSvg";
 import { PaymentModal } from "@User/components/PaymentModal/PaymentModal";
 
 type Props = {
-  customPack: CustomPackageUser[];
+  customPack: CustomPackageDetailsUser[];
 };
 
 export const CustomPackage: FC<Props> = ({ customPack }) => {

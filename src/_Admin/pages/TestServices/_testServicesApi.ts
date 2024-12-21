@@ -5,7 +5,7 @@ export const testServiceApi = adminApi.injectEndpoints({
   endpoints: (builder) => ({
     sendTestPackage: builder.mutation<{ message: string }, TestPackage>({
       query: ({ testServiceId, employeeId, link, speed }) => ({
-        url: "/package/test",
+        url: "/test",
         method: "POST",
         body: { testServiceId, employeeId, link, speed },
       }),

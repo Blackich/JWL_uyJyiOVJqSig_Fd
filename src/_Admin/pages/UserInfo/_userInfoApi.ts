@@ -3,7 +3,7 @@ import {
   User,
   UserSocialAccount,
   UserPurchasedService,
-  CustomPackageSettings,
+  CustomPackageDetails,
 } from "@Admin/utils/types";
 
 const adminApiWithTag = adminApi.enhanceEndpoints({
@@ -35,7 +35,7 @@ export const userInfoApi = adminApiWithTag.injectEndpoints({
       query: (id) => `/users/${id}/social`,
     }),
     getCustomPackageByUserId: builder.query<
-      CustomPackageSettings[],
+      CustomPackageDetails[],
       User["id"]
     >({
       query: (id) => `/users/${id}/custom`,

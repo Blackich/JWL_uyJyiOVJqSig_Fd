@@ -4,20 +4,20 @@ import { PostQuantity } from "@User/components/PostQuantity/PostQuantity";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { useAdaptive } from "@utils/screenWidth";
 import { cardListAddClass } from "./CardListData";
-import { PackageUser } from "@User/utils/types";
+import { PackageDetailsUser } from "@User/utils/types";
 import { Card, SkeletonCard } from "@User/components/Card/Card";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 
 export const CardList = () => {
   const { isDesktop } = useAdaptive();
   const [activeIndex, setActiveIndex] = useState<number>(1);
-  const { data: packageList } = userHomeApi.useGetPackageListQuery();
-  const cardList = cardListAddClass(packageList as PackageUser[]);
+  const { data: packageDetails } = userHomeApi.useGetPackageDetailsQuery();
+  const cardList = cardListAddClass(packageDetails as PackageDetailsUser[]);
 
   return (
     <>

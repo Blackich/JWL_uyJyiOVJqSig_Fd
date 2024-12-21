@@ -1,4 +1,4 @@
-export type ModalData = Package | ExtraService;
+export type ModalData = Package | Extra;
 
 export type Package = {
   likes: number;
@@ -8,7 +8,7 @@ export type Package = {
   customPackageId?: number;
 };
 
-export type ExtraService = {
+export type Extra = {
   count: number;
   serviceId: number;
   selectItems: { ru: string[]; en: string[] };

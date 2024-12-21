@@ -1,13 +1,12 @@
-import { CardClassName, PackageUser } from "@User/utils/types";
+import { CardClassName, PackageDetailsUser } from "@User/utils/types";
 
-export const cardListAddClass = (packageList: PackageUser[]) => (
-  packageList?.map((pack, i) => {
+export const cardListAddClass = (packageDetails: PackageDetailsUser[]) =>
+  packageDetails?.map((detail, i) => {
     return {
-      ...pack,
+      ...detail,
       className: cardClassNameList[i]["className"],
     };
-  })
-)
+  });
 
 export const cardClassNameList: CardClassName[] = [
   {

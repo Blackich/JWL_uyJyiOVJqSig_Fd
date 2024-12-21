@@ -2,8 +2,8 @@ import { userApi } from "@User/utils/utils";
 import {
   ActivatedService,
   AuthUser,
-  CustomPackageUser,
-  PackageUser,
+  CustomPackageDetailsUser,
+  PackageDetailsUser,
   ResponseServer,
   SocialAccountMutation,
   UserSocial,
@@ -34,14 +34,17 @@ export const userHomeApi = userApi.injectEndpoints({
         },
       }),
     }),
-    getPackageList: builder.query<PackageUser[], void>({
-      query: () => "/package",
+    getPackageDetails: builder.query<PackageDetailsUser[], void>({
+      query: () => "/package/details",
     }),
     getActiveService: builder.query<ActivatedService[], AuthUser["id"]>({
       query: (id) => `/services/${id}`,
     }),
-    getCustomPackByUserId: builder.query<CustomPackageUser[], AuthUser["id"]>({
-      query: (id) => `/custom/${id}`,
+    getCustomPackDetailsByUserId: builder.query<
+      CustomPackageDetailsUser[],
+      AuthUser["id"]
+    >({
+      query: (id) => `/custom-package/details/${id}`,
     }),
     checkStatusServices: builder.query<{ message: string }, void>({
       query: () => `/services/check-status`,

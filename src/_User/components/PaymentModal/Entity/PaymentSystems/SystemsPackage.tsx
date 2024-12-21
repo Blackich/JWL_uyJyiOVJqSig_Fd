@@ -23,12 +23,12 @@ export const SystemsPackage: FC<Props> = ({
   const userId = useAppSelector(getUserId);
   const pickedAccId = useAppSelector(getSocialAccId);
 
-  const { data: packageList } = userHomeApi.useGetPackageListQuery();
+  const { data: packageDetails } = userHomeApi.useGetPackageDetailsQuery();
   const [fetchPaymentYooKassa] = yooKassaApi.usePaymentPackYooKassaMutation();
 
   const packageId = customPackageId
     ? customPackageId
-    : packageList?.find((pack) => pack.likes === likes)?.id;
+    : packageDetails?.find((detail) => detail.likes === likes)?.id;
 
   const handlePayYooKassa = async (paymentType: PaymentTypeYooKassa) => {
     if (!userId || !pickedAccId || !packageId) return;
