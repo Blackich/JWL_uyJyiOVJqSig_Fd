@@ -1,5 +1,10 @@
 import { userApi } from "@User/utils/utils";
-import { ResponseServer, SendExtraComments } from "@User/utils/types";
+import {
+  AuthUser,
+  PurchasedExtraUser,
+  ResponseServer,
+  SendExtraComments,
+} from "@User/utils/types";
 
 export const userExtraApi = userApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -17,6 +22,12 @@ export const userExtraApi = userApi.injectEndpoints({
           socialNicknameId,
         },
       }),
+    }),
+    getPurchasedExtraByUserId: builder.query<
+      PurchasedExtraUser[],
+      AuthUser["id"]
+    >({
+      query: (id) => `/extra/${id}`,
     }),
   }),
 });

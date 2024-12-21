@@ -64,3 +64,13 @@ export type SendExtraComments = {
   countComments: number;
   socialNicknameId: number;
 };
+
+export type PurchasedExtraUser = {
+  id: number;
+  nickname: string;
+  extraServiceName: string;
+  count: number;
+  priceRUB: number;
+  priceUSD: number;
+  createdAt: string;
+};

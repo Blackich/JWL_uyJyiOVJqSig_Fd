@@ -10,3 +10,11 @@
   box-shadow: var(--border-shadow);
   padding: 20px;
 }
+
+.extra-purchased-list {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--border-shadow);
+  padding: 20px;
+}
