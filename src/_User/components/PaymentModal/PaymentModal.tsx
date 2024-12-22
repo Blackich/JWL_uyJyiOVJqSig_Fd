@@ -37,13 +37,14 @@ export const PaymentModal: FC<Props> = ({
   const matchedService = activeServices?.find(
     (service) => service.socialNicknameId === pickedAccId,
   );
-  const { data: checkStatus } = userHomeApi.useCheckStatusServicesQuery();
+  const { data: checkStatusExternalServices } =
+    userHomeApi.useCheckStatusExternalServicesQuery();
 
   if (modalId === 0 && (!pickedAccId || matchedService)) {
     return <NoUserError shown={shownModal} onClose={onClose} />;
   }
 
-  if (!checkStatus) {
+  if (!checkStatusExternalServices) {
     return <TechnicalProblems shown={shownModal} onClose={onClose} />;
   }
 

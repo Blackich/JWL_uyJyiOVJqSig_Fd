@@ -29,6 +29,9 @@ type Props = {
 export const ServiceActive: FC<Props> = ({ activeService, customPack }) => {
   const { isDesktop } = useAdaptive();
   const { data: packageDetails } = userHomeApi.useGetPackageDetailsQuery();
+  const { data: postsRemaining } = userHomeApi.useCheckPostsRemainingQuery({
+    serviceId: Number(activeService.id),
+  });
 
   const currentPackageLike = activeService.packageId
     ? packageDetails?.[activeService.packageId - 1]?.likes
@@ -64,8 +67,17 @@ export const ServiceActive: FC<Props> = ({ activeService, customPack }) => {
                 </p>
               </div>
               <div className="service-active__card">
-                <p>Количество постов</p>
-                <p>{activeService.countPosts}</p>
+                {postsRemaining && typeof postsRemaining.count === "number" ? (
+                  <>
+                    <p>Осталось постов</p>
+                    <p>{postsRemaining.count}</p>
+                  </>
+                ) : (
+                  <>
+                    <p>Количество постов</p>
+                    <p>{activeService.countPosts}</p>
+                  </>
+                )}
               </div>
               <div className="service-active__card">
                 <p>Оставшееся время</p>

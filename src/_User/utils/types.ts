@@ -35,6 +35,7 @@ export interface CardList extends PackageDetailsUser {
 }
 
 export type ActivatedService = {
+  id: number;
   socialNicknameId: number;
   countPosts: number;
   packageId: number | null;
