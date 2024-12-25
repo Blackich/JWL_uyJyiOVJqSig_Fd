@@ -77,8 +77,8 @@ export type PackageSettings = {
   serviceId: number;
   status: number;
   createdAt: string;
-  price: number;
-  ratio: number;
+  cost: string;
+  ratio: string;
 };
 
 export type CustomPackageDetails = {
@@ -104,7 +104,7 @@ export type CustomPackageUser = {
   createdAt: string;
 };
 
-export type TestPackage = {
+export type TestDetails = {
   testServiceId: number;
   employeeId: number;
   link: string;
@@ -146,4 +146,16 @@ export type SendExtraCommentsAdmin = {
   extraServiceId: number;
   comments: string[];
   link: string;
+};
+
+export type TestServiceSettings = {
+  id: number;
+  cost: string;
+  count: number;
+  createdAt: string;
+  drip: number;
+  serviceId: number;
+  siteId: number;
+  testServiceId: number;
+  typeService: string;
 };

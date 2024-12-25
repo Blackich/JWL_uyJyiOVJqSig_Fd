@@ -67,12 +67,15 @@ export const CustomPackageCreate = () => {
         </div>
         <div className="package-settings__container">
           {packageSettings &&
-            packageSettings.map((setting) => (
-              <div style={{ marginTop: "10px" }} key={setting.id}>
-                {setting.id}. {setting.siteId === 1 ? "Venro" : "JustPanel"}{" "}
-                {setting.serviceId} {setting.typeService} {setting.price}
-              </div>
-            ))}
+            [...packageSettings]
+              .sort((a, b) => a.siteId - b.siteId)
+              .map((setting) => (
+                <div style={{ marginTop: "10px" }} key={setting.id}>
+                  {setting.siteId === 1 ? "Venro" : "JustPanel"}{" "}
+                  {setting.serviceId} {setting.typeService}{" "}
+                  {Number(setting.cost)}
+                </div>
+              ))}
         </div>
       </div>
       <AlertMessage

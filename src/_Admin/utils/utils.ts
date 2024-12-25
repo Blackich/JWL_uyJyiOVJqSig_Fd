@@ -1,4 +1,4 @@
-import { PrimeCostCustomPackage } from "./types";
+import { PackageSettings, PrimeCostCustomPackage } from "./types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseUrlAdmin = {
@@ -21,20 +21,20 @@ export const adminApi = createApi({
 });
 
 export const calcPrimeCostPackage = (
-  primeCost: number[],
-  ratio: number[],
   likes: number,
+  settings: PackageSettings[],
 ) => {
-  const package1kCount = ratio.map((coefficient) => {
-    const count = likes * coefficient < 100 ? 115 : likes * coefficient * 1.02;
-    return count;
-  });
-  const costs = package1kCount.reduce((acc, _, i) => {
-    const res = primeCost[i] * (package1kCount[i] / 1000);
-    return acc + res;
-  }, 0);
+  const packageCost = settings
+    .map((setting) => {
+      const ratio = Number(setting.ratio);
+      const cost = Number(setting.cost);
+      const count = likes * ratio < 100 ? 115 : likes * ratio * 1.02;
+      const sum = (count / 1000) * cost;
+      return sum;
+    })
+    .reduce((acc, sum) => acc + sum, 0);
 
-  return costs * 15;
+  return packageCost * 15;
 };
 
 export const calcPrimeCostCustomPackage = ({
@@ -52,9 +52,14 @@ export const calcPrimeCostCustomPackage = ({
   const package1k = {
     likes: likes * 1.02,
     reach: reach * 1.02,
-    saves: saves <= 100 ? 115 : saves * 1.02,
-    profileVisits: profileVisits <= 100 ? 115 : profileVisits * 1.02,
-    reposts: reposts <= 100 ? 115 : reposts * 1.02,
+    saves: saves === 0 ? 0 : saves <= 100 ? 115 : saves * 1.02,
+    profileVisits:
+      profileVisits === 0
+        ? 0
+        : profileVisits <= 100
+        ? 115
+        : profileVisits * 1.02,
+    reposts: reposts === 0 ? 0 : reposts <= 100 ? 115 : reposts * 1.02,
     videoViews: videoViews * 1.02,
     videoViewsExtra,
     impressionExtra,

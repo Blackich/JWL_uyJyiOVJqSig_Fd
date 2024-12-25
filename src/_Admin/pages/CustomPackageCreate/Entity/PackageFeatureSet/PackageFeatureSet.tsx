@@ -31,7 +31,7 @@ export const PackageFeatureSet: FC<Props> = ({
   const { data: exchangeRate } = packageApi.useGetExchangeRateQuery();
   const primeCostList = packageSettings.map((setting) => [
     setting.typeService,
-    setting.price,
+    setting.cost,
   ]);
   
   const primeCost = calcPrimeCostCustomPackage({
