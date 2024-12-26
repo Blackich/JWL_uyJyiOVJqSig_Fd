@@ -1,5 +1,5 @@
-import "./TestPackage.css";
-import { ChangeEvent, useState } from "react";
+import "./DetailsTestService.css";
+import { ChangeEvent, FC, useState } from "react";
 import { useAppSelector } from "@/store/store";
 // import { checkStartsWithInst } from "@utils/utils";
 import { getEmployeeId } from "@Admin/auth/_auth.slice";
@@ -15,31 +15,37 @@ import {
   TextField,
 } from "@mui/material";
 
-export const TestPackage = () => {
+type Props = {
+  testServiceId: string;
+  setTestServiceId: (testServiceId: string) => void;
+};
+
+export const DetailsTestService: FC<Props> = ({
+  testServiceId,
+  setTestServiceId,
+}) => {
   const employeeId = useAppSelector(getEmployeeId);
   const [sendTestPackage] = testServiceApi.useSendTestPackageMutation();
 
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
-  const [testServiceId, setTestServiceId] = useState("");
   const [testSpeedId, setTestSpeedId] = useState("");
   const [inputLink, setInputLink] = useState<string>("");
 
   const handleChangeService = (e: SelectChangeEvent) => {
-    setTestServiceId(e.target.value as string);
+    setTestServiceId(e.target.value);
   };
   const handleChangeSpeed = (e: SelectChangeEvent) => {
-    setTestSpeedId(e.target.value as string);
+    setTestSpeedId(e.target.value);
   };
   const handleChangeInputLink = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputLink(e.target.value as string);
+    setInputLink(e.target.value);
   };
 
   const handleSubmitTestPackage = async () => {
     if (!employeeId || !inputLink || !testServiceId || !testSpeedId) return;
     const serviceId = Number(testServiceId);
     const speed = Number(testSpeedId);
-    console.log(speed);
     await sendTestPackage({
       speed,
       employeeId,
@@ -54,7 +60,7 @@ export const TestPackage = () => {
     setTestSpeedId("");
   };
   return (
-    <div className="test-services__test-package">
+    <div className="test-services__test-details">
       <FormControl fullWidth>
         <InputLabel>Выберите тест</InputLabel>
         <Select

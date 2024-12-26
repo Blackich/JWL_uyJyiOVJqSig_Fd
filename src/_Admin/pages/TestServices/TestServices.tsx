@@ -1,12 +1,20 @@
 import "./TestServices.css";
+import { useState } from "react";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { TestPackage } from "./Entity/TestPackage/TestPackage";
+import { DetailsTestService } from "./Entity/DetailsTestService/DetailsTestService";
+import { SettingsTestService } from "./Entity/SettingsTestService/SettingsTestService";
 
 export const TestServices = () => {
+  const [testServiceId, setTestServiceId] = useState("");
+
   return (
     <MainBlock title={"Тестовые услуги"}>
       <div className="main-block--test-services">
-        <TestPackage />
+        <DetailsTestService
+          testServiceId={testServiceId}
+          setTestServiceId={setTestServiceId}
+        />
+        <SettingsTestService testServiceId={testServiceId} />
       </div>
     </MainBlock>
   );
