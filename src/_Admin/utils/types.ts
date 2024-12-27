@@ -24,6 +24,14 @@ export type UserPurchasedService = {
   createdAt: string;
 };
 
+export type UserPurchasedExtra = {
+  id: number;
+  count: number;
+  nickname: number;
+  createdAt: string;
+  extraServiceName: string;
+};
+
 export type Service = {
   id: number;
   userId: number;

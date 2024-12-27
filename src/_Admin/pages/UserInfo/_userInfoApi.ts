@@ -4,6 +4,7 @@ import {
   UserSocialAccount,
   UserPurchasedService,
   CustomPackageDetails,
+  UserPurchasedExtra,
 } from "@Admin/utils/types";
 
 const adminApiWithTag = adminApi.enhanceEndpoints({
@@ -34,13 +35,12 @@ export const userInfoApi = adminApiWithTag.injectEndpoints({
     getUserSocialAccounts: builder.query<UserSocialAccount[], User["id"]>({
       query: (id) => `/users/${id}/social`,
     }),
-    getCustomPackageByUserId: builder.query<
-      CustomPackageDetails[],
-      User["id"]
-    >({
-      query: (id) => `/users/${id}/custom`,
-      providesTags: ["UserInfo"],
-    }),
+    getCustomPackageByUserId: builder.query<CustomPackageDetails[], User["id"]>(
+      {
+        query: (id) => `/users/${id}/custom`,
+        providesTags: ["UserInfo"],
+      },
+    ),
     deleteCustomPackageByUserId: builder.mutation<
       { message: string },
       User["id"]
@@ -52,6 +52,9 @@ export const userInfoApi = adminApiWithTag.injectEndpoints({
     }),
     getServicesByUserId: builder.query<UserPurchasedService[], User["id"]>({
       query: (id) => `/users/${id}/services`,
+    }),
+    getExtraByUserId: builder.query<UserPurchasedExtra[], User["id"]>({
+      query: (id) => `/users/${id}/extra`,
     }),
   }),
 });

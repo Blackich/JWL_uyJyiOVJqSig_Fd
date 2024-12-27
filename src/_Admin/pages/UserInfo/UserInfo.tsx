@@ -2,13 +2,14 @@ import "./UserInfo.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
-import { usersListApi } from "@Admin/pages/UsersList/_usersListApi";
 import { RemarkModal } from "./Entity/RemarkModal/RemarkModal";
-import { UserCredentialsBlock } from "./Entity/UserCredentialsBlock/UserCredentialsBlock";
-import { SocialAccountBlock } from "./Entity/SocialAccountBlock/SocialAccountBlock";
+import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
+import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
+import { usersListApi } from "@Admin/pages/UsersList/_usersListApi";
 import { CustomPackPresence } from "./Entity/CustomPackPresence/CustomPackPresence";
+import { SocialAccountBlock } from "./Entity/SocialAccountBlock/SocialAccountBlock";
+import { PurchasedExtraBlock } from "./Entity/PurchasedExtraBlock/PurchasedExtraBlock";
+import { UserCredentialsBlock } from "./Entity/UserCredentialsBlock/UserCredentialsBlock";
 import { PurchasedServicesBlock } from "./Entity/PurchasedServicesBlock/PurchasedServicesBlock";
 
 export const UserInfo = () => {
@@ -35,6 +36,7 @@ export const UserInfo = () => {
             <SocialAccountBlock userInfo={userInfo} />
             <PurchasedServicesBlock userInfo={userInfo} />
             <CustomPackPresence userInfo={userInfo} />
+            <PurchasedExtraBlock userInfo={userInfo} />
           </>
         )}
       </div>
