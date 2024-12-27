@@ -2,40 +2,40 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0 15px;
+  padding: 0 5px;
 
   .td,
   .th {
     text-align: center;
   }
 
-    #td.td:nth-child(1),
-    .th:nth-child(1) {
-      min-width: 120px;
-      max-width: 120px;
-    }
+  #td.td:nth-child(1),
+  .th:nth-child(1) {
+    min-width: 120px;
+    max-width: 120px;
+  }
 
-    #td.td:nth-child(2),
-    .th:nth-child(2) {
-      min-width: 200px;
-      max-width: 200px;
-    }
-  
-    #td.td:nth-child(3),
-    .th:nth-child(3) {
-      min-width: 120px;
-      max-width: 120px;
-    }
-  
-    #td.td:nth-child(4),
-    .th:nth-child(4) {
-      min-width: 120px;
-      max-width: 120px;
-    }
-  
-    #td.td:nth-child(5),
-    .th:nth-child(5) {
-      min-width: 180px;
-      max-width: 180px;
-    }
+  #td.td:nth-child(2),
+  .th:nth-child(2) {
+    min-width: 200px;
+    max-width: 200px;
+  }
+
+  #td.td:nth-child(3),
+  .th:nth-child(3) {
+    min-width: 120px;
+    max-width: 120px;
+  }
+
+  #td.td:nth-child(4),
+  .th:nth-child(4) {
+    min-width: 120px;
+    max-width: 120px;
+  }
+
+  #td.td:nth-child(5),
+  .th:nth-child(5) {
+    min-width: 180px;
+    max-width: 180px;
+  }
 }

@@ -1,5 +1,6 @@
 import "./ExtraInfo.css";
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ExtraInfoAdminSide } from "@Admin/utils/types";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { formatDateNTime, formatRUB, formatUSD } from "@/utils/utils";
@@ -10,11 +11,16 @@ type Props = {
 };
 
 export const ExtraInfo: FC<Props> = ({ extra }) => {
+  const navigate = useNavigate();
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
+
+  const handleClickToUser = () => {
+    navigate(`/panel/users/${extra.userId}`);
+  };
 
   return (
     <div className="extra-service-info">
-      <span>
+      <span onClick={handleClickToUser} className="service-info__user-link">
         Пользователь:&nbsp;<p>{extra.userId}</p>
       </span>
       <span>

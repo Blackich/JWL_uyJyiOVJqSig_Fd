@@ -16,8 +16,8 @@ export const SocialAccountBlock: FC<Props> = ({ userInfo }) => {
 
   if (socialAccounts?.length === 0) {
     return (
-      <div className="user-social-accounts">
-        <div className="user-soc-acc__no-acc">
+      <div className="user-info__block">
+        <div className="user-info__no-service">
           Пользователь не добавил ни одного аккаунта.
         </div>
       </div>
@@ -25,10 +25,9 @@ export const SocialAccountBlock: FC<Props> = ({ userInfo }) => {
   }
 
   return (
-    <div className="user-social-accounts">
+    <div className="user-social-accounts user-info__block">
       <div className="user-soc-acc__list">
-        {userInfo &&
-          socialAccounts &&
+        {socialAccounts &&
           socialAccounts.map((socAcc) => (
             <div key={socAcc.id} className="user-soc-acc__item">
               {socAcc.messangerId === 1 ? <InstagramSVG /> : <TelegramSVG />}

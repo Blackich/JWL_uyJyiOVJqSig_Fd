@@ -1,13 +1,4 @@
 .user-social-accounts {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 350px;
-  height: 281.7px;
-  border: 1px solid rgb(156, 156, 156);
-  border-radius: 10px;
-  overflow: hidden;
-
   .user-soc-acc__list {
     display: flex;
     flex-direction: column;
@@ -38,13 +29,5 @@
   .user-soc-acc__item-date {
     margin-left: auto;
     margin-right: 10px;
-  }
-
-  .user-soc-acc__no-acc {
-    margin: auto 0;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 0 20px;
   }
 }

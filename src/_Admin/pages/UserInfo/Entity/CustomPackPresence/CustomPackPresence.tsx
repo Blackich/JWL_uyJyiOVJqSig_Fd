@@ -32,8 +32,8 @@ export const CustomPackPresence: FC<Props> = ({ userInfo }) => {
 
   if (customPackageUser?.length === 0) {
     return (
-      <div className="custom-pack-presence">
-        <div className="no-custom-pack-presence">
+      <div className="user-info__block">
+        <div className="user-info__no-service">
           У пользователя нет кастомного пакета.
         </div>
       </div>
@@ -41,7 +41,7 @@ export const CustomPackPresence: FC<Props> = ({ userInfo }) => {
   }
 
   return (
-    <div className="custom-pack-presence">
+    <div className="custom-pack-presence user-info__block">
       {customPackageUser &&
         customPackageUser.map((pack) => (
           <div className="custom-pack-presence__details" key={pack.price_rub}>

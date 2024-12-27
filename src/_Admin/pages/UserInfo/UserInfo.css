@@ -5,3 +5,23 @@
   padding: 10px;
   gap: 30px;
 }
+
+.user-info__block {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 350px;
+  gap: 10px;
+  height: 281.7px;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-info__no-service {
+  margin: auto 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0 20px;
+}

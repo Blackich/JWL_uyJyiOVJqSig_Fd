@@ -13,8 +13,8 @@ import BackpackIcon from "@mui/icons-material/Backpack";
 import BackpackOutlinedIcon from "@mui/icons-material/BackpackOutlined";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-// import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-// import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
 
@@ -50,8 +50,8 @@ export const Dashboard: FC = () => {
           <DashboardItem
             url="/panel/extra"
             title="Купленные услуги"
-            iconActive={<ShoppingCartIcon />}
-            iconInactive={<ShoppingCartOutlinedIcon />}
+            iconActive={<ShoppingBasketIcon />}
+            iconInactive={<ShoppingBasketOutlinedIcon />}
           />
           <DashboardItem
             url="/panel/custom-package/create"

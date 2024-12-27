@@ -1,8 +1,9 @@
 import "./ServiceInfo.css";
 import { FC, useState } from "react";
 import { Timer } from "@User/utils/types";
-import Countdown, { zeroPad } from "react-countdown";
 import { Service } from "@Admin/utils/types";
+import { useNavigate } from "react-router-dom";
+import Countdown, { zeroPad } from "react-countdown";
 import { DropdownBtn } from "@ui/Dropdown/DropdownBtn";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { serviceApi } from "@Admin/pages/Service/_serviceApi";
@@ -36,6 +37,7 @@ export const ServiceInfo: FC<Props> = ({
   invaldateServiceTable,
   setShownModalCancelSubs,
 }) => {
+  const navigate = useNavigate();
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [updateServiceStatus] = serviceApi.useUpdateServiceStatusMutation();
 
@@ -53,9 +55,13 @@ export const ServiceInfo: FC<Props> = ({
     invaldateServiceTable();
   };
 
+  const handleClickToUser = () => {
+    navigate(`/panel/users/${service.userId}`);
+  };
+
   return (
     <div className="service-info">
-      <span>
+      <span onClick={handleClickToUser} className="service-info__user-link">
         Пользователь:&nbsp;<p>{service.userId}</p>
       </span>
       <span>

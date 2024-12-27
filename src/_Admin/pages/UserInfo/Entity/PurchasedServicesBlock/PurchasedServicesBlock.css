@@ -1,13 +1,4 @@
 .user-purchased-services {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgb(156, 156, 156);
-  border-radius: 10px;
-  width: 350px;
-  height: 281.7px;
-  gap: 10px;
-  overflow: hidden;
-
   .user-purchased-services__list {
     display: flex;
     flex-direction: column;
@@ -37,13 +28,5 @@
       background-color: #b9e3ff;
       cursor: pointer;
     }
-  }
-
-  .no-services-user {
-    margin: auto 0;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 0 20px;
   }
 }

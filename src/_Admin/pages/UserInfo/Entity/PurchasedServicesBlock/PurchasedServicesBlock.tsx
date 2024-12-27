@@ -21,19 +21,18 @@ export const PurchasedServicesBlock: FC<Props> = ({ userInfo }) => {
 
   if (purchasedServices?.length === 0) {
     return (
-      <div className="user-purchased-services">
-        <div className="no-services-user">
-          У пользователя нет купленных сервисов.
+      <div className="user-info__block">
+        <div className="user-info__no-service">
+          У пользователя нет купленных пакетов.
         </div>
       </div>
     );
   }
 
   return (
-    <div className="user-purchased-services">
+    <div className="user-purchased-services user-info__block">
       <div className="user-purchased-services__list">
-        {userInfo &&
-          purchasedServices &&
+        {purchasedServices &&
           purchasedServices.map((service) => (
             <div
               key={service.id}

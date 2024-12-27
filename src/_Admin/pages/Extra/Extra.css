@@ -4,3 +4,9 @@
   flex-wrap: wrap;
   gap: 30px;
 }
+
+.service-info__user-link:hover {
+  cursor: pointer;
+  transition: all 0.3s linear;
+  background-color: #b9e3ff;
+}
