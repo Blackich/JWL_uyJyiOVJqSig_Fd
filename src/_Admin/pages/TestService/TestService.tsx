@@ -1,10 +1,10 @@
-import "./TestServices.css";
+import "./TestService.css";
 import { useState } from "react";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
 import { DetailsTestService } from "./Entity/DetailsTestService/DetailsTestService";
 import { SettingsTestService } from "./Entity/SettingsTestService/SettingsTestService";
 
-export const TestServices = () => {
+export const TestService = () => {
   const [testServiceId, setTestServiceId] = useState("");
 
   return (

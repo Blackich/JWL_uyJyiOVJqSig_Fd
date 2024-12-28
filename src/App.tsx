@@ -18,7 +18,7 @@ import { Service } from "@Admin/pages/Service/Service";
 import { CustomPackageCreate } from "@Admin/pages/CustomPackageCreate/CustomPackageCreate";
 import { CustomPackageList } from "@Admin/pages/CustomPackageList/CustomPackageList";
 import { CustomPackage } from "@Admin/pages/CustomPackage/CustomPackage";
-import { TestServices } from "@Admin/pages/TestServices/TestServices";
+import { TestService } from "@/_Admin/pages/TestService/TestService";
 import { ExtraList } from "@Admin/pages/ExtraList/ExtraList";
 import { Extra as ExtraAdmin } from "@Admin/pages/Extra/Extra";
 
@@ -161,7 +161,7 @@ export const App: FC = () => {
           path="/panel/test-services"
           element={
             <PrivateRoute>
-              <TestServices />
+              <TestService />
             </PrivateRoute>
           }
         ></Route>

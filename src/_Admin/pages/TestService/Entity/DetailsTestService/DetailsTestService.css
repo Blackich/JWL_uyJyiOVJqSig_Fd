@@ -7,3 +7,7 @@
   width: 100%;
   gap: 15px;
 }
+
+.test-services__comment {
+  height: 320px;
+}

@@ -3,7 +3,7 @@ import { FC } from "react";
 import { formatRUB, formatUSD } from "@utils/utils";
 import { TestServiceSettings } from "@Admin/utils/types";
 import { packageApi } from "@Admin/pages/Packages/_packageApi";
-import { testServiceApi } from "@Admin/pages/TestServices/_testServicesApi";
+import { testServiceApi } from "@/_Admin/pages/TestService/_testServiceApi";
 
 type Props = {
   testServiceId: string;

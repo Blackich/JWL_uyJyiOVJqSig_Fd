@@ -1,10 +1,10 @@
 import "./DetailsTestService.css";
 import { ChangeEvent, FC, useState } from "react";
 import { useAppSelector } from "@/store/store";
-// import { checkStartsWithInst } from "@utils/utils";
+import { checkStartsWithInst } from "@utils/utils";
 import { getEmployeeId } from "@Admin/auth/_auth.slice";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
-import { testServiceApi } from "@Admin/pages/TestServices/_testServicesApi";
+import { testServiceApi } from "@/_Admin/pages/TestService/_testServiceApi";
 import {
   Button,
   FormControl,
@@ -14,6 +14,7 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
+import { InputComment } from "@/ui/InputComment/InputComment";
 
 type Props = {
   testServiceId: string;
@@ -29,9 +30,14 @@ export const DetailsTestService: FC<Props> = ({
 
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
-  const [testSpeedId, setTestSpeedId] = useState("");
+  const [processedLines, setProcessedLines] = useState<string[]>([]);
+  const [countComments, setCountComments] = useState<number>(0);
+  const [testSpeedId, setTestSpeedId] = useState<string>("");
   const [inputLink, setInputLink] = useState<string>("");
 
+  const handleLinesProcessed = (lines: string[]) => {
+    setProcessedLines(lines);
+  };
   const handleChangeService = (e: SelectChangeEvent) => {
     setTestServiceId(e.target.value);
   };
@@ -42,15 +48,32 @@ export const DetailsTestService: FC<Props> = ({
     setInputLink(e.target.value);
   };
 
+  const isNeededSpeedValue = (): boolean => {
+    const serviceId = Number(testServiceId);
+    if (serviceId === 4 || serviceId === 5) return false;
+    return true;
+  };
+
+  const isDisabledBtnCondition = (): boolean => {
+    const serviceId = Number(testServiceId);
+    const speedId = Number(testSpeedId);
+    if (!(serviceId === 4 || serviceId === 5) && speedId === 0) return true;
+    if (serviceId === 5 && countComments !== 10) return true;
+    if (!checkStartsWithInst(inputLink)) return true;
+    if (!employeeId) return true;
+    return false;
+  };
+
   const handleSubmitTestPackage = async () => {
-    if (!employeeId || !inputLink || !testServiceId || !testSpeedId) return;
+    if (!employeeId || !inputLink || !testServiceId) return;
     const serviceId = Number(testServiceId);
     const speed = Number(testSpeedId);
     await sendTestPackage({
-      speed,
+      speed: speed || 4,
       employeeId,
       link: inputLink,
       testServiceId: serviceId,
+      comments: processedLines,
     }).then((res) => {
       if (res?.data) setOpenAlertSuccess(true);
       if (res?.error) setOpenAlertError(true);
@@ -59,6 +82,7 @@ export const DetailsTestService: FC<Props> = ({
     setTestServiceId("");
     setTestSpeedId("");
   };
+
   return (
     <div className="test-services__test-details">
       <FormControl fullWidth>
@@ -76,19 +100,21 @@ export const DetailsTestService: FC<Props> = ({
         </Select>
       </FormControl>
 
-      <FormControl fullWidth>
-        <InputLabel>Скорость</InputLabel>
-        <Select
-          value={testSpeedId}
-          label="Скорость"
-          onChange={handleChangeSpeed}
-        >
-          <MenuItem value={1}>1 час</MenuItem>
-          <MenuItem value={2}>2 часа</MenuItem>
-          <MenuItem value={3}>3 часа</MenuItem>
-          <MenuItem value={4}>Макс.</MenuItem>
-        </Select>
-      </FormControl>
+      {isNeededSpeedValue() && (
+        <FormControl fullWidth>
+          <InputLabel>Скорость</InputLabel>
+          <Select
+            value={testSpeedId}
+            label="Скорость"
+            onChange={handleChangeSpeed}
+          >
+            <MenuItem value={1}>1 час</MenuItem>
+            <MenuItem value={2}>2 часа</MenuItem>
+            <MenuItem value={3}>3 часа</MenuItem>
+            <MenuItem value={4}>Макс.</MenuItem>
+          </Select>
+        </FormControl>
+      )}
 
       <TextField
         label="Ссылка на пост или видео"
@@ -96,11 +122,22 @@ export const DetailsTestService: FC<Props> = ({
         onChange={handleChangeInputLink}
       />
 
+      {Number(testServiceId) === 5 && (
+        <div className="test-services__comment">
+          <InputComment
+            bg={"#F8F8F8"}
+            count={countComments}
+            setCount={setCountComments}
+            onLinesProcessed={handleLinesProcessed}
+          />
+        </div>
+      )}
+
       <Button
         variant="contained"
         style={{ maxWidth: "160px" }}
         onClick={handleSubmitTestPackage}
-        // disabled={!checkStartsWithInst(inputLink) || !testServiceId}
+        disabled={isDisabledBtnCondition()}
       >
         Отправить
       </Button>
