@@ -1,0 +1,29 @@
+.main-block--test-services-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 5px;
+
+  .td,
+  .th {
+    text-align: center;
+  }
+
+  #td.td:nth-child(1),
+  .th:nth-child(1) {
+    min-width: 200px;
+    max-width: 200px;
+  }
+  
+  #td.td:nth-child(2),
+  .th:nth-child(2) {
+    min-width: 230px;
+    max-width: 230px;
+  }
+
+  #td.td:nth-child(4),
+  .th:nth-child(4) {
+    min-width: 200px;
+    max-width: 200px;
+  }
+}

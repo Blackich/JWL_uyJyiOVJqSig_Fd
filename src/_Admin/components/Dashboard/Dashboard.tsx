@@ -17,6 +17,7 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
+import { ListAltSVG, ListAltFilledSVG } from "@Admin/utils/svg/Dashboard";
 
 export const Dashboard: FC = () => {
   return (
@@ -42,6 +43,12 @@ export const Dashboard: FC = () => {
             iconInactive={<PeopleAltOutlinedIcon />}
           />
           <DashboardItem
+            url="/panel/test-services-list"
+            title="Отправленные тесты"
+            iconActive={<ListAltFilledSVG />}
+            iconInactive={<ListAltSVG />}
+          />
+          <DashboardItem
             url="/panel/services"
             title="Купленные пакеты"
             iconActive={<ShoppingCartIcon />}
@@ -54,22 +61,28 @@ export const Dashboard: FC = () => {
             iconInactive={<ShoppingBasketOutlinedIcon />}
           />
           <DashboardItem
+            url="/panel/custom-package"
+            title="Кастомные пакеты"
+            iconActive={<BackpackIcon />}
+            iconInactive={<BackpackOutlinedIcon />}
+          />
+          <DashboardItem
             url="/panel/custom-package/create"
             title="Добавить пакет"
             iconActive={<AddCircleOutlinedIcon />}
             iconInactive={<AddCircleOutlineOutlinedIcon />}
           />
           <DashboardItem
-            url="/panel/package"
+            url="/panel/package-details"
             title="Пакеты"
             iconActive={<ShoppingBagIcon />}
             iconInactive={<ShoppingBagOutlinedIcon />}
           />
           <DashboardItem
-            url="/panel/custom-package"
-            title="Кастомные пакеты"
-            iconActive={<BackpackIcon />}
-            iconInactive={<BackpackOutlinedIcon />}
+            url="/panel/extra-details"
+            title="Доп. услуги"
+            iconActive={<ShoppingBagIcon />}
+            iconInactive={<ShoppingBagOutlinedIcon />}
           />
         </div>
       </div>

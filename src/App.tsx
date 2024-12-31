@@ -7,7 +7,7 @@ import { isTokenExpired } from "@Admin/auth/utils";
 import { LoginForm } from "@Admin/auth/LoginForm/LoginForm";
 import { Overview } from "@Admin/pages/Overview/Overview";
 import { UsersList } from "@Admin/pages/UsersList/UsersList";
-import { Packages } from "@Admin/pages/Packages/Packages";
+import { PackageDetails } from "@Admin/pages/PackageDetails/PackageDetails";
 import { UserInfo } from "@Admin/pages/UserInfo/UserInfo";
 import { LoginFormUser } from "@User/auth/LoginForm/LoginFormUser";
 import { PrivateRouteUser } from "@User/auth/PrivateRoute/PrivateRouteUser";
@@ -18,9 +18,11 @@ import { Service } from "@Admin/pages/Service/Service";
 import { CustomPackageCreate } from "@Admin/pages/CustomPackageCreate/CustomPackageCreate";
 import { CustomPackageList } from "@Admin/pages/CustomPackageList/CustomPackageList";
 import { CustomPackage } from "@Admin/pages/CustomPackage/CustomPackage";
-import { TestService } from "@/_Admin/pages/TestService/TestService";
+import { TestService } from "@Admin/pages/TestService/TestService";
 import { ExtraList } from "@Admin/pages/ExtraList/ExtraList";
 import { Extra as ExtraAdmin } from "@Admin/pages/Extra/Extra";
+import { TestServicesList } from "@Admin/pages/TestServicesList/TestServicesList";
+import { ExtraDetails } from "@Admin/pages/ExtraDetails/ExtraDetails";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -86,10 +88,19 @@ export const App: FC = () => {
         ></Route>
 
         <Route
-          path="/panel/package"
+          path="/panel/package-details"
           element={
             <PrivateRoute>
-              <Packages />
+              <PackageDetails />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/extra-details"
+          element={
+            <PrivateRoute>
+              <ExtraDetails />
             </PrivateRoute>
           }
         ></Route>
@@ -162,6 +173,15 @@ export const App: FC = () => {
           element={
             <PrivateRoute>
               <TestService />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/test-services-list"
+          element={
+            <PrivateRoute>
+              <TestServicesList />
             </PrivateRoute>
           }
         ></Route>

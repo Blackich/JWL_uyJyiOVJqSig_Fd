@@ -113,10 +113,11 @@ export type CustomPackageUser = {
 };
 
 export type TestDetails = {
-  testServiceId: number;
-  employeeId: number;
   link: string;
   speed: number;
+  comments: string[];
+  employeeId: number;
+  testServiceId: number;
 };
 
 export type PrimeCostCustomPackage = {
@@ -166,4 +167,30 @@ export type TestServiceSettings = {
   siteId: number;
   testServiceId: number;
   typeService: string;
+};
+
+export type TestServiceList = {
+  id: number;
+  link: string;
+  senderName: string;
+  createdAt: string;
+  testServiceName: string;
+};
+
+export type ExtraDetails = {
+  id: number;
+  extraServiceId: number;
+  serviceName: string;
+  price_usd_1k: string;
+  price_rub_1k: string;
+};
+
+export type ExtraSettings = {
+  cost: number;
+  createdAt: string;
+  extraServiceId: number;
+  id: number;
+  serviceId: number;
+  siteId: number;
+  status: number;
 };
