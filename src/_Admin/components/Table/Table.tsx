@@ -16,8 +16,9 @@ import {
 
 type Props = {
   tableData: RowData[];
-  columnsSetup: ColumnDef<RowData>[];
   navigateUrl?: string;
+  isExternalLink?: boolean;
+  columnsSetup: ColumnDef<RowData>[];
   initialSort?: { id: string; desc: boolean }[];
 };
 
@@ -26,6 +27,7 @@ export const Table: FC<Props> = ({
   navigateUrl,
   columnsSetup,
   initialSort,
+  isExternalLink,
 }) => {
   const [columnFilters, setColumnFilters] = useState("");
   const [pagination, setPagination] = useState<PaginationState>({
@@ -131,10 +133,13 @@ export const Table: FC<Props> = ({
                 id="td"
                 to={
                   navigateUrl
-                    ? //@ts-expect-error Id will be from tableData
-                      `${navigateUrl}/${cell.getContext().row?.original?.id}`
+                    ? `${navigateUrl}/${(row?.original as { id: number }).id}`
+                    : isExternalLink
+                    ? `${(row?.original as { link: string }).link}`
                     : ""
                 }
+                target={isExternalLink ? "_blank" : "_self"}
+                rel={isExternalLink ? "noopener noreferrer external" : "author"}
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </Link>
