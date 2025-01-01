@@ -5,7 +5,7 @@ import {
   StatusPurchasedService,
 } from "@Admin/utils/types";
 import { Skeleton } from "@mui/material";
-import { siteNameById } from "@Admin/utils/utils";
+import { siteShortNameById } from "@Admin/utils/utils";
 
 type Props = {
   purchasedService: PurchasedServiceWithName[];
@@ -22,7 +22,7 @@ export const ServicePurchase: FC<Props> = ({
         <div key={service.id} className="service-purchase__item">
           <span>
             <p>{service.typeService}</p>&nbsp;(
-            {siteNameById[service.siteId as keyof typeof siteNameById] ||
+            {siteShortNameById[service.siteId as keyof typeof siteShortNameById] ||
               service.siteId}
             , {service.siteServiceId})
           </span>

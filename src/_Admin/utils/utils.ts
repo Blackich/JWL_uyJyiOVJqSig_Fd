@@ -87,8 +87,14 @@ export const extractInstUsername = (url: string) => {
   return match ? match[1] : null;
 };
 
-export const siteNameById = {
+export const siteShortNameById = {
   1: "V",
   2: "J",
   3: "W",
+};
+
+export const siteNameById = {
+  1: "Venro",
+  2: "JustPanel",
+  3: "Wiq",
 };

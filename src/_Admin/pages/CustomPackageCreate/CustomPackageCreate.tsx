@@ -1,7 +1,7 @@
 import "./CustomPackageCreate.css";
 import { useState } from "react";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { packageApi } from "@Admin/pages/Packages/_packageApi";
+import { packageApi } from "@Admin/pages/PackageDetails/_packageDetailsApi";
 import { PackageInputSetting } from "./Entity/PackageInputSetting/PackageInputSetting";
 import { PackageFeatureSet } from "./Entity/PackageFeatureSet/PackageFeatureSet";
 import { customPackageCreateApi } from "./_customPackageCreateApi";

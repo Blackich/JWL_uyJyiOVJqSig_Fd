@@ -1,7 +1,7 @@
 import "./PackageFeatureSet.css";
 import { FC, useState } from "react";
 import { CustomPackWithoutPrice, PackageSettings } from "@Admin/utils/types";
-import { packageApi } from "@Admin/pages/Packages/_packageApi";
+import { packageApi } from "@Admin/pages/PackageDetails/_packageDetailsApi";
 import { calcPrimeCostCustomPackage } from "@Admin/utils/utils";
 import { formatRUB, formatUSD } from "@utils/utils";
 import { Button, TextField } from "@mui/material";
@@ -33,7 +33,7 @@ export const PackageFeatureSet: FC<Props> = ({
     setting.typeService,
     setting.cost,
   ]);
-  
+
   const primeCost = calcPrimeCostCustomPackage({
     primeCost: primeCostList as [string, number][],
     likes: customPackData.likes,

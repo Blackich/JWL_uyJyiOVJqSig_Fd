@@ -1,11 +1,11 @@
-import "./Packages.css";
+import "./PackageDetails.css";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { packageApi } from "./_packageApi";
+import { packageApi } from "./_packageDetailsApi";
+import { PackageCard } from "./Entity/PackageCard/PackageCard";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { PackageCard } from "@Admin/pages/Packages/Entity/PackageCard/PackageCard";
 
-export const Packages = () => {
+export const PackageDetails = () => {
   const [indexButton, setIndexButton] = useState<number>(1);
 
   const { data: packageDetails } = packageApi.useGetPackageDetailsQuery();
@@ -14,7 +14,7 @@ export const Packages = () => {
   return (
     <>
       <MainBlock title={"Пакеты"}>
-        <div className="main-block--packages">
+        <div className="main-block--package-details">
           <div className="package__control">
             <Button
               variant={`${indexButton === 1 ? "contained" : "outlined"}`}

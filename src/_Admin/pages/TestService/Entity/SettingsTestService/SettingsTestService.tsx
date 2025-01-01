@@ -1,9 +1,10 @@
 import "./SettingsTestService.css";
 import { FC } from "react";
+import { siteNameById } from "@Admin/utils/utils";
 import { formatRUB, formatUSD } from "@utils/utils";
 import { TestServiceSettings } from "@Admin/utils/types";
-import { packageApi } from "@Admin/pages/Packages/_packageApi";
-import { testServiceApi } from "@/_Admin/pages/TestService/_testServiceApi";
+import { packageApi } from "@Admin/pages/PackageDetails/_packageDetailsApi";
+import { testServiceApi } from "@Admin/pages/TestService/_testServiceApi";
 
 type Props = {
   testServiceId: string;
@@ -50,10 +51,4 @@ export const SettingsTestService: FC<Props> = ({ testServiceId }) => {
       </div>
     )
   );
-};
-
-const siteNameById = {
-  1: "Venro",
-  2: "JustPanel",
-  3: "Wiq",
 };

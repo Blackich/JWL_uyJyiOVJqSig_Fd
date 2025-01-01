@@ -1,7 +1,7 @@
 import "./ExtraPurchase.css";
 import { FC } from "react";
 import { Skeleton } from "@mui/material";
-import { siteNameById } from "@Admin/utils/utils";
+import { siteShortNameById } from "@Admin/utils/utils";
 
 type Props = {
   siteServiceInfo: [number, number, number];
@@ -23,8 +23,9 @@ export const ExtraPurchase: FC<Props> = ({
               serviceId}
           </p>
           &nbsp;(
-          {siteNameById[siteServiceInfo[0] as keyof typeof siteNameById] ||
-            serviceId}
+          {siteShortNameById[
+            siteServiceInfo[0] as keyof typeof siteShortNameById
+          ] || serviceId}
           , {siteServiceInfo[1]})
         </span>
         <span>

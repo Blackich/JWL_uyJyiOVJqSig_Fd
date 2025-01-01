@@ -15,7 +15,7 @@ export const ExtraList = () => {
         {extraList && (
           <Table
             tableData={extraList}
-            columnsSetup={servicesColumns}
+            columnsSetup={extraServicesColumns}
             navigateUrl="/panel/extra"
             initialSort={[{ id: "createdAt", desc: true }]}
           />
@@ -25,7 +25,7 @@ export const ExtraList = () => {
   );
 };
 
-const servicesColumns: ColumnDef<unknown>[] = [
+const extraServicesColumns: ColumnDef<unknown>[] = [
   {
     accessorKey: "userId",
     header: "userId",
