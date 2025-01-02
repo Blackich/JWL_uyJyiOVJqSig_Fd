@@ -1,0 +1,37 @@
+.extra-details__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid #DDE7EE;
+  border-radius: 20px;
+  padding: 20px;
+  width: 220px;
+  height: 300px;
+}
+
+.extra-details__title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+  height: 60px;
+}
+
+.extra-details__site {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.extra-details__price {
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.extra-details-price__title {
+  font-weight: bold;
+  font-size: 16px;
+}

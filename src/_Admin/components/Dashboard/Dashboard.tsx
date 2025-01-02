@@ -1,6 +1,7 @@
 import "./Dashboard.css";
 import { FC } from "react";
 import { DashboardItem } from "@Admin/components/DashboardItem/DashboardItem";
+import { ListAltSVG, ListAltFilledSVG } from "@Admin/utils/svg/Dashboard";
 import WindowIcon from "@mui/icons-material/Window";
 import WindowOutlinedIcon from "@mui/icons-material/WindowOutlined";
 import PeopleIcon from "@mui/icons-material/People";
@@ -17,7 +18,8 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
-import { ListAltSVG, ListAltFilledSVG } from "@Admin/utils/svg/Dashboard";
+import SellIcon from "@mui/icons-material/Sell";
+import SellOutlinedIcon from "@mui/icons-material/SellOutlined";
 
 export const Dashboard: FC = () => {
   return (
@@ -81,8 +83,8 @@ export const Dashboard: FC = () => {
           <DashboardItem
             url="/panel/extra-details"
             title="Доп. услуги"
-            iconActive={<ShoppingBagIcon />}
-            iconInactive={<ShoppingBagOutlinedIcon />}
+            iconActive={<SellIcon />}
+            iconInactive={<SellOutlinedIcon />}
           />
         </div>
       </div>
