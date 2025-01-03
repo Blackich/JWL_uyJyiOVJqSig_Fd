@@ -4,10 +4,7 @@
   font-weight: 500;
   font-size: 16px;
 
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87); */
   background-color: rgb(245, 245, 245);
-
 
   --color-accent: #26d07c;
   --color-accent-hover: #12bf6a;
@@ -24,7 +21,7 @@
 }
 
 *:focus-visible {
-  outline: var(--outer-focus-border);
+  outline: var(--color-accent);
 }
 
 a {

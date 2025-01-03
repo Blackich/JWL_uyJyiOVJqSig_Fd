@@ -3,7 +3,7 @@ import { AuthUser } from "@User/utils/types";
 
 export const authUser = userApi.injectEndpoints({
   endpoints: (builder) => ({
-    loginUser: builder.query<AuthUser, { token: string }>({
+    loginUser: builder.query<AuthUser, string>({
       query: (token) => ({
         url: "login",
         method: "POST",

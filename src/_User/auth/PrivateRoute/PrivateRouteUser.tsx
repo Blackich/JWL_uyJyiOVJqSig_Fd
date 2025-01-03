@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useLayoutEffect } from "react";
 import { RouteProps, useNavigate } from "react-router-dom";
 import { authUser } from "../_authApi";
 
@@ -12,7 +12,7 @@ export const PrivateRouteUser: FC<TProps> = ({ children }) => {
   const [checkAuthUser, { data: userId }] =
     authUser.useLazyCheckAuthUserQuery();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!userId) {
       checkAuthUser().then(
         (res) => !res.isSuccess && navigate("/login", { replace: true }),
