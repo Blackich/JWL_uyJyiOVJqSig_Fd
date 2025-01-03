@@ -17,7 +17,8 @@ export const packageDefinitions = {
            вами количества постов. Просмотры, входящие в пакет,
            распространяются на [Video - IGTV - Reels]. Если вы хотите
            получить просмотры для Stories, их можно приобрести
-           отдельно в разделе Услуги.`,
+           отдельно в разделе Услуги. Перед покупкой услуг убедитесь,
+           что ваш аккаунт в Instagram открыт.`,
   textEn: `Increase the popularity of your Instagram account with our
            comprehensive promotion services. Choose the perfect service
            package and the number of posts that suit you. All packages
@@ -25,7 +26,8 @@ export const packageDefinitions = {
            this period or once you have used the number of posts you selected.
            The views included in the package apply to [Video - IGTV - Reels].
            If you want to get views for Stories, they can be purchased separately
-           in the Services section.`,
+           in the Services section. Make sure your Instagram account is open before
+           purchasing services.`,
 };
 
 export const serviceDefinitions = [

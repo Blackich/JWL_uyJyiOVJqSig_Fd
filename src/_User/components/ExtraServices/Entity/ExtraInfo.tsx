@@ -9,6 +9,11 @@ export const ExtraInfo = ({ serviceId }: { serviceId: number }) => {
           {t("extra_services.view_story_warn")}
         </div>
       )}
+      {(serviceId === 3 || serviceId === 4) && (
+        <div className="extra-services__warning-text">
+          {t("extra_services.comments_warn")}
+        </div>
+      )}
     </div>
   );
 };
