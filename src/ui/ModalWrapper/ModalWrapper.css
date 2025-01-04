@@ -73,11 +73,3 @@
 .modal-wrapper--alignX-center {
   justify-content: center;
 }
-
-
-@media (min-width: 1024px) {
-  .modal-wrapper__children {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}

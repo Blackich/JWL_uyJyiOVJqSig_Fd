@@ -4,7 +4,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
   border-radius: 10px;
   padding: 8px 0;
-  z-index: 3;
+  z-index: 1;
   animation: open-animate 0.2s linear;
 }
 

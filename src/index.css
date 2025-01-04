@@ -60,7 +60,6 @@ a {
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
-  z-index: -1;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -68,7 +67,6 @@ a {
   border-radius: 10px;
   padding: 100px;
   margin: 100px;
-  z-index: -1;
 }
 
 ::-webkit-scrollbar-thumb:active {
