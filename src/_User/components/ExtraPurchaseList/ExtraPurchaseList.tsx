@@ -31,8 +31,8 @@ export const ExtraPurchaseList: FC<Props> = ({ extraPurchasedList }) => {
               <p>{item.count}</p>
               <p>
                 {i18n.language === "ru"
-                  ? formatRUB(item.priceRUB)
-                  : formatUSD(item.priceUSD)}
+                  ? formatRUB(+item.priceRUB)
+                  : formatUSD(+item.priceUSD)}
               </p>
               <p>{formatDateNTime(item.createdAt)}</p>
             </div>
@@ -49,8 +49,8 @@ export const ExtraPurchaseList: FC<Props> = ({ extraPurchasedList }) => {
                 <PaymentSVG />
                 &nbsp;
                 {i18n.language === "ru"
-                  ? formatRUB(item.priceRUB)
-                  : formatUSD(item.priceUSD)}
+                  ? formatRUB(+item.priceRUB)
+                  : formatUSD(+item.priceUSD)}
               </p>
               <p>
                 <CalendarSVG />

@@ -19,6 +19,12 @@ export const formatRUB = (value: number) => {
   }).format(value);
 };
 
+export const formatGroup = (value: number) => {
+  return new Intl.NumberFormat("ru-RU", {
+    useGrouping: true,
+  }).format(value);
+};
+
 export const formatDate = (value: string) => {
   const date = new Date(value);
   return Intl.DateTimeFormat("ru-RU", {

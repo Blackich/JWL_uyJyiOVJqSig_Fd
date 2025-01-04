@@ -34,9 +34,9 @@ export const CustomPackageCard: FC<Props> = ({ customPackageDetails }) => {
             {cp_details.countPosts}&nbsp;<p>Постов</p>
           </span>
           <span style={{ marginTop: "15px" }}>
-            {formatUSD(cp_details.price_usd)}
+            {formatUSD(+cp_details.price_usd)}
           </span>
-          <span>{formatRUB(cp_details.price_rub)}</span>
+          <span>{formatRUB(+cp_details.price_rub)}</span>
         </div>
       ))}
     </>

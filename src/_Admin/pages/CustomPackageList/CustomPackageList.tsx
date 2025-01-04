@@ -1,7 +1,8 @@
 import "./CustomPackageList.css";
+import { ColumnDef } from "@tanstack/react-table";
+import { formatRUB, formatUSD } from "@/utils/utils";
 import { Table } from "@Admin/components/Table/Table";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { customPackageColumns } from "./Entity/CustomPackageTableSetup";
 import { customPackageListApi } from "./_customPackageListApi";
 
 export const CustomPackageList = () => {
@@ -22,3 +23,46 @@ export const CustomPackageList = () => {
     </MainBlock>
   );
 };
+
+const customPackageColumns: ColumnDef<unknown>[] = [
+  {
+    accessorKey: "likes",
+    header: "Лайки",
+  },
+  {
+    accessorKey: "reach",
+    header: "Охват",
+  },
+  {
+    accessorKey: "saves",
+    header: "Сохранения",
+  },
+  {
+    accessorKey: "profileVisits",
+    header: "Посещения",
+  },
+  {
+    accessorKey: "reposts",
+    header: "Репосты",
+  },
+  {
+    accessorKey: "videoViews",
+    header: "Просм. видео",
+  },
+  {
+    accessorKey: "countPosts",
+    header: "Постов",
+  },
+  {
+    accessorKey: "price_usd",
+    header: "Цена $",
+    enableSorting: false,
+    cell: ({ getValue }) => formatUSD(+(getValue() as string)),
+  },
+  {
+    accessorKey: "price_rub",
+    header: "Цена ₽",
+    enableSorting: false,
+    cell: ({ getValue }) => formatRUB(+(getValue() as string)),
+  },
+];

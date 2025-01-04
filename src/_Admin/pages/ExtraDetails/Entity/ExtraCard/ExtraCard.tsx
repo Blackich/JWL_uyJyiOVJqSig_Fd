@@ -1,8 +1,8 @@
 import "./ExtraCard.css";
+import { siteNameById } from "@Admin/utils/utils";
 import { formatRUB, formatUSD } from "@utils/utils";
 import { extraDetailsApi } from "@Admin/pages/ExtraDetails/_extraDetails";
-import { packageApi } from "@/_Admin/pages/PackageDetails/_packageDetailsApi";
-import { siteNameById } from "@/_Admin/utils/utils";
+import { packageApi } from "@Admin/pages/PackageDetails/_packageDetailsApi";
 
 export const ExtraCard = () => {
   const { data: extraDetails } = extraDetailsApi.useGetExtraDeatailsQuery();

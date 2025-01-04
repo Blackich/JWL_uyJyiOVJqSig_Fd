@@ -79,10 +79,10 @@ const servicesColumns: ColumnDef<unknown>[] = [
       <span>
         {(row.original as Service).currency === "USD" ? (
           <p style={{ color: "blue" }}>
-            {formatUSD((row.original as Service).cost)}
+            {formatUSD(+(row.original as Service).cost)}
           </p>
         ) : (
-          formatRUB((row.original as Service).cost)
+          formatRUB(+(row.original as Service).cost)
         )}
       </span>
     ),

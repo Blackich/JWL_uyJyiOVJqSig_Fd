@@ -45,7 +45,7 @@ export type Service = {
   orderId: string;
   status: number;
   createdAt: string;
-  cost: number;
+  cost: string;
   currency: string;
   paymentServiceName: string;
 };
@@ -72,10 +72,10 @@ export type StatusPurchasedService = {
 export type PackageDetails = {
   id: number;
   likes: number;
-  price_rub_15: number;
-  price_rub_30: number;
-  price_usd_15: number;
-  price_usd_30: number;
+  price_rub_15: string;
+  price_rub_30: string;
+  price_usd_15: string;
+  price_usd_30: string;
 };
 
 export type PackageSettings = {
@@ -186,7 +186,7 @@ export type ExtraDetails = {
 };
 
 export type ExtraSettings = {
-  cost: number;
+  cost: string;
   createdAt: string;
   extraServiceId: number;
   id: number;

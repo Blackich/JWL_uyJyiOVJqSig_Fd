@@ -1,15 +1,16 @@
 import "./Card.css";
+import i18next from "i18next";
+import { Button } from "@ui/Button/Button";
+import { formatGroup } from "@utils/utils";
+import { useTranslation } from "react-i18next";
+import { Skeleton } from "@ui/Skeleton/Skeleton";
 import { FC, HTMLAttributes, useState } from "react";
 import { HeartSVG, InfoSVG } from "@User/utils/svg/HomeSvg";
-import { Button } from "@ui/Button/Button";
-import { useTranslation } from "react-i18next";
 import { PaymentModal } from "@User/components/PaymentModal/PaymentModal";
-import { Skeleton } from "@ui/Skeleton/Skeleton";
-import i18next from "i18next";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  priceRUB: number;
-  priceUSD: number;
+  priceRUB: string;
+  priceUSD: string;
   likes: number;
   className?: string;
   activeIndex: number;
@@ -32,8 +33,8 @@ export const Card: FC<Props> = ({
   const paymentModalData = {
     likes: likes,
     countPosts: activeIndex === 1 ? 15 : 30,
-    priceRUB: priceRUB,
-    priceUSD: priceUSD,
+    priceRUB: Number(priceRUB),
+    priceUSD: Number(priceUSD),
   };
 
   return (
@@ -46,7 +47,7 @@ export const Card: FC<Props> = ({
         <div className="card__item--price">
           {i18n.language === "ru" ? (
             <>
-              {priceRUB}
+              {formatGroup(Number(priceRUB))}
               <p>₽</p>
             </>
           ) : (

@@ -53,13 +53,13 @@ export const PackageCard: FC<Props> = ({
             </p>
             {indexButton === 1 ? (
               <>
-                <p>{formatUSD(packageDetails.price_usd_15)}</p>
-                <p>{formatRUB(packageDetails.price_rub_15)}</p>
+                <p>{formatUSD(+(packageDetails.price_usd_15))}</p>
+                <p>{formatRUB(+(packageDetails.price_rub_15))}</p>
               </>
             ) : (
               <>
-                <p>{formatUSD(packageDetails.price_usd_30)}</p>
-                <p>{formatRUB(packageDetails.price_rub_30)}</p>
+                <p>{formatUSD(+(packageDetails.price_usd_30))}</p>
+                <p>{formatRUB(+(packageDetails.price_rub_30))}</p>
               </>
             )}
           </div>

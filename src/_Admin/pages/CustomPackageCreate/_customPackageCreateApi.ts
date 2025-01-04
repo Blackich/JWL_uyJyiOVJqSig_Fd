@@ -1,5 +1,5 @@
-import { CustomPackageDetails } from "@Admin/utils/types";
 import { adminApi } from "@Admin/utils/utils";
+import { CustomPackageDetails } from "@Admin/utils/types";
 
 export const customPackageCreateApi = adminApi.injectEndpoints({
   endpoints: (builder) => ({

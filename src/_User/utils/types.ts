@@ -20,10 +20,10 @@ export type ResponseServer = {
 export type PackageDetailsUser = {
   id: number;
   likes: number;
-  price_rub_15: number;
-  price_rub_30: number;
-  price_usd_15: number;
-  price_usd_30: number;
+  price_rub_15: string;
+  price_rub_30: string;
+  price_usd_15: string;
+  price_usd_30: string;
 };
 
 export type CardClassName = {
@@ -55,8 +55,8 @@ export type CustomPackageDetailsUser = {
   likes: number;
   videoViews: number;
   countPosts: number;
-  price_rub: number;
-  price_usd: number;
+  price_rub: string;
+  price_usd: string;
 };
 
 export type SendExtraComments = {
@@ -71,7 +71,14 @@ export type PurchasedExtraUser = {
   nickname: string;
   extraServiceName: string;
   count: number;
-  priceRUB: number;
-  priceUSD: number;
+  priceRUB: string;
+  priceUSD: string;
   createdAt: string;
+};
+
+export type ExtraDetailsUser = {
+  extraServiceId: number;
+  minQuantity: number;
+  price_rub_1k: string;
+  price_usd_1k: string;
 };

@@ -17,8 +17,8 @@ export const CustomPackage: FC<Props> = ({ customPack }) => {
   const paymentModalData = {
     likes: customPack[0].likes,
     countPosts: customPack[0].countPosts,
-    priceRUB: customPack[0].price_rub,
-    priceUSD: customPack[0].price_usd,
+    priceRUB: Number(customPack[0].price_rub),
+    priceUSD: Number(customPack[0].price_usd),
     customPackageId: customPack[0].id,
   };
 
@@ -40,8 +40,8 @@ export const CustomPackage: FC<Props> = ({ customPack }) => {
           </span>
           <span>
             {i18n.language === "ru"
-              ? formatRUB(pack.price_rub)
-              : formatUSD(pack.price_usd)}
+              ? formatRUB(+pack.price_rub)
+              : formatUSD(+pack.price_usd)}
           </span>
         </div>
       ))}

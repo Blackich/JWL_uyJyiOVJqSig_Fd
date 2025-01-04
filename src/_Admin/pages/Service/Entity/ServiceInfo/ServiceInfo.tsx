@@ -87,8 +87,8 @@ export const ServiceInfo: FC<Props> = ({
         Стоимость:&nbsp;
         <p>
           {service.currency === "RUB"
-            ? formatRUB(service.cost)
-            : formatUSD(service.cost)}
+            ? formatRUB(+service.cost)
+            : formatUSD(+service.cost)}
         </p>
       </span>
       <span>
