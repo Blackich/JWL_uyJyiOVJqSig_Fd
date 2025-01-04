@@ -15,12 +15,8 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
   bg?: string;
   label: string;
   itemId: number;
-  menuItemArray: string[];
+  menuItemArray?: { id: number; name: string }[];
   setChosenItemId: Dispatch<SetStateAction<number>>;
-}
-
-interface CustomStyleProps extends CSSProperties {
-  "--select-active__bg-color": string;
 }
 
 export const DropdownSelect: FC<Props> = ({
@@ -37,8 +33,21 @@ export const DropdownSelect: FC<Props> = ({
 
   useEffect(() => {
     if (itemId === 0) return;
-    setInputValue(menuItemArray[itemId - 1]);
+    const name = menuItemArray?.find((item) => item.id === itemId)?.name;
+    setInputValue(name || "");
   }, [itemId, menuItemArray]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDropdownShow(false);
+    };
+    if (shownDropdown) {
+      window.addEventListener("resize", handleResize);
+    }
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [shownDropdown]);
 
   return (
     <div
@@ -58,7 +67,7 @@ export const DropdownSelect: FC<Props> = ({
           itemId === 0 && !shownDropdown ? "" : "up"
         }`}
         style={
-          { "--select-active__bg-color": bg ? bg : "#fff" } as CustomStyleProps
+          { "--select-active__bg-color": bg ? bg : "#fff" } as CSSProperties
         }
       >
         {label}
@@ -71,7 +80,7 @@ export const DropdownSelect: FC<Props> = ({
         style={{ width: ref.current?.offsetWidth }}
       >
         <div className="dropdown-select__menu">
-          {menuItemArray.map((menuItem, i) => (
+          {menuItemArray?.map((menuItem, i) => (
             <button
               key={i}
               className={`dropdown-select__menu-item ${
@@ -82,9 +91,9 @@ export const DropdownSelect: FC<Props> = ({
                   e.currentTarget.click();
                 }
               }}
-              onClick={() => setChosenItemId(i + 1)}
+              onClick={() => setChosenItemId(menuItem.id || 0)}
             >
-              {menuItem}
+              {menuItem.name}
             </button>
           ))}
         </div>

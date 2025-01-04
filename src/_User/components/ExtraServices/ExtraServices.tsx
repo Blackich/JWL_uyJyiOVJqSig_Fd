@@ -11,6 +11,7 @@ import { ExtraCount } from "./Entity/ExtraCount";
 import { ExtraInfo } from "./Entity/ExtraInfo";
 import { InputComment } from "@ui/InputComment/InputComment";
 import { userExtraApi } from "@User/pages/Extra/_extraApi";
+import { ExtraDetailsUser } from "@User/utils/types";
 import {
   getSocialAccId,
   getSocialAccName,
@@ -19,9 +20,10 @@ import {
 
 type Props = {
   selectItems: { ru: string[]; en: string[] };
+  extraDetails?: ExtraDetailsUser[];
 };
 
-export const ExtraServices: FC<Props> = ({ selectItems }) => {
+export const ExtraServices: FC<Props> = ({ selectItems, extraDetails }) => {
   const { t, i18n } = useTranslation();
   const userId = useAppSelector(getUserId);
   const pickedAccId = useAppSelector(getSocialAccId);
@@ -32,12 +34,6 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
   const [processedLines, setProcessedLines] = useState<string[]>([]);
   const [serviceId, setServiceId] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
-  const price =
-    serviceId === 4
-      ? (countComments / 10) *
-        (priceTable[serviceId as keyof typeof priceTable] || 0)
-      : (count / 1000) *
-        (priceTable[serviceId as keyof typeof priceTable] || 0);
 
   const [saveCommentsBeforePayment] =
     userExtraApi.useSaveCommentsBeforePaymentMutation();
@@ -45,6 +41,29 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
   const handleLinesProcessed = (lines: string[]) => {
     setProcessedLines(lines);
   };
+
+  const extraServDetails = extraDetails?.find(
+    (exDet) => exDet.extraServiceId === serviceId,
+  );
+
+  const calcPrice = (currency: "RUB" | "USD") => {
+    if (serviceId === 0) return 0;
+    const rub = Number(extraServDetails?.price_rub_1k) || 0;
+    const usd = Number(extraServDetails?.price_usd_1k) || 0;
+    const cost = currency === "RUB" ? rub : usd;
+    if (serviceId === 4) return (countComments / 1000) * cost || 0;
+    return (count / 1000) * cost || 0;
+  };
+
+  const extraServiceMenuItems = (lang: string) =>
+    extraDetails
+      ?.map((exServ) => exServ.extraServiceId)
+      .map((exServId) => {
+        return {
+          id: exServId,
+          name: selectItems[lang as keyof typeof selectItems][exServId - 1],
+        };
+      });
 
   const onClickPaymentBtn = async () => {
     if (serviceId === 4 && countComments >= 1) {
@@ -60,14 +79,12 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
   };
 
   const isDisabledBtnCondition = (): boolean => {
+    const minQuantity = extraServDetails?.minQuantity;
+
     if (!pickedAccName) return true;
     if (serviceId === 0) return true;
     if (serviceId === 4 && countComments < 10) return true;
-    if (
-      serviceId !== 4 &&
-      count < minQuantity[serviceId as keyof typeof minQuantity]
-    )
-      return true;
+    if (serviceId !== 4 && minQuantity && count < minQuantity) return true;
     return false;
   };
 
@@ -75,8 +92,8 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
     count,
     serviceId,
     selectItems,
-    priceRUB: +(price * 108).toFixed(0),
-    priceUSD: +price.toFixed(2),
+    priceRUB: calcPrice("RUB"),
+    priceUSD: calcPrice("USD"),
     countComments,
   };
 
@@ -91,7 +108,7 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
         itemId={serviceId}
         setChosenItemId={setServiceId}
         label={t("extra_services.select_label")}
-        menuItemArray={i18n.language === "ru" ? selectItems.ru : selectItems.en}
+        menuItemArray={extraServiceMenuItems(i18n.language)}
       />
 
       {serviceId === 4 ? (
@@ -108,7 +125,7 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
           count={count}
           setCount={setCount}
           serviceId={serviceId}
-          minQuantity={minQuantity}
+          extraDetails={extraDetails}
         />
       )}
 
@@ -116,7 +133,9 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
         disabled
         placeholder={t("extra_services.price")}
         value={
-          i18n.language === "ru" ? formatRUB(price * 108) : formatUSD(price)
+          i18n.language === "ru"
+            ? formatRUB(calcPrice("RUB"))
+            : formatUSD(calcPrice("USD"))
         }
       />
       <ExtraInfo serviceId={serviceId} />
@@ -135,19 +154,4 @@ export const ExtraServices: FC<Props> = ({ selectItems }) => {
       />
     </div>
   );
-};
-
-const minQuantity = {
-  0: 100,
-  1: 500,
-  2: 100,
-  3: 10,
-  4: 10,
-};
-
-const priceTable = {
-  1: 1.4,
-  2: 2.4,
-  3: 3.4,
-  4: 12,
 };

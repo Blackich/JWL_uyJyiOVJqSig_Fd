@@ -11,13 +11,17 @@ export const Extra = () => {
   const userId = useAppSelector(getUserId);
   const { data: extraPurchasedList } =
     userExtraApi.useGetPurchasedExtraByUserIdQuery(Number(userId));
+  const { data: extraDetails } = userExtraApi.useGetExtraDetailsQuery();
 
   return (
     <>
       <Page>
         <div className="container extra-container">
           <div className="extra-services">
-            <ExtraServices selectItems={selectItems} />
+            <ExtraServices
+              selectItems={selectItems}
+              extraDetails={extraDetails}
+            />
           </div>
           {extraPurchasedList && extraPurchasedList.length > 0 && (
             <div className="extra-purchased-list">

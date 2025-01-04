@@ -1,20 +1,24 @@
 import { FC } from "react";
 import { t } from "i18next";
 import { Input } from "@ui/Input/Input";
+import { ExtraDetailsUser } from "@User/utils/types";
 
 type Props = {
   count: number;
   serviceId: number;
   setCount: (count: number) => void;
-  minQuantity: Record<number, number>;
+  extraDetails?: ExtraDetailsUser[];
 };
 
 export const ExtraCount: FC<Props> = ({
   count,
   setCount,
   serviceId,
-  minQuantity,
+  extraDetails,
 }) => {
+  const minQuantity =
+    extraDetails?.find((exDet) => exDet.extraServiceId === serviceId)
+      ?.minQuantity || 100;
   return (
     <div className="input-info">
       <Input
@@ -34,8 +38,7 @@ export const ExtraCount: FC<Props> = ({
         }}
       />
       <div className="input-info__text">
-        {t("extra_services.min_count_warn")}:{" "}
-        {minQuantity[serviceId as keyof typeof minQuantity] || 100}
+        {t("extra_services.min_count_warn")}: {minQuantity}
       </div>
     </div>
   );
