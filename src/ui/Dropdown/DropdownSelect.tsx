@@ -73,31 +73,33 @@ export const DropdownSelect: FC<Props> = ({
         {label}
       </p>
       <p>{inputValue}</p>
-      <Dropdown
-        shown={shownDropdown}
-        onShownChange={setDropdownShow}
-        targetRef={ref}
-        style={{ width: ref.current?.offsetWidth }}
-      >
-        <div className="dropdown-select__menu">
-          {menuItemArray?.map((menuItem, i) => (
-            <button
-              key={i}
-              className={`dropdown-select__menu-item ${
-                itemId === i + 1 ? "active" : ""
-              }`}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.currentTarget.click();
-                }
-              }}
-              onClick={() => setChosenItemId(menuItem.id || 0)}
-            >
-              {menuItem.name}
-            </button>
-          ))}
-        </div>
-      </Dropdown>
+      {menuItemArray && menuItemArray.length > 0 && (
+        <Dropdown
+          shown={shownDropdown}
+          onShownChange={setDropdownShow}
+          targetRef={ref}
+          style={{ width: ref.current?.offsetWidth }}
+        >
+          <div className="dropdown-select__menu">
+            {menuItemArray?.map((menuItem, i) => (
+              <button
+                key={i}
+                className={`dropdown-select__menu-item ${
+                  itemId === i + 1 ? "active" : ""
+                }`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.currentTarget.click();
+                  }
+                }}
+                onClick={() => setChosenItemId(menuItem.id || 0)}
+              >
+                {menuItem.name}
+              </button>
+            ))}
+          </div>
+        </Dropdown>
+      )}
       <div className={`dropdown-select__svg ${shownDropdown ? "active" : ""}`}>
         <ArrowDropdownSVG />
       </div>
