@@ -1,0 +1,28 @@
+.main-block--general-settings {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.general-settings__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid #DDE7EE;
+  border-radius: 10px;
+  padding: 15px;
+
+  .general-settings__title {
+    padding: 3px;
+    padding-left: 10px;
+    font-size: 20px;
+  }
+}
+
+.general-settings__item {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+}

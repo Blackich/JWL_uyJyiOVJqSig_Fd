@@ -20,6 +20,8 @@ import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
 import SellIcon from "@mui/icons-material/Sell";
 import SellOutlinedIcon from "@mui/icons-material/SellOutlined";
+import SettingsIcon from "@mui/icons-material/Settings";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 
 export const Dashboard: FC = () => {
   return (
@@ -85,6 +87,12 @@ export const Dashboard: FC = () => {
             title="Доп. услуги"
             iconActive={<SellIcon />}
             iconInactive={<SellOutlinedIcon />}
+          />
+          <DashboardItem
+            url="/panel/general-settings"
+            title="Общие настройки"
+            iconActive={<SettingsIcon />}
+            iconInactive={<SettingsOutlinedIcon />}
           />
         </div>
       </div>

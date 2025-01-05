@@ -23,6 +23,7 @@ import { ExtraList } from "@Admin/pages/ExtraList/ExtraList";
 import { Extra as ExtraAdmin } from "@Admin/pages/Extra/Extra";
 import { TestServicesList } from "@Admin/pages/TestServicesList/TestServicesList";
 import { ExtraDetails } from "@Admin/pages/ExtraDetails/ExtraDetails";
+import { GeneralSettings } from "@Admin/pages/GeneralSettings/GeneralSettings";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -182,6 +183,15 @@ export const App: FC = () => {
           element={
             <PrivateRoute>
               <TestServicesList />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/panel/general-settings"
+          element={
+            <PrivateRoute>
+              <GeneralSettings />
             </PrivateRoute>
           }
         ></Route>
