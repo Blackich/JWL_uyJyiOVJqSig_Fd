@@ -21,13 +21,13 @@ export const SummaryExtra: FC<Props> = ({
   selectItems,
   countComment,
 }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const pickedAccName = useAppSelector(getSocialAccName);
 
   return (
     <div className="payment-modal__info-list">
       <p>
-        Услуга:{" "}
+        {t("modal.payment_dialog_service")}:{" "}
         <span>
           {i18n.language === "ru"
             ? selectItems.ru[serviceId - 1]
@@ -35,14 +35,14 @@ export const SummaryExtra: FC<Props> = ({
         </span>
       </p>
       <p>
-        Аккаунт: <span>{pickedAccName}</span>
+        {t("modal.payment_dialog_acc")}: <span>{pickedAccName}</span>
       </p>
       <p>
-        Количество:{" "}
+        {t("modal.payment_dialog_q")}:{" "}
         <span>{serviceId === 4 && countComment ? countComment : count}</span>
       </p>
       <p>
-        Цена:{" "}
+        {t("modal.payment_dialog_price")}:{" "}
         <span>
           {i18n.language === "ru" ? formatRUB(priceRUB) : formatUSD(priceUSD)}
         </span>

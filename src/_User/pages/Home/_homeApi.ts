@@ -46,9 +46,6 @@ export const userHomeApi = userApi.injectEndpoints({
     >({
       query: (id) => `/custom-package/details/${id}`,
     }),
-    checkStatusExternalServices: builder.query<{ message: string }, void>({
-      query: () => `/check/external-status`,
-    }),
     checkPostsRemaining: builder.query<
       { count: number },
       { serviceId: number }

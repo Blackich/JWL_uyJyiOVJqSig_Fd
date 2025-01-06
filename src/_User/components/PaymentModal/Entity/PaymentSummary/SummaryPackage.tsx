@@ -23,19 +23,19 @@ export const SummaryPackage: FC<Props> = ({
   return (
     <div className="payment-modal__info-list">
       <p>
-        {t("modal.payment_package_pack")}: <span>{likes}</span>
+        {t("modal.payment_dialog_pack")}: <span>{likes}</span>
       </p>
       <p>
-        {t("modal.payment_package_acc")}: <span>{pickedAccName}</span>
+        {t("modal.payment_dialog_acc")}: <span>{pickedAccName}</span>
       </p>
       <p>
-        {t("modal.payment_package_posts_q")}: <span>{countPosts}</span>
+        {t("modal.payment_dialog_package_posts_q")}: <span>{countPosts}</span>
       </p>
       <p>
-        {t("modal.payment_package_days_q")}: <span>30</span>
+        {t("modal.payment_dialog_package_days_q")}: <span>30</span>
       </p>
       <p>
-        {t("modal.payment_package_price")}:{" "}
+        {t("modal.payment_dialog_price")}:{" "}
         <span>
           {i18n.language === "ru" ? formatRUB(priceRUB) : formatUSD(priceUSD)}
         </span>

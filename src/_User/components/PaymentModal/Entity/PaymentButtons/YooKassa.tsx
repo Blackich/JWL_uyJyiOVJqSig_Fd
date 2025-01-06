@@ -15,15 +15,15 @@ export const YooKassa: FC<Props> = ({ onClick, type }) => {
       className="payment-modal__btn"
       aria-label={
         type === "bank_card"
-          ? t("modal.payment_package_YooKassa_bc_aria")
-          : t("modal.payment_package_YooKassa_sbp_aria")
+          ? t("modal.payment_dialog_YooKassa_bc_aria")
+          : t("modal.payment_dialog_YooKassa_sbp_aria")
       }
     >
       {type === "bank_card" ? <CreditCardSVG /> : <SbpSVG />}
       <span>
         {type === "bank_card"
-          ? t("modal.payment_package_YooKassa_bc")
-          : t("modal.payment_package_YooKassa_sbp")}
+          ? t("modal.payment_dialog_YooKassa_bc")
+          : t("modal.payment_dialog_YooKassa_sbp")}
       </span>
     </button>
   );
