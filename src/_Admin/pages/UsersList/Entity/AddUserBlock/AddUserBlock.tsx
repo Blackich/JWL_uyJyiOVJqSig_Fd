@@ -21,10 +21,10 @@ export const AddUserBlock = () => {
 
   const handlClickAddUser = async () => {
     if (!employeeId) return;
+    setDisableAddButton(true);
     await createUser(employeeId).then((res) => {
       if (res?.data) {
         invaldateUsersTable();
-        setDisableAddButton(true);
         setOpenAlertSuccess(true);
       }
       if (res?.error) return setOpenAlertError(true);
@@ -32,6 +32,7 @@ export const AddUserBlock = () => {
   };
 
   useEffect(() => {
+    if (isDisableAddButton === false) return;
     const timer = setTimeout(() => {
       setDisableAddButton(false);
     }, 5000);

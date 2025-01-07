@@ -1,10 +1,10 @@
 import "./DetailsTestService.css";
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { useAppSelector } from "@/store/store";
 import { checkStartsWithInst } from "@utils/utils";
 import { getEmployeeId } from "@Admin/auth/_auth.slice";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
-import { testServiceApi } from "@/_Admin/pages/TestService/_testServiceApi";
+import { testServiceApi } from "@Admin/pages/TestService/_testServiceApi";
 import {
   Button,
   FormControl,
@@ -14,7 +14,7 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
-import { InputComment } from "@/ui/InputComment/InputComment";
+import { InputComment } from "@ui/InputComment/InputComment";
 
 type Props = {
   testServiceId: string;
@@ -28,6 +28,7 @@ export const DetailsTestService: FC<Props> = ({
   const employeeId = useAppSelector(getEmployeeId);
   const [sendTestPackage] = testServiceApi.useSendTestPackageMutation();
 
+  const [isDisableAddButton, setDisableAddButton] = useState<boolean>(false);
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
   const [processedLines, setProcessedLines] = useState<string[]>([]);
@@ -57,8 +58,9 @@ export const DetailsTestService: FC<Props> = ({
   const isDisabledBtnCondition = (): boolean => {
     const serviceId = Number(testServiceId);
     const speedId = Number(testSpeedId);
+    if (isDisableAddButton) return true;
     if (!(serviceId === 4 || serviceId === 5) && speedId === 0) return true;
-    if (serviceId === 5 && countComments !== 10) return true;
+    if (serviceId === 5 && countComments !== 1) return true;
     if (!checkStartsWithInst(inputLink)) return true;
     if (!employeeId) return true;
     return false;
@@ -68,6 +70,7 @@ export const DetailsTestService: FC<Props> = ({
     if (!employeeId || !inputLink || !testServiceId) return;
     const serviceId = Number(testServiceId);
     const speed = Number(testSpeedId);
+    setDisableAddButton(true);
     await sendTestPackage({
       speed: speed || 4,
       employeeId,
@@ -82,6 +85,14 @@ export const DetailsTestService: FC<Props> = ({
     setTestServiceId("");
     setTestSpeedId("");
   };
+
+  useEffect(() => {
+    if (isDisableAddButton === false) return;
+    const timer = setTimeout(() => {
+      setDisableAddButton(false);
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [isDisableAddButton]);
 
   return (
     <div className="test-services__test-details">
