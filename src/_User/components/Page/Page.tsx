@@ -46,6 +46,7 @@ export const Page: FC<Props> = ({ children }) => {
     userList?.find(
       (user) => user.id === Number(localStorage.getItem("activeUserId")),
     );
+
   useEffect(() => {
     if (!userList) return;
     if (userList?.length === 0) {
@@ -69,6 +70,8 @@ export const Page: FC<Props> = ({ children }) => {
   useEffect(() => {
     if (!userCred) return;
     dispatch(setUserId(userCred.id));
+    if (userCred?.accessToken)
+      localStorage.setItem("access-Token", userCred.accessToken);
   }, [userCred, dispatch]);
 
   return (

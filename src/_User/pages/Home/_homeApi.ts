@@ -1,20 +1,20 @@
 import { userApi } from "@User/utils/utils";
 import {
   ActivatedService,
-  AuthUser,
+  UserAuthData,
   CustomPackageDetailsUser,
   PackageDetailsUser,
-  ResponseServer,
+  ServerResponse,
   SocialAccountMutation,
   UserSocial,
 } from "@User/utils/types";
 
 export const userHomeApi = userApi.injectEndpoints({
   endpoints: (builder) => ({
-    getSocialList: builder.query<UserSocial[], AuthUser["id"]>({
+    getSocialList: builder.query<UserSocial[], UserAuthData["id"]>({
       query: (id) => `/social/${id}`,
     }),
-    addInstAccount: builder.mutation<ResponseServer, SocialAccountMutation>({
+    addInstAccount: builder.mutation<ServerResponse, SocialAccountMutation>({
       query: ({ id, username }) => ({
         url: "/social",
         method: "POST",
@@ -24,7 +24,7 @@ export const userHomeApi = userApi.injectEndpoints({
         },
       }),
     }),
-    deleteInstAccount: builder.mutation<ResponseServer, SocialAccountMutation>({
+    deleteInstAccount: builder.mutation<ServerResponse, SocialAccountMutation>({
       query: ({ id, username }) => ({
         url: "/social",
         method: "DELETE",
@@ -37,12 +37,12 @@ export const userHomeApi = userApi.injectEndpoints({
     getPackageDetails: builder.query<PackageDetailsUser[], void>({
       query: () => "/package/details",
     }),
-    getActiveService: builder.query<ActivatedService[], AuthUser["id"]>({
+    getActiveService: builder.query<ActivatedService[], UserAuthData["id"]>({
       query: (id) => `/services/${id}`,
     }),
     getCustomPackDetailsByUserId: builder.query<
       CustomPackageDetailsUser[],
-      AuthUser["id"]
+      UserAuthData["id"]
     >({
       query: (id) => `/custom-package/details/${id}`,
     }),

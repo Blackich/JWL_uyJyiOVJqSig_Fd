@@ -41,7 +41,7 @@
     border: 1px solid #000;
   }
 
-  /* &:invalid {
+  /* &:user-invalid {
     border: 1px solid #de0e0e;
     outline: 1px solid #de0e0e;
   } */

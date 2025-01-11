@@ -4,8 +4,11 @@ export const baseUrlUser = {
   baseUrl: "http://localhost:4444/",
   credentials: "include" as RequestCredentials,
   prepareHeaders: (headers: Headers) => {
+    const token = localStorage.getItem("access-Token");
+    if (token) {
+      headers.set("Authorization", `${token}`);
+    }
     headers.set("Accept", "application/json, text/plain, */*");
-
     return headers;
   },
 };

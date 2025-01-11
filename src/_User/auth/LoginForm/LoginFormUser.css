@@ -1,6 +1,6 @@
 .login-container__wrapper {
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   justify-content: center;
   align-items: center;
 }
@@ -20,4 +20,10 @@
 
 .login_container__title p {
   margin-bottom: 10px;
+}
+
+.login-form__error {
+  font-size: 16px;
+  font-weight: 400;
+  color: #de0e0e;
 }

@@ -1,9 +1,9 @@
 import { userApi } from "@User/utils/utils";
 import {
-  AuthUser,
+  UserAuthData,
   ExtraDetailsUser,
   PurchasedExtraUser,
-  ResponseServer,
+  ServerResponse,
   SendExtraComments,
 } from "@User/utils/types";
 
@@ -13,7 +13,7 @@ export const userExtraApi = userApi.injectEndpoints({
       query: () => "/extra-details",
     }),
     saveCommentsBeforePayment: builder.mutation<
-      ResponseServer,
+      ServerResponse,
       SendExtraComments
     >({
       query: ({ userId, socialNicknameId, comments, countComments }) => ({
@@ -29,7 +29,7 @@ export const userExtraApi = userApi.injectEndpoints({
     }),
     getPurchasedExtraByUserId: builder.query<
       PurchasedExtraUser[],
-      AuthUser["id"]
+      UserAuthData["id"]
     >({
       query: (id) => `/extra/${id}`,
     }),

@@ -7,7 +7,10 @@ export const Navigation = () => {
   const { t } = useTranslation();
   const { isMobile } = useAdaptive();
   return (
-    <nav className={`header__nav${isMobile ? "-mobile" : ""}`} role="navigation">
+    <nav
+      className={`header__nav${isMobile ? "-mobile" : ""}`}
+      role="navigation"
+    >
       <NavLink
         to={"/"}
         className={`header__nav-item${isMobile ? "-mobile" : ""}`}

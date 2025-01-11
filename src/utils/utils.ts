@@ -45,6 +45,11 @@ export const formatDateNTime = (value: string) => {
   }).format(date);
 };
 
+export const validateEmail = (email: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/gi;
+  return emailRegex.test(email);
+};
+
 export const remainingTime = (date: string): number => {
   const month = 1000 * 60 * 60 * 24 * 30;
   const ms = new Date(date).getTime() + month;

@@ -1,19 +1,37 @@
 import { userApi } from "@User/utils/utils";
-import { AuthUser } from "@User/utils/types";
+import {
+  UserAuthData,
+  ServerResponse,
+  UserLoginRegisterRequest,
+  UserLoginRegisterResponse,
+} from "@User/utils/types";
 
 export const authUser = userApi.injectEndpoints({
   endpoints: (builder) => ({
-    loginUser: builder.query<AuthUser, string>({
-      query: (token) => ({
+    loginUser: builder.query<
+      UserLoginRegisterResponse,
+      UserLoginRegisterRequest
+    >({
+      query: ({ email, password }) => ({
         url: "login",
         method: "POST",
-        body: { token },
+        body: { email, password },
       }),
     }),
-    logoutUser: builder.query<string, void>({
+    registerUser: builder.query<
+      UserLoginRegisterResponse,
+      UserLoginRegisterRequest
+    >({
+      query: ({ email, password, reCaptcha }) => ({
+        url: "register",
+        method: "POST",
+        body: { email, password, reCaptcha },
+      }),
+    }),
+    logoutUser: builder.query<ServerResponse, void>({
       query: () => "logout",
     }),
-    checkAuthUser: builder.query<AuthUser, void>({
+    checkAuthUser: builder.query<UserAuthData, void>({
       query: () => "check",
     }),
   }),

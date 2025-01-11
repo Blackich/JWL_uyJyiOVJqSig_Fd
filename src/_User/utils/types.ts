@@ -1,6 +1,23 @@
-export type AuthUser = {
+export type ServerResponse = {
   message: string;
+};
+
+export type UserLoginRegisterRequest = {
+  email: string;
+  password: string;
+  reCaptcha?: string;
+};
+
+export type UserLoginRegisterResponse = {
+  email: string;
+  password: string;
+  accessToken: string;
+};
+
+export type UserAuthData = {
   id: number;
+  email: string;
+  accessToken?: string;
 };
 
 export type UserSocial = {
@@ -9,12 +26,8 @@ export type UserSocial = {
 };
 
 export type SocialAccountMutation = {
-  id: AuthUser["id"];
+  id: UserAuthData["id"];
   username: string;
-};
-
-export type ResponseServer = {
-  message: string;
 };
 
 export type PackageDetailsUser = {
