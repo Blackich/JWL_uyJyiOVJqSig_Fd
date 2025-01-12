@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAppSelector } from "@store/store";
-import { handlerErrorAxios } from "@utils/utils";
+import { errorHandler } from "@utils/utils";
 import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { PaymentTypeYooKassa } from "@User/Payment/YooKassa/type";
 import { yooKassaApi } from "@User/Payment/YooKassa/_yooKassaApi";
@@ -47,7 +47,7 @@ export const SystemsPackage: FC<Props> = ({
         return (window.location.href = String(redirectUrl));
       }
       if (res?.error) {
-        const error = handlerErrorAxios(res.error);
+        const error = errorHandler(res.error);
         console.log(error?.message);
       }
     });

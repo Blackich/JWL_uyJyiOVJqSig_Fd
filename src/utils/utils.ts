@@ -96,9 +96,7 @@ interface IError extends AxiosError {
   codeErr: number;
 }
 
-export const handlerErrorAxios = (
-  error: FetchBaseQueryError | SerializedError,
-) => {
+export const errorHandler = (error: FetchBaseQueryError | SerializedError) => {
   if (error && "data" in error && typeof error.data === "object")
     return error.data as IError;
 };

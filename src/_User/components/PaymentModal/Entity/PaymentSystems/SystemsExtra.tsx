@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAppSelector } from "@store/store";
-import { handlerErrorAxios } from "@utils/utils";
+import { errorHandler } from "@utils/utils";
 import { PaymentTypeYooKassa } from "@User/Payment/YooKassa/type";
 import { getSocialAccId, getUserId } from "@User/auth/_user.slice";
 import { YooKassa } from "@User/components/PaymentModal/Entity/PaymentButtons/YooKassa";
@@ -41,7 +41,7 @@ export const SystemsExtra: FC<Props> = ({
         return (window.location.href = String(redirectUrl));
       }
       if (res?.error) {
-        const error = handlerErrorAxios(res.error);
+        const error = errorHandler(res.error);
         console.log(error?.message);
       }
     });

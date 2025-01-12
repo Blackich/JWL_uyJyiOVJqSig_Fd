@@ -3,7 +3,7 @@
   flex-direction: column;
 
   &:first-child {
-    margin-bottom: 11px;
+    margin-bottom: 10px;
   }
 }
 

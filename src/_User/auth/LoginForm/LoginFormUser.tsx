@@ -6,7 +6,7 @@ import { authUser } from "@User/auth/_authApi";
 import { useNavigate } from "react-router-dom";
 import { isValidFormData } from "./LoginData";
 import { useTranslation } from "react-i18next";
-import { handlerErrorAxios } from "@utils/utils";
+import { errorHandler } from "@utils/utils";
 import { FC, useLayoutEffect, useState } from "react";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 
@@ -57,7 +57,7 @@ export const LoginFormUser: FC = () => {
         return;
       }
       if (res?.error) {
-        const error = handlerErrorAxios(res.error);
+        const error = errorHandler(res.error);
         if (error?.codeErr === 2) return setEmailExistError(true);
         if (error?.codeErr === 4 || error?.codeErr === 5)
           return setReCaptchaError(true);

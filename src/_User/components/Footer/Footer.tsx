@@ -13,12 +13,12 @@ export const Footer = () => {
             {t("footer.contact_title")}
           </div>
           <Link
-            to="mailto:gram.top.sup@gmail.com"
+            to="mailto:info@gram.top"
             className="footer__contact-link"
             aria-label={t("footer.contact_mail_link_aria")}
           >
             <MailSVG />
-            gram.top.sup@gmail.com
+            info@gram.top
           </Link>
           <Link
             to="https://t.me/gramtop_help"
