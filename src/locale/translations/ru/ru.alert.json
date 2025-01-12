@@ -4,6 +4,5 @@
   "alert.add_user_success": "Пользователь успешно добавлен",
   "alert.add_user_error": "Не удалось добавить пользователя",
   "alert.add_user_err_exist": "Пользователь уже существует",
-  "alert.add_user_err_max": "Максимальное количество аккаунтов - 5",
-  "alert.add_user_err_max_all": "Вы не можете добавить больше аккаунтов"
+  "alert.add_user_err_max": "Максимальное количество аккаунтов - 10"
 }

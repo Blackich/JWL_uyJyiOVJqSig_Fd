@@ -4,6 +4,5 @@
   "alert.add_user_success": "User added successfully",
   "alert.add_user_error": "Failed to add user",
   "alert.add_user_err_exist": "Username already exists",
-  "alert.add_user_err_max": "You can't add more than 5 accounts",
-  "alert.add_user_err_max_all": "You can't add more accounts"
+  "alert.add_user_err_max": "You can't add more than 10 accounts"
 }

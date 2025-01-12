@@ -8,7 +8,7 @@ import { userHomeApi } from "@User/pages/Home/_homeApi";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
-import { handlerErrorAxios } from "@utils/utils";
+import { errorHandler } from "@utils/utils";
 import { useAppSelector } from "@store/store";
 import { getUserId } from "@User/auth/_user.slice";
 
@@ -26,7 +26,6 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
   const [errExistsAcc, setErrExistsAcc] = useState<boolean>(false);
   const [errMaxAcc, setErrMaxAcc] = useState<boolean>(false);
-  const [errMaxAllAcc, setErrMaxAllAcc] = useState<boolean>(false);
 
   const { refetch: updateSocialAccList } = userHomeApi.useGetSocialListQuery(
     userId || skipToken,
@@ -41,18 +40,15 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
   // validation add inst acc
   const handleAddInstUser = async () => {
     if (!userId || !username) return;
-    await fetchAddInstAccount({ id: userId as number, username }).then(
-      (res) => {
-        if (res?.data) return setOpenAlertSuccess(true);
-        if (res?.error) {
-          const error = handlerErrorAxios(res?.error);
-          if (error?.codeErr === 1) return setErrMaxAcc(true);
-          if (error?.codeErr === 2) return setErrExistsAcc(true);
-          if (error?.codeErr === 3) return setErrMaxAllAcc(true);
-          return setOpenAlertError(true);
-        }
-      },
-    );
+    await fetchAddInstAccount({ id: userId, username }).then((res) => {
+      if (res?.data) return setOpenAlertSuccess(true);
+      if (res?.error) {
+        const error = errorHandler(res?.error);
+        if (error?.codeErr === 1) return setErrMaxAcc(true);
+        if (error?.codeErr === 2) return setErrExistsAcc(true);
+        return setOpenAlertError(true);
+      }
+    });
     updateSocialAccList();
     setUsername("");
     onClose();
@@ -112,12 +108,6 @@ export const AddUserModal: FC<Props> = ({ shownModal, onClose }) => {
         type="error"
         isOpen={errMaxAcc}
         onClose={() => setErrMaxAcc(false)}
-      />
-      <AlertMessage
-        message={t("alert.add_user_err_max_all")}
-        type="error"
-        isOpen={errMaxAllAcc}
-        onClose={() => setErrMaxAllAcc(false)}
       />
     </>
   );
