@@ -1,11 +1,8 @@
 export type User = {
   id: number;
-  token: string;
+  email: string;
   status: string;
   createdAt: string;
-  invitedEmployeeId: string;
-  fullName: string;
-  remark: string;
 };
 
 export type UserSocialAccount = {
