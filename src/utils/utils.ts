@@ -45,6 +45,14 @@ export const formatDateNTime = (value: string) => {
   }).format(date);
 };
 
+export const isNum = (variable: unknown) => {
+  return typeof variable === "number";
+};
+
+export const isStr = (variable: unknown) => {
+  return typeof variable === "string";
+};
+
 export const validateEmail = (email: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/gi;
   return emailRegex.test(email);
