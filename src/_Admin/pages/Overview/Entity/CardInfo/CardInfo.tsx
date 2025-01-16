@@ -1,6 +1,7 @@
 import "./CardInfo.css";
 import { FC, ReactNode } from "react";
 import { Skeleton, Typography } from "@mui/material";
+import { isNum, isStr } from "@utils/utils";
 
 type Props = {
   titleCard: string;
@@ -15,7 +16,7 @@ export const CardInfo: FC<Props> = ({ titleCard, favicon, cardValue }) => {
         <div className="card-info__content">
           <div className="card-info__wrapper">
             <div className="card-info__logo">
-              {typeof favicon === "string" ? (
+              {isStr(favicon) ? (
                 <img
                   src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${favicon}`}
                   alt={`icon ${titleCard}`}
@@ -28,7 +29,7 @@ export const CardInfo: FC<Props> = ({ titleCard, favicon, cardValue }) => {
               {titleCard}
             </Typography>
           </div>
-          {cardValue ? (
+          {isNum(cardValue) || isStr(cardValue) ? (
             <Typography variant="h4" color="black" fontWeight="bold">
               {cardValue}
             </Typography>

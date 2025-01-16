@@ -35,7 +35,6 @@ export const LoginFormUser: FC = () => {
       if (res?.data) {
         localStorage.setItem("access-Token", res.data.accessToken);
         navigate("/", { replace: true });
-        console.log(res.data);
         return;
       }
       if (res?.error) return setOpenAlertError(true);
@@ -53,7 +52,6 @@ export const LoginFormUser: FC = () => {
       if (res?.data) {
         localStorage.setItem("access-Token", res.data.accessToken);
         navigate("/", { replace: true });
-        console.log(res.data);
         return;
       }
       if (res?.error) {
