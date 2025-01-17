@@ -7,10 +7,9 @@ import { Button } from "@mui/material";
 type Props = {
   shownModal: boolean;
   onClose: VoidFunction;
-  remarkData: string;
+  remarkData?: string;
   userId: number;
-  refetchUserInfo: VoidFunction;
-  invalidateUsers: VoidFunction;
+  refetchUserRemark: VoidFunction;
 };
 
 export const RemarkModal: FC<Props> = ({
@@ -18,17 +17,15 @@ export const RemarkModal: FC<Props> = ({
   onClose,
   remarkData,
   userId,
-  refetchUserInfo,
-  invalidateUsers,
+  refetchUserRemark,
 }) => {
-  const [remark, setRemark] = useState(remarkData);
+  const [remark, setRemark] = useState<string>(remarkData || "");
   const [updateUserRemark] = userInfoApi.useUpdateUserRemarkMutation();
 
   const handleClickSaveNClose = async () => {
     if (remark === remarkData) return _onCloseClearInput();
     await updateUserRemark({ id: userId, remark });
-    refetchUserInfo();
-    invalidateUsers();
+    refetchUserRemark();
     _onCloseClearInput();
   };
 

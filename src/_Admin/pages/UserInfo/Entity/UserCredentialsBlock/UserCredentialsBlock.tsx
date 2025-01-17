@@ -9,32 +9,30 @@ import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
 
 type Props = {
   userInfo: User;
+  remark?: string;
   refetchUserInfo: VoidFunction;
-  invaldateUsersTable: VoidFunction;
   setModalRemarkShow: (shown: boolean) => void;
 };
 
 export const UserCredentialsBlock: FC<Props> = ({
   userInfo,
+  remark,
   refetchUserInfo,
-  invaldateUsersTable,
   setModalRemarkShow,
 }) => {
   const [isOpenAlertCopy, setOpenAlertCopy] = useState<boolean>(false);
   const [updateUserStatus] = userInfoApi.useUpdateUserStatusMutation();
 
   const onClickActiveStatus = async () => {
-    if (userInfo?.status === "active") return;
+    if (userInfo?.status === 1) return;
     await updateUserStatus(Number(userInfo.id));
     refetchUserInfo();
-    invaldateUsersTable();
   };
 
   const onClickInactiveStatus = async () => {
-    if (userInfo?.status === "inactive") return;
+    if (userInfo?.status === 0) return;
     await updateUserStatus(Number(userInfo.id));
     refetchUserInfo();
-    invaldateUsersTable();
   };
 
   const onClickChangeRemark = () => {
@@ -44,11 +42,11 @@ export const UserCredentialsBlock: FC<Props> = ({
   return (
     <div className="user-credentials">
       <span>
-        Token:&nbsp;<p>{userInfo.token}</p>
+        Email:&nbsp;<p>{userInfo.email}</p>
         <div
           className="copy-btn"
           onClick={() => {
-            navigator.clipboard.writeText(userInfo.token);
+            navigator.clipboard.writeText(userInfo.email);
             setOpenAlertCopy(true);
           }}
         >
@@ -60,11 +58,8 @@ export const UserCredentialsBlock: FC<Props> = ({
         Создан:&nbsp;<p>{formatDateNTime(userInfo.createdAt)}</p>
       </span>
       <span>
-        Приглашен:&nbsp;<p>{userInfo.fullName}</p>
-      </span>
-      <span>
         Статус:&nbsp;
-        {userInfo.status === "active" ? (
+        {userInfo.status === 1 ? (
           <>
             <p style={{ color: "green" }}>active</p>
           </>
@@ -80,7 +75,7 @@ export const UserCredentialsBlock: FC<Props> = ({
         />
       </span>
       <span>
-        Примечание:&nbsp;<p>{userInfo.remark}</p>
+        Примечание:&nbsp;<p>{remark}</p>
         <DropdownBtn
           className="user-credentials__dropdown"
           menuItemArray={["Изменить"]}
@@ -89,7 +84,7 @@ export const UserCredentialsBlock: FC<Props> = ({
       </span>
       <AlertMessage
         type="success"
-        message="Token скопирован в буфер обмена"
+        message="Email скопирован в буфер обмена"
         isOpen={isOpenAlertCopy}
         onClose={() => setOpenAlertCopy(false)}
       />

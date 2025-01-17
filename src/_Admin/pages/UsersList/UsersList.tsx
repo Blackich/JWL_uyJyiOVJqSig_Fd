@@ -4,7 +4,6 @@ import { usersListApi } from "./_usersListApi";
 import { ColumnDef } from "@tanstack/react-table";
 import { Table } from "@Admin/components/Table/Table";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-// import { AddUserBlock } from "./Entity/AddUserBlock/AddUserBlock";
 
 export const UsersList = () => {
   const { data: usersList } = usersListApi.useGetUsersQuery();
@@ -12,7 +11,6 @@ export const UsersList = () => {
     <>
       <MainBlock title={"Пользователи"}>
         <div className="main-block--users-list">
-          {/* <AddUserBlock /> */}
           {usersList && (
             <Table
               tableData={usersList}

@@ -22,9 +22,12 @@ export const userInfoApi = adminApiWithTag.injectEndpoints({
         method: "PATCH",
       }),
     }),
+    getRemarkByUserId: builder.query<string, User["id"]>({
+      query: (id) => `/users/${id}/remark`,
+    }),
     updateUserRemark: builder.mutation<
       { message: string },
-      { id: User["id"]; remark: User["remark"] }
+      { id: User["id"]; remark: string }
     >({
       query: ({ id, remark }) => ({
         url: `/users/${id}/remark`,
