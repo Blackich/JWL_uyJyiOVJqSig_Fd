@@ -6,6 +6,9 @@ export const customPackageApi = adminApi.injectEndpoints({
     getCustomPackageDetailsById: builder.query<CustomPackageDetails[], number>({
       query: (id) => `/custom-package/${id}`,
     }),
+    getAllUsersForCustomPackage: builder.query<number[], void>({
+      query: () => `/custom-package/users`,
+    }),
     addCustomPackToUser: builder.mutation<
       { message: string },
       { userId: number; customPackageId: number }

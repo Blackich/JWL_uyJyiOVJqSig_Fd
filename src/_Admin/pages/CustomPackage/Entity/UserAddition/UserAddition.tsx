@@ -1,7 +1,6 @@
 import "./UserAddition.css";
 import { FC, useState } from "react";
 import { Button } from "@mui/material";
-import { User } from "@Admin/utils/types";
 import { useAppDispatch } from "@store/store";
 import { SearchBar } from "@ui/SearchBar/SearchBar";
 import { AlertMessage } from "@ui/AlertMessage/AlertMessage";
@@ -9,18 +8,16 @@ import { userInfoApi } from "@Admin/pages/UserInfo/_userInfoApi";
 import { customPackageApi } from "@Admin/pages/CustomPackage/_customPackageApi";
 
 type Props = {
-  usersList: User[];
+  userList: number[];
   customPackageId: number;
 };
-export const UserAddition: FC<Props> = ({ usersList, customPackageId }) => {
+export const UserAddition: FC<Props> = ({ userList, customPackageId }) => {
   const dispatch = useAppDispatch();
   const [query, setQuery] = useState("");
   const [isAproveValue, setAproveValue] = useState<boolean | null>(null);
 
   const [isOpenAlertSuccess, setOpenAlertSuccess] = useState<boolean>(false);
   const [isOpenAlertError, setOpenAlertError] = useState<boolean>(false);
-
-  const usersListIds = usersList.map((user) => user.id);
 
   const [addCustomPackToUser] =
     customPackageApi.useAddCustomPackToUserMutation();
@@ -47,7 +44,7 @@ export const UserAddition: FC<Props> = ({ usersList, customPackageId }) => {
   return (
     <div className="custom-package__user-addition">
       <SearchBar
-        searchData={usersListIds}
+        searchData={userList}
         type="number"
         query={query}
         setQuery={setQuery}
@@ -65,7 +62,7 @@ export const UserAddition: FC<Props> = ({ usersList, customPackageId }) => {
         isOpen={isOpenAlertSuccess}
         onClose={() => setOpenAlertSuccess(false)}
         type="success"
-        message="Пакет успешно добавлен"
+        message="Кастомный пакет успешно добавлен пользователю"
       />
       <AlertMessage
         isOpen={isOpenAlertError}

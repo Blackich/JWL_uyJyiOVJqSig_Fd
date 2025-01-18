@@ -1,14 +1,14 @@
 import "./CustomPackage.css";
 import { useParams } from "react-router-dom";
-import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { usersListApi } from "@Admin/pages/UsersList/_usersListApi";
 import { customPackageApi } from "./_customPackageApi";
-import { CustomPackageCard } from "./Entity/CustomPackageCard/CustomPackageCard";
+import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
 import { UserAddition } from "./Entity/UserAddition/UserAddition";
+import { CustomPackageCard } from "./Entity/CustomPackageCard/CustomPackageCard";
 
 export const CustomPackage = () => {
   const { id } = useParams();
-  const { data: usersList } = usersListApi.useGetUsersQuery();
+  const { data: userList } =
+    customPackageApi.useGetAllUsersForCustomPackageQuery();
   const { data: customPackageDetails } =
     customPackageApi.useGetCustomPackageDetailsByIdQuery(Number(id));
 
@@ -18,8 +18,8 @@ export const CustomPackage = () => {
         {customPackageDetails && (
           <CustomPackageCard customPackageDetails={customPackageDetails} />
         )}
-        {usersList && (
-          <UserAddition usersList={usersList} customPackageId={Number(id)} />
+        {userList && (
+          <UserAddition userList={userList} customPackageId={Number(id)} />
         )}
       </div>
     </MainBlock>
