@@ -1,10 +1,10 @@
 import "./ExtraList.css";
-import { formatDate, formatRUB } from "@utils/utils";
 import { extraListApi } from "./_extraListApi";
 import { ColumnDef } from "@tanstack/react-table";
+import { formatDate, formatRUB } from "@utils/utils";
 import { Table } from "@Admin/components/Table/Table";
 import { MainBlock } from "@Admin/components/MainBlock/MainBlock";
-import { ExtraInfoAdminSide } from "@/_Admin/utils/types";
+import { ExtraInfoAdminSide } from "@Admin/utils/types";
 
 export const ExtraList = () => {
   const { data: extraList } = extraListApi.useGetExtraListQuery();
@@ -29,11 +29,6 @@ const extraServicesColumns: ColumnDef<unknown>[] = [
   {
     accessorKey: "userId",
     header: "userId",
-  },
-  {
-    accessorKey: "invitedName",
-    header: "Приглашен",
-    enableSorting: false,
   },
   {
     accessorKey: "nickname",

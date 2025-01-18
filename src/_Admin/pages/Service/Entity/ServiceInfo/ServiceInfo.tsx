@@ -65,9 +65,6 @@ export const ServiceInfo: FC<Props> = ({
         Пользователь:&nbsp;<p>{service.userId}</p>
       </span>
       <span>
-        Приглашен:&nbsp;<p>{service.fullName}</p>
-      </span>
-      <span>
         Аккаунт:&nbsp;<p>{service.nickname}</p>
       </span>
       {service.packageLikes ? (

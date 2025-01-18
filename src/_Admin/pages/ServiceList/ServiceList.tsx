@@ -31,11 +31,6 @@ const servicesColumns: ColumnDef<unknown>[] = [
     header: "userId",
   },
   {
-    accessorKey: "fullName",
-    header: "Приглашен",
-    enableSorting: false,
-  },
-  {
     accessorKey: "nickname",
     header: "Nickname",
     enableSorting: false,

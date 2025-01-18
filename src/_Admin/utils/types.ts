@@ -32,7 +32,6 @@ export type UserPurchasedExtra = {
 export type Service = {
   id: number;
   userId: number;
-  fullName: string;
   nickname: string;
   packageId: number | null;
   packageLikes: number | null;
@@ -133,14 +132,12 @@ export type PrimeCostCustomPackage = {
 export type ExtraInfoAdminSide = {
   id: number;
   userId: number;
-  invitedName: string;
   nickname: string;
   extraServiceId: number;
   extraServiceName: string;
   count: number;
   priceRUB: string;
   priceUSD: string;
-  siteId: number;
   paymentOrderId: string;
   createdAt: string;
   siteServiceInfo: [number, number, number] | null;

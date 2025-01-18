@@ -60,7 +60,7 @@ export const DetailsTestService: FC<Props> = ({
     const speedId = Number(testSpeedId);
     if (isDisableAddButton) return true;
     if (!(serviceId === 4 || serviceId === 5) && speedId === 0) return true;
-    if (serviceId === 5 && countComments !== 1) return true;
+    if (serviceId === 5 && countComments <= 1) return true;
     if (!checkStartsWithInst(inputLink)) return true;
     if (!employeeId) return true;
     return false;

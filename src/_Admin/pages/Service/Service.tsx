@@ -12,6 +12,7 @@ import { CancelSubsModal } from "./Entity/CancelSubsModal/CancelSubsModal";
 export const Service = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
+
   const [shownModalCancelSubs, setShownModalCancelSubs] =
     useState<boolean>(false);
 

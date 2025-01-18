@@ -24,9 +24,6 @@ export const ExtraInfo: FC<Props> = ({ extra }) => {
         Пользователь:&nbsp;<p>{extra.userId}</p>
       </span>
       <span>
-        Приглашен:&nbsp;<p>{extra.invitedName}</p>
-      </span>
-      <span>
         Аккаунт:&nbsp;<p>{extra.nickname}</p>
       </span>
       <span>
