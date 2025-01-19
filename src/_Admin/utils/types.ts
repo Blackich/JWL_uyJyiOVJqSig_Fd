@@ -140,7 +140,7 @@ export type ExtraInfoAdminSide = {
   priceUSD: string;
   paymentOrderId: string;
   createdAt: string;
-  siteServiceInfo: [number, number, number] | null;
+  siteServiceInfo: string | null;
   paymentServiceName: string;
 };
 

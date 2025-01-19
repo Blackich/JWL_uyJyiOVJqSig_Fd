@@ -4,7 +4,7 @@ import { Skeleton } from "@mui/material";
 import { siteShortNameById } from "@Admin/utils/utils";
 
 type Props = {
-  siteServiceInfo: [number, number, number];
+  siteServiceInfo: string;
   serviceId: number;
   serviceStatus?: string;
 };
@@ -14,6 +14,7 @@ export const ExtraPurchase: FC<Props> = ({
   serviceId,
   serviceStatus,
 }) => {
+  const siteServiceInfoParsed = JSON.parse(siteServiceInfo);
   return (
     <div className="extra-purchase">
       <div className="extra-purchase__item">
@@ -24,12 +25,12 @@ export const ExtraPurchase: FC<Props> = ({
           </p>
           &nbsp;(
           {siteShortNameById[
-            siteServiceInfo[0] as keyof typeof siteShortNameById
+            siteServiceInfoParsed[0] as keyof typeof siteShortNameById
           ] || serviceId}
-          , {siteServiceInfo[1]})
+          , {siteServiceInfoParsed[1]})
         </span>
         <span>
-          orderId:&nbsp;<p>{siteServiceInfo[2]}</p>
+          orderId:&nbsp;<p>{siteServiceInfoParsed[2]}</p>
         </span>
         <span>
           {serviceStatus ? (
